@@ -22,7 +22,6 @@ if [[ "$FULLPATH" == *"$DOTFILEWAREHOUSE"* ]] ; then
     exit 0;
 fi
 
-
 if [ -h "$FILE" ] ; then
     # is link
 
@@ -32,14 +31,14 @@ if [ -h "$FILE" ] ; then
 else
     # normal file
 
-    mv "$FULLPATH" "$NEWPATH";
-    ln -s "$NEWPATH" "$FULLPATH";
-    echo "$BASENAME|$FULLPATH" >> "$DOTFILEMANIFEST";
+    mv "$FULLPATH" "$NEWPATH"    || { echo "Failed to copy dotfile to repository. Please review state."; exit 1; } ;
+    ln -s "$NEWPATH" "$FULLPATH" || { echo "Failed to create link to dotfile. Please review state."; exit 1; } ;
+    echo "$BASENAME|$FULLPATH" >> "$DOTFILEMANIFEST" || { echo "Failed to update manifest. Please review state."; exit 1; } ;
     echo "Updated links to the dotfile.";
 
     pushd "$DOTFILEWAREHOUSE" 2>/dev/null 1>/dev/null;
-    git add "$BASENAME";
-    git commit -m "track-dotfile.sh added dotfile $BASENAME";
+    git add "$BASENAME" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
+    git commit -m "track-dotfile.sh added dotfile $BASENAME" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
     popd 2>/dev/null 1>/dev/null;
 fi
 

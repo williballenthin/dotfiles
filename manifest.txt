@@ -1,0 +1,6 @@
+dmenu-bind.sh|/home/willi/.config/dmenu/dmenu-bind.sh
+menu.xml|/home/willi/.config/openbox/menu.xml
+rc.xml|/home/willi/.config/openbox/rc.xml
+autostart|/home/willi/.config/openbox/autostart
+terminalrc|/home/willi/.config/Terminal/terminalrc
+config|/home/willi/.config/terminator/config
