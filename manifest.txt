@@ -4,3 +4,10 @@ rc.xml|/home/willi/.config/openbox/rc.xml
 autostart|/home/willi/.config/openbox/autostart
 terminalrc|/home/willi/.config/Terminal/terminalrc
 config|/home/willi/.config/terminator/config
+tint2rc|/home/willi/.config/tint2/tint2rc
+.zshrc|/home/willi/.zshrc
+.vimrc|/home/willi/.vimrc
+.Xresources|/home/willi/.Xresources
+.conkyrc|/home/willi/.conkyrc
+.emacs|/home/willi/.emacs
+.emacs.d|/home/willi/.emacs.d
