@@ -38,6 +38,7 @@ else
 
     pushd "$DOTFILEWAREHOUSE" 2>/dev/null 1>/dev/null;
     git add "$BASENAME" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
+    git add "$DOTFILEMANIFEST" || { echo "Failed to commit manifest in repository."; exit 1; } ;
     git commit -m "track-dotfile.sh added dotfile $BASENAME" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
     popd 2>/dev/null 1>/dev/null;
 fi
