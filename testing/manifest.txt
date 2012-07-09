@@ -1,2 +1,0 @@
-
-file.txt-25559|/home/willi/projects/dotfiles/testing/file.txt

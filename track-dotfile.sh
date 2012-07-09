@@ -113,7 +113,7 @@ echo "The full path to this file is $FULLPATH.";
 if [[ "$FULLPATH" == *"$DOTFILEWAREHOUSE"* ]] ; then
     # already tracked
     echo "This file is already tracked by dotfiles.";
-    exit 0;
+    exit 1;
 fi
 
 if [ -h "$FILE" ] ; then
@@ -122,6 +122,7 @@ if [ -h "$FILE" ] ; then
     # TODO(wb) copy target of link and redirect link
     echo "The path provided is a symlink.";
     echo "symlink support not implemented.";
+    exit 1;
 else
     # normal file
 
@@ -131,15 +132,11 @@ else
     echo "Updated links to the dotfile.";
 
     pushd "$DOTFILEWAREHOUSE" 2>/dev/null 1>/dev/null;
-    git add "$BASENAME" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
+    git add "$NEWPATH" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
     git add "$DOTFILEMANIFEST" || { echo "Failed to commit manifest in repository."; exit 1; } ;
     git commit -m "track-dotfile.sh added dotfile $BASENAME" || { echo "Failed to commit dotfile in repository."; exit 1; } ;
     popd 2>/dev/null 1>/dev/null;
 fi
 
 echo "Complete.";
-
-
-
-
-
+exit 0;
