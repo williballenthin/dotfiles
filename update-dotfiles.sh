@@ -77,21 +77,26 @@ echo "You've requested to update the dotfiles repository."
 echo "The full path to this repository is $DOTFILEHOME.";
 
 pushd "$DOTFILEWAREHOUSE" 2>/dev/null 1>/dev/null;
-git pull origin master || { echo "Failed to fetch changes to dotfiles."; exit 1; } ;
+#git pull origin master || { echo "Failed to fetch changes to dotfiles."; exit 1; } ;
 
 for line in $(cat $DOTFILEMANIFEST); do
     FILE=$(echo "$line" | cut -d "|" -f 1);
-    PATH=$(echo "$line" | cut -d "|" -f 2);
+    PATH_=$(echo "$line" | cut -d "|" -f 2);
     
-    if [[ -e "$PATH" ]]; then
-	EXISTING=$(readlink -f "$PATH"  2>/dev/null) || \
+    if [[ ! -e $DOTFILEWAREHOUSE/$FILE ]]; then
+	echo "Corruption detected! Expected file $DOTFILEWAREHOUSE/$FILE does not exist.";
+	exit 1;
+    fi
+
+    if [[ -e "$PATH_" ]]; then
+	EXISTING=$(readlink -f "$DOTFILEWAREHOUSE/$FILE"  2>/dev/null) || \
 	    { echo "Failed to read dotfile link."; exit 1;};
 	if [[ "$EXISTING" == *"$DOTFILEWAREHOUSE"* ]] ; then continue; fi
 
-	echo "Adding new dotfile with path $PATH."
-	echo "  This dotfile already exists."
-	
-	if [[ -h "$PATH" ]] ; then
+	echo "Adding new dotfile with path $PATH_.";
+	echo "  This dotfile already exists.";
+	 
+	if [[ -h "$PATH_" ]] ; then
 	    echo "  The existing dotfile is a link.";
 	    echo "  This will backup the source of the link with path $EXISTING.";
 	fi
@@ -104,20 +109,20 @@ for line in $(cat $DOTFILEMANIFEST); do
 	mv "$EXISTING" "$EXISTING"".bak" || \
 	    { echo "Failed to move existing dotfile to backup."; exit 1; };
 	echo "  Backed up existing dotfile to $EXISTING"".bak.";
+	echo "ln -s $DOTFILEWAREHOUSE/$FILE  $EXISTING";
 	ln -s "$DOTFILEWAREHOUSE/$FILE" "$EXISTING" || \
             { echo "Failed to create link to new dotfile."; exit 1; };
 	echo "  Successfully created dotfile with path $EXISTING.";
     else
-	echo "Adding new dotfile with path $PATH."
-	ln -s "$DOTFILEWAREHOUSE/$FILE" "$PATH" || \
+	echo "Adding new dotfile with path $PATH_.";
+	ln -s "$DOTFILEWAREHOUSE/$FILE" "$PATH_" || \
             { echo "Failed to create link to new dotfile."; exit 1; } ;
-	echo "  Successfully created dotfile with path $PATH.";
+	echo "  Successfully created dotfile with path $PATH_.";
     fi
 done
 
 git add -u || { echo "Failed to add changes to dotfiles."; exit 1; } ;
-git commit -m "Updated changes to dotfiles." || \
-    { echo "Failed to commit updates to dotfiles in repository."; exit 1; } ;
+git commit -m "Updated changes to dotfiles.";
 git push origin master;
 popd 2>/dev/null 1>/dev/null;
 
