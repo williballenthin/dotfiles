@@ -1,0 +1,32 @@
+#!/bin/sh
+
+if [ "x$CLASSPATH" = "x" ] ; then
+	extra_classpath=""
+else
+	extra_classpath=":$CLASSPATH"
+fi
+
+while true ; do
+	case "$1" in
+		-cp | -classpath)
+			extra_classpath=":$2"
+			shift 2 ;;
+		--)
+			shift
+			break ;;
+		*)
+			break ;;
+	esac
+done
+
+breakchars="(){}[],^%$#@\"\";:''|\\"
+if [ $# -eq 0 ]; then 
+    exec rlwrap --remember -c -b "$breakchars" \
+        -f "$HOME"/.clj_completions \
+        java -cp /usr/share/java/clojure.jar"$extra_classpath" clojure.main
+else
+    exec java -cp /usr/share/java/clojure.jar"$extra_classpath" clojure.main "$@"
+fi
+
+
+
