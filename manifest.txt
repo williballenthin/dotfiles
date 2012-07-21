@@ -12,3 +12,4 @@ tint2rc|/home/willi/.config/tint2/tint2rc
 .emacs|/home/willi/.emacs
 .emacs.d|/home/willi/.emacs.d
 clojure.sh-23922|/opt/clojure.sh
+.inputrc-3717|/home/willi/.inputrc
