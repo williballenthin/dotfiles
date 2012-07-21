@@ -82,7 +82,6 @@ git pull origin master || { echo "Failed to fetch changes to dotfiles."; exit 1;
 for line in $(cat $DOTFILEMANIFEST); do
     FILE=$(echo "$line" | cut -d "|" -f 1);
     PATH=$(echo "$line" | cut -d "|" -f 2);
-
     
     if [[ -e "$PATH" ]]; then
 	EXISTING=$(readlink -f "$PATH"  2>/dev/null) || \
@@ -114,10 +113,11 @@ for line in $(cat $DOTFILEMANIFEST); do
             { echo "Failed to create link to new dotfile."; exit 1; } ;
 	echo "  Successfully created dotfile with path $PATH.";
     fi
-end
+done
 
 git add -u || { echo "Failed to add changes to dotfiles."; exit 1; } ;
-git commit -m "Updated changes to dotfiles." || { echo "Failed to commit updates to dotfiles in repository."; exit 1; } ;
+git commit -m "Updated changes to dotfiles." || \
+    { echo "Failed to commit updates to dotfiles in repository."; exit 1; } ;
 git push origin master;
 popd 2>/dev/null 1>/dev/null;
 
