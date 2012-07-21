@@ -29,7 +29,7 @@ fail() {
 
 HERE=$(readlink -f .);
 echo "123" > "./warehouse/123";
-echo "123|$HERE/123" > ".manifest.txt";
+echo "123|$HERE/123" > "./manifest.txt";
 
 ../update-dotfiles.sh -i . 2>$OUT 1>$OUT;
 
