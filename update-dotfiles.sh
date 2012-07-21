@@ -35,7 +35,7 @@ EOF
 ## MAIN
 DOTFILEMANIFEST="$DOTFILEHOME/manifest.txt";
 if   [[ $# -ne 0 ]] ; then
-    if [[ $(expr $# % 2) -ne 1 ]]; then
+    if [[ $(expr $# % 2) -ne 0 ]]; then
 	echo "Error: incorrect number of arguments provided.";
 	usage;
 	exit 1;
