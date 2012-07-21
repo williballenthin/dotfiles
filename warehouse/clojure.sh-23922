@@ -19,13 +19,29 @@ while true ; do
 	esac
 done
 
+CLJ_PATH="/usr/share/java/clojure.jar";
 breakchars="(){}[],^%$#@\"\";:''|\\"
 if [ $# -eq 0 ]; then 
+
+    if [ ! -f "$HOME"/.clj_completions ] ; then
+	echo "Building auto-completions...";
+	BUILD_FILE="/tmp/build_clj_completions.clj";
+	cat > "$BUILD_FILE" <<EOF 
+(def completions (mapcat (comp keys ns-publics) (all-ns)))
+(with-open [f (java.io.BufferedWriter. (java.io.FileWriter. (str (System/getenv "HOME") "/.clj_completions")))]
+    (.write f (apply str (interpose \newline completions))))
+EOF
+	java -cp $CLJ_PATH"$extra_classpath" clojure.main "$BUILD_FILE";
+	rm "$BUILD_FILE";
+	echo "done.";
+    fi
+
+
     exec rlwrap --remember -c -b "$breakchars" \
         -f "$HOME"/.clj_completions \
-        java -cp /usr/share/java/clojure.jar"$extra_classpath" clojure.main
+        java -cp $CLJ_PATH"$extra_classpath" clojure.main
 else
-    exec java -cp /usr/share/java/clojure.jar"$extra_classpath" clojure.main "$@"
+    exec java -cp $CLJ_PATH"$extra_classpath" clojure.main "$@"
 fi
 
 

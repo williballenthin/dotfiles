@@ -28,6 +28,9 @@ nitrogen --restore &
 ## Launch panel
 tint2 &
 
+## Turn off loud bell that does not listen to the audio settings
+xset b off
+
 ## Enable both external monitors if present
 if disper -l | grep "DELL 2709W" ; then
 	if disper -l | grep "DELL U3011" ; then
