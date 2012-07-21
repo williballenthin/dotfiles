@@ -9,4 +9,7 @@ git checkout testing || { exit 1; };
 for file in TEST*.sh; do
     zsh $file;
 done;
+git add -u;
+git commit -m "testing run completing.";
 git checkout master;
+
