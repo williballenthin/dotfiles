@@ -78,6 +78,44 @@ echo "The full path to this repository is $DOTFILEHOME.";
 
 pushd "$DOTFILEWAREHOUSE" 2>/dev/null 1>/dev/null;
 git pull origin master || { echo "Failed to fetch changes to dotfiles."; exit 1; } ;
+
+for line in $(cat $DOTFILEMANIFEST); do
+    FILE=$(echo "$line" | cut -d "|" -f 1);
+    PATH=$(echo "$line" | cut -d "|" -f 2);
+
+    
+    if [[ -e "$PATH" ]]; then
+	EXISTING=$(readlink -f "$PATH"  2>/dev/null) || \
+	    { echo "Failed to read dotfile link."; exit 1;};;
+	if [[ "$EXISTING" == *"$DOTFILEWAREHOUSE"* ]] ; then continue; fi
+
+	echo "Adding new dotfile with path $PATH."
+	echo "  This dotfile already exists."
+	
+	if [[ -h "$PATH" ]] ; then
+	    echo "  The existing dotfile is a link.";
+	    echo "  This will backup the source of the link with path $EXISTING.";
+	fi
+	
+	if [[ -e "$EXISTING"".bak" ]] ; then
+	    echo "  Backup already exists with path $EXISTING"".bak. Please fix.";
+	    exit 1;
+	fi
+
+	mv "$EXISTING" "$EXISTING"".bak" || \
+	    { echo "Failed to move existing dotfile to backup."; exit 1; };
+	echo "  Backed up existing dotfile to $EXISTING"".bak.";
+	ln -s "$DOTFILEWAREHOUSE/$FILE" "$EXISTING" || \
+            { echo "Failed to create link to new dotfile."; exit 1; };
+	echo "  Successfully created dotfile with path $EXISTING.";
+    else
+	echo "Adding new dotfile with path $PATH."
+	ln -s "$DOTFILEWAREHOUSE/$FILE" "$PATH" || \
+            { echo "Failed to create link to new dotfile."; exit 1; } ;
+	echo "  Successfully created dotfile with path $PATH.";
+    fi
+end
+
 git add -u || { echo "Failed to add changes to dotfiles."; exit 1; } ;
 git commit -m "Updated changes to dotfiles." || { echo "Failed to commit updates to dotfiles in repository."; exit 1; } ;
 git push origin master;
