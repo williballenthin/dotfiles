@@ -86,7 +86,7 @@ for line in $(cat $DOTFILEMANIFEST); do
     
     if [[ -e "$PATH" ]]; then
 	EXISTING=$(readlink -f "$PATH"  2>/dev/null) || \
-	    { echo "Failed to read dotfile link."; exit 1;};;
+	    { echo "Failed to read dotfile link."; exit 1;};
 	if [[ "$EXISTING" == *"$DOTFILEWAREHOUSE"* ]] ; then continue; fi
 
 	echo "Adding new dotfile with path $PATH."
@@ -120,7 +120,6 @@ git add -u || { echo "Failed to add changes to dotfiles."; exit 1; } ;
 git commit -m "Updated changes to dotfiles." || { echo "Failed to commit updates to dotfiles in repository."; exit 1; } ;
 git push origin master;
 popd 2>/dev/null 1>/dev/null;
-fi
 
 echo "Complete.";
 exit 0;
