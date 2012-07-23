@@ -19,7 +19,7 @@ while true ; do
 	esac
 done
 
-CLJ_PATH="/usr/share/java/clojure.jar";
+CLJ_PATH="/opt/clojure/clojure-1.4.0-beta7/clojure-1.4.0-beta7.jar";
 breakchars="(){}[],^%$#@\"\";:''|\\"
 if [ $# -eq 0 ]; then 
 
