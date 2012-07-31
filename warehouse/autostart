@@ -31,6 +31,10 @@ tint2 &
 ## Turn off loud bell that does not listen to the audio settings
 xset b off
 
+## Run background process to fetch the keyboard and fix VMWare stealing 
+## issues
+keep_my_mouse &
+
 ## Enable both external monitors if present
 if disper -l | grep "DELL 2709W" ; then
 	if disper -l | grep "DELL U3011" ; then
