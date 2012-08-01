@@ -96,7 +96,6 @@ ${color grey}RAM Usage:$color $mem/$memmax - $memperc%
 ${membar 4}
 ${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% 
 ${swapbar 4}
-${memgraph 20,268 444444 ffffff -t}
 
 ${color white}${font liberation sans:size=10:weight=bold}CPU USAGE $hr
 ${font}
@@ -128,3 +127,9 @@ ${upspeedgraph eth0 20,268 ff00ff 00ffff -t -l}
 ${downspeedgraph eth0 20,268 ffff00 ff0000 -t -l}
 ${endif}
 
+${if_existing /sys/class/power_supply/BAT0/status Discharging}
+${color white}${font liberation sans:size=10:weight=bold}BATTERY $hr
+${font}	
+ ${battery_bar BAT0 11,0} 
+ ${battery_time BAT0}
+${endif}
