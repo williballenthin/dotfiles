@@ -57,3 +57,18 @@
 ;  (define-key slime-repl-mode-map
 ;    (read-kbd-macro paredit-backward-delete-key) nil))
 ;(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
+
+
+(load-file "~/.emacs.d/flymake-cursor.el")
+
+(when (load "flymake" t)
+  (defun flymake-pycheckers-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "/usr/bin/pycheckers" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheckers-init)))
+
+;(add-hook 'python-mode-hook (lambda () (flymake-mode)))
