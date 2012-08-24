@@ -82,16 +82,18 @@ pushd "$DOTFILEWAREHOUSE" 2>/dev/null 1>/dev/null;
 for line in $(cat $DOTFILEMANIFEST); do
     FILE=$(echo "$line" | cut -d "|" -f 1);
     PATH_=$(echo "$line" | cut -d "|" -f 2);
-    
+
     if [[ ! -e $DOTFILEWAREHOUSE/$FILE ]]; then
 	echo "Corruption detected! Expected file $DOTFILEWAREHOUSE/$FILE does not exist.";
 	exit 1;
     fi
 
     if [[ -e "$PATH_" ]]; then
-	EXISTING=$(readlink -f "$DOTFILEWAREHOUSE/$FILE"  2>/dev/null) || \
+	EXISTING=$(readlink -f "$PATH_"  2>/dev/null) || \
 	    { echo "Failed to read dotfile link."; exit 1;};
-	if [[ "$EXISTING" == *"$DOTFILEWAREHOUSE"* ]] ; then continue; fi
+	if [[ "$EXISTING" =~ .*"$DOTFILEWAREHOUSE".* ]] ; then 
+	    continue; 
+	fi
 
 	echo "Adding new dotfile with path $PATH_.";
 	echo "  This dotfile already exists.";
@@ -114,6 +116,8 @@ for line in $(cat $DOTFILEMANIFEST); do
             { echo "Failed to create link to new dotfile."; exit 1; };
 	echo "  Successfully created dotfile with path $EXISTING.";
     else
+	echo "New";
+
 	echo "Adding new dotfile with path $PATH_.";
 	ln -s "$DOTFILEWAREHOUSE/$FILE" "$PATH_" || \
             { echo "Failed to create link to new dotfile."; exit 1; } ;
