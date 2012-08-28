@@ -68,7 +68,26 @@
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "/usr/bin/pycheckers" (list local-file))))
+      (list "/usr/local/bin/pycheckers" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheckers-init)))
 
-;(add-hook 'python-mode-hook (lambda () (flymake-mode)))
+(add-hook 'python-mode-hook 'flymake-mode)
+
+
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+
+
+(require 'flymake-lua)
+(add-hook 'lua-mode-hook 'flymake-lua-load)
+
+
+(defun duplicate-line ()
+  (interactive)
+  (beginning-of-line)
+  (kill-line)
+  (yank)
+  (insert "
+")
+  (yank))
