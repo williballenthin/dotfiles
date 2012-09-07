@@ -17,3 +17,4 @@ keep_my_mouse.sh-24365|/opt/keep_my_mouse.sh
 pycheckers.py-113|/opt/pycheckers.py
 reset_usb.sh-25309|/opt/reset_usb.sh
 Python-8455|/home/willi/.config/templates/Python
+user-dirs.dirs-19831|/home/willi/.config/user-dirs.dirs
