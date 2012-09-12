@@ -14,7 +14,7 @@
     use_custom_command = True
     show_titlebar = False
     custom_command = zsh
-    font = DejaVu Sans Mono 9
+    font = Inconsolata Medium 9
     background_color = "#002b36"
     allow_bold = False
     scrollback_infinite = True

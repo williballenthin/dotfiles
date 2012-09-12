@@ -56,7 +56,7 @@ use_spacer none
 #shades and outlines can give a neon effect
 #uppercase will set all text to uppercase
 use_xft yes
-xftfont liberation sans:size=10
+xftfont liberation sans:size=8
 default_color eeeeee
 default_outline_color 0
 default_shade_color black
@@ -79,25 +79,25 @@ extra_newline no
 background no
 
 TEXT
-${alignc}${font liberation sans:size=10:weight=bold}
+${alignc}${font liberation sans:size=8:weight=bold}
 $sysname $kernel on $machine
 $hr${font}
 ${color grey}Uptime:$color $uptime
 ${color grey}Clock Frequency:$color $freq MHz.
 
-${color white}${font liberation sans:size=10:weight=bold}SYSTEM TIME $hr
+${color white}${font liberation sans:size=8:weight=bold}SYSTEM TIME $hr
 
-${font liberation sans:size=20:weight=bold}${color white}${alignc}${time %X %Z}
+${font liberation sans:size=16:weight=bold}${color white}${alignc}${time %X %Z}
 $font${alignc}${time %A, %B %_d, %Y}
 
-${color white}${font liberation sans:size=10:weight=bold}MEMORY $hr
+${color white}${font liberation sans:size=8:weight=bold}MEMORY $hr
 ${font}
 ${color grey}RAM Usage:$color $mem/$memmax - $memperc% 
 ${membar 4}
 ${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% 
 ${swapbar 4}
 
-${color white}${font liberation sans:size=10:weight=bold}CPU USAGE $hr
+${color white}${font liberation sans:size=8:weight=bold}CPU USAGE $hr
 ${font}
 ${color grey}Total:${alignr}$color $cpu% ${cpubar cpu0 4,170}
 ${cpugraph cpu1 20,268 0000ff 00ffff -t}
@@ -107,14 +107,14 @@ ${cpugraph cpu4 20,268 ffff00 ff8888 -t}
 
 ${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
 
-${color white}${font liberation sans:size=10:weight=bold}FILE SYSTEMS $hr
+${color white}${font liberation sans:size=8:weight=bold}FILE SYSTEMS $hr
 ${font}${color grey}
  Root: $color${fs_used /}/${fs_size /} 
  ${fs_bar 4 /}${color grey}
  Home: $color${fs_used /home}/${fs_size /home}
  ${fs_bar 4 /home/willi}${color grey}
 
-${color white}${font liberation sans:size=10:weight=bold}NETWORK $hr
+${color white}${font liberation sans:size=8:weight=bold}NETWORK $hr
 ${font}
 ${if_existing /sys/class/net/wlan0/operstate up}WLAN0    ${addr wlan0}
 ${color grey}up:${color white} ${upspeed wlan0}  ${color grey}down:${color white} ${downspeed wlan0}
@@ -128,7 +128,7 @@ ${downspeedgraph eth0 20,268 ffff00 ff0000 -t -l}
 ${endif}
 
 ${if_existing /sys/class/power_supply/BAT0/status Discharging}
-${color white}${font liberation sans:size=10:weight=bold}BATTERY $hr
+${color white}${font liberation sans:size=8:weight=bold}BATTERY $hr
 ${font}	
  ${battery_bar BAT0 11,0} 
  ${battery_time BAT0}

@@ -14,6 +14,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 ;(add-to-list 'load-path "/opt/slime/")
 
+(set-face-attribute 'default nil :height 80 :font "Inconsolata Medium 9")
 
 (load-file "~/.emacs.d/color-theme-solarized.el")
 (eval-after-load "color-theme"
@@ -33,7 +34,7 @@
 ;(require 'slime)
 ;(add-hook 'lisp-mode-hook          (lambda () (slime-mode t)))
 ;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-;(setq inferior-lisp-program "/usr/local/bin/lein repl") 
+;(setq inferior-lisp-program "/usr/local/bin/lein repl")
 ;(add-hook 'clojure-mode-hook       (lambda () (inferior-slime-mode t)))
 
 
@@ -90,4 +91,28 @@
   (yank)
   (insert "
 ")
-  (yank))
+  (yank)
+  (message "Duplicated line."))
+
+
+(defun prettify-buffer ()
+  (interactive)
+  (indent-for-tab-command)
+  (message "Prettified buffer."))
+
+(defun clean-whitespace-buffer ()
+  "Untabifies, removes trailing whitespace"
+  (interactive)
+  (save-excursion
+    (untabify (point-min) (point-max))
+    (replace-regexp "[  ]+$" "" nil (point-min) (point-max))
+    (delete-trailing-whitespace))
+  (message "Cleaned region."))
+
+;; Personal keymap
+(define-prefix-command 'willi-keymap)
+(global-set-key (kbd "C-2") 'willi-keymap)
+(define-key willi-keymap (kbd "C-*") 'duplicate-line)
+(define-key willi-keymap (kbd "C-p") 'prettify-buffer)
+(define-key willi-keymap (kbd "C-w") 'clean-whitespace-buffer)
+
