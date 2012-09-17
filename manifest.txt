@@ -18,3 +18,4 @@ pycheckers.py-113|/opt/pycheckers.py
 reset_usb.sh-25309|/opt/reset_usb.sh
 Python-8455|/home/willi/.config/templates/Python
 user-dirs.dirs-19831|/home/willi/.config/user-dirs.dirs
+.oh-my-zsh-25464|/home/willi/.oh-my-zsh
