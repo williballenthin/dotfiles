@@ -1,0 +1,8 @@
+#!/bin/bash
+# Bing Desktop Toolbar wallpaper switcher for Linux.
+# Author: Willi Ballenthin
+# Dependencies:
+#   - pyp (via http://code.google.com/p/pyp/)
+#   - feh (via apt-get)
+
+a=$(wget -q -4 -O - "http://themeserver.microsoft.com/default.aspx?p=Bing&c=Desktop&m=en-US" | pyp "p.split('link ref=\"')[2].partition('\"')[0]") && wget "$a" -O /tmp/wallpaper.img && feh --bg-center /tmp/wallpaper.img
