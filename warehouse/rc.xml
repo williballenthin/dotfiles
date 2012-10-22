@@ -849,5 +849,9 @@
         <y>center</y>
       </position>
     </application>
+	<application class="Skype" name="skype" role="MainWindow" type="normal">
+      <desktop>all</desktop>
+	  <maximized>no</maximized>
+    </application>    
   </applications>
 </openbox_config>

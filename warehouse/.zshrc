@@ -74,7 +74,7 @@ google() {
                   qstring="$qstring+$arg"
         done
 
-        w3m -no-cookie http://www.google.com/search?q=$qstring
+        w3m -no-cookie "http://www.google.com/search?q=$qstring";
 }
 
 
@@ -84,15 +84,6 @@ s() {
 
 f() {
         find . -iname "*$1*"
-}
-
-d() {
-        for p in "$@";
-        do
-                 echo "$p:" ;
-                 dig +short txt $p.wp.dg.cx;
-                 echo "-------------------------------------------------";
-        done;
 }
 
 # A shortcut function that simplifies usage of xclip.

@@ -76,6 +76,9 @@ fi
 ## Start xscreensaver
 xscreensaver -no-splash &
 
+## update the wallpaper from Bing
+/usr/local/bin/update-wallpaper
+
 ## Start Conky after a slight delay
 (sleep 3s && conky -q) &
 
