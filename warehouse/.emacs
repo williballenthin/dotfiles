@@ -3,7 +3,9 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(wg-switch-on-load nil)
+ '(workgroups-mode t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -106,6 +108,18 @@
   (global-auto-complete-mode t))
 
 (my-ac-config)
+
+
+
+
+
+
+(require 'workgroups)
+(setq wg-prefix-key (kbd "C-3"))
+(workgroups-mode 1)
+(wg-load "~/.emacs.d/workgroups")
+
+
 
 
 
