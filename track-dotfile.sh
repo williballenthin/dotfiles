@@ -5,7 +5,7 @@
 
 
 #### CONFIGURE DEFAULT HERE:
-DOTFILEHOME="/home/willi/projects/dotfiles/";
+DOTFILEHOME="/home/willi/Git/dotfiles/";
 #### END CONFIGURE DEFAULT
 
 

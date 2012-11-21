@@ -14,8 +14,6 @@
 (add-to-list 'load-path "~/.emacs.d/")
 ;(add-to-list 'load-path "/opt/slime/")
 
-(set-face-attribute 'default nil :height 80 :font "Inconsolata Medium 9")
-
 (load-file "~/.emacs.d/color-theme-solarized.el")
 (eval-after-load "color-theme"
   '(progn

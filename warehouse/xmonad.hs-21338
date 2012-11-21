@@ -19,6 +19,8 @@ keysToAdd x =
 	  [ ((mod1Mask, xK_Tab), windows W.focusDown)
 	  , ((mod4Mask, xK_g), queryPrompt defaultXPConfig)
 	  , ((mod4Mask, xK_t), spawn "gnome-terminal")
+	  , ((mod4Mask, xK_F6), spawn "/opt/brightness-down")
+	  , ((mod4Mask, xK_F7), spawn "/opt/brightness-up")
 	  ]
 keysToDel x = 
 	  [ (mod4Mask, xK_t)
