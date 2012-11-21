@@ -1,0 +1,101 @@
+#!/bin/zsh
+
+INTERVAL=5;
+
+DATE_FORMAT='%A, %Y-%m-%d %H:%M:%S'
+
+fdate() {
+    date +$DATE_FORMAT;
+}
+
+getbatfull() {
+    cat "/sys/class/power_supply/sbs-4-000b/charge_full";
+}
+
+getbatnow() {
+    cat "/sys/class/power_supply/sbs-4-000b/charge_now";
+}
+
+getbatstatus() {
+    cat "/sys/class/power_supply/sbs-4-000b/status";
+}
+
+getmemtotal() {
+    cat "/proc/meminfo" | grep "MemTotal" | awk '{print $2}';
+}
+
+getmemfree() {
+    cat "/proc/meminfo" | grep "MemFree" | awk '{print $2}';
+}
+
+getrxbytes() {
+    cat "/sys/class/net/mlan0/statistics/rx_bytes";
+}
+
+gettxbytes() {
+    cat "/sys/class/net/mlan0/statistics/tx_bytes";
+}
+
+getwifiquality() {
+    expr  100 \* $(iwconfig  2>/dev/null| grep "Link Quality" | cut -d "=" -f 2 | cut -d " " -f 1 | sed -e "s|/| / |g");
+}
+
+getwifiessid() {
+    iwconfig 2>/dev/null | grep "ESSID" | cut -d ":" -f 2;
+}
+
+getcpuload() {
+    cat /proc/loadavg | cut -d " " -f 1-3;
+}
+
+# previous count
+RXlast=$(getrxbytes);
+TXlast=$(gettxbytes);
+
+while true; do 
+    ### DATE
+    DATE=$(fdate);
+    
+    ### POWER
+    POWER_METER_COLOR="white";
+    if [[ $(expr 100 \* $(getbatnow) / $(getbatfull)) -lt 20 ]]; then
+	POWER_METER_COLOR="red";
+    fi;
+    POWER_METER=$(expr 100 \* $(getbatnow) / $(getbatfull) | dzen2-gdbar -fg $POWER_METER_COLOR);
+    POWER_STATUS=$(getbatstatus);
+
+    ### MEMORY
+    MEM=$(expr 100 - 100 \* $(getmemfree) / $(getmemtotal) | dzen2-gdbar);
+
+    ### NETWORK
+    # new count
+    RXcur=$(getrxbytes);
+    TXcur=$(gettxbytes);
+    KBPS=$(expr $INTERVAL \* 1024)
+    RXdif=$(expr $RXcur - $RXlast);
+    RXdif=$(expr $RXdif / $KBPS);
+    TXdif=$(expr $TXcur - $TXlast);
+    TXdif=$(expr $RXdif / $KBPS);
+    RXlast=$RXcur; 
+    TXlast=$TXcur;
+    TX_COLOR="white";
+    if [[ $TXdif -gt 0 ]]; then
+	TX_COLOR="green";
+    fi
+    RX_COLOR="white";
+    if [[ $RXdif -gt 0 ]]; then
+	RX_COLOR="green";
+    fi
+    NETSTRING="idle";
+    if [[ $RXdif -ne 0 || $TXdif -ne 0 ]]; then
+	NETSTRING="^fg(${RX_COLOR})${RXdif}^fg() kB/s v ^fg(${TX_COLOR})${TXdif}^fg() kB/s ^";
+    fi
+    WIFIQUALITY=$(getwifiquality);
+    ESSID=$(getwifiessid);
+
+    ### CPU
+    LOAD=$(getcpuload);
+
+    print "cpu: ${LOAD}  |  mlan0: $NETSTRING (${ESSID}${WIFIQUALITY}%)  |  Mem: $MEM  |  Bat: $POWER_METER ($POWER_STATUS)  |  ^fg(white)${DATE}^fg()"
+    sleep $INTERVAL;
+done;
