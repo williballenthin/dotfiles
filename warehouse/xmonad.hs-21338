@@ -1,0 +1,49 @@
+import XMonad
+import XMonad.Hooks.ManageDocks
+import XMonad.Prompt
+import XMonad.Prompt.Input
+import qualified Data.Map as M		
+import qualified XMonad.StackSet as W
+import System.IO
+
+queryBuilder :: String -> String
+queryBuilder query = "query=$(echo \"" ++ query ++ "\" | sed -e \"s/ /+/g\") && gnome-terminal -x w3m \"www.google.com/search?q=$query\""
+
+queryPrompt :: XPConfig -> X ()
+queryPrompt c = 
+    inputPrompt c "query" ?+ \query ->
+    spawn (queryBuilder query)
+    >> return()
+
+keysToAdd x = 
+	  [ ((mod1Mask, xK_Tab), windows W.focusDown)
+	  , ((mod4Mask, xK_g), queryPrompt defaultXPConfig)
+	  , ((mod4Mask, xK_t), spawn "gnome-terminal")
+	  , ((mod4Mask, xK_F6), spawn "/opt/brightness-down")
+	  , ((mod4Mask, xK_F7), spawn "/opt/brightness-up")
+	  ]
+keysToDel x = 
+	  [ (mod4Mask, xK_t)
+	  ]
+
+keysDefault = keys defaultConfig
+keysStrip x = foldr M.delete            (keysDefault x) (keysToDel x)
+myKeys x    = foldr (uncurry M.insert)  (keysStrip x)   (keysToAdd x)
+
+main = do
+     spawn "zsh /home/user/.dzen/bar.sh | dzen2 -ta r"
+     xmonad $ defaultConfig 
+       { manageHook = manageDocks <+> manageHook defaultConfig
+       , layoutHook = avoidStruts $ layoutHook defaultConfig	
+       , modMask = mod4Mask
+       , keys = myKeys
+       , focusedBorderColor = "#0000FF"
+       }    
+
+
+
+
+
+ 
+
+ 

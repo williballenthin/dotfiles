@@ -36,9 +36,6 @@
 (add-to-list 'load-path "~/.emacs.d/")
 ;(add-to-list 'load-path "/opt/slime/")
 
-
-
-
 ;; Theming
 (set-face-attribute 'default nil :height 80 :font "Inconsolata Medium 9")
 

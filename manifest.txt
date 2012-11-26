@@ -21,3 +21,7 @@ user-dirs.dirs-19831|/home/willi/.config/user-dirs.dirs
 willi.zsh-theme-29883|/home/willi/.oh-my-zsh/themes/willi.zsh-theme
 vpn.sh-26334|/opt/vpn.sh
 wallpaper.sh-4716|/opt/wallpaper.sh
+bar.sh-30547|/home/willi/.dzen/bar.sh
+xmonad.hs-21338|/home/willi/.xmonad/xmonad.hs
+brightness-up.sh-24546|/opt/brightness-up.sh
+brightness-down.sh-18284|/opt/brightness-down.sh
