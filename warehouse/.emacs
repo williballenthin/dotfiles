@@ -1,3 +1,21 @@
+;;; .emacs for Willi Ballenthin <williballenthin.com>
+;;; Things to learn and remember:
+;;;   - personal key map: C-2
+;;;   - workgroup mode: C-3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -13,9 +31,15 @@
   ;; If there is more than one, they won't work right.
  )
 
+
+
 (add-to-list 'load-path "~/.emacs.d/")
 ;(add-to-list 'load-path "/opt/slime/")
 
+
+
+
+;; Theming
 (set-face-attribute 'default nil :height 80 :font "Inconsolata Medium 9")
 
 (load-file "~/.emacs.d/color-theme-solarized.el")
@@ -25,6 +49,11 @@
      (color-theme-solarized-dark)))
 
 
+
+
+
+
+;; A bunch of stuff for Lisp hacking
 (require 'clojure-mode)
 ;(require 'clojurescript-mode)
 ;(require 'clojure-test-mode)
@@ -62,8 +91,11 @@
 ;(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
 
-(load-file "~/.emacs.d/flymake-cursor.el")
 
+
+
+;; Flymake mode for syntax checking
+(load-file "~/.emacs.d/flymake-cursor.el")
 (when (load "flymake" t)
   (defun flymake-pycheckers-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -73,20 +105,24 @@
                         (file-name-directory buffer-file-name))))
       (list "/usr/local/bin/pycheckers" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheckers-init)))
-
 (add-hook 'python-mode-hook 'flymake-mode)
 
 
+
+
+
+;; Lua stuff
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-
 
 (require 'flymake-lua)
 (add-hook 'lua-mode-hook 'flymake-lua-load)
 
 
 
+
+;; Autocomplete minor mode
 (add-to-list 'load-path "~/.emacs.d/autocomplete-mode/")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete-mode//ac-dict")
@@ -94,7 +130,7 @@
 
 
 
-
+;; Autocomplete for C code via Clang
 (add-to-list 'load-path "~/.emacs.d/auto-complete-clang-async/")
 (require 'auto-complete-clang-async)
 (defun ac-cc-mode-setup ()
@@ -112,8 +148,15 @@
 
 
 
+;; Python display
+(add-hook 'python-mode-hook       (lambda () (linum-mode)))
+(add-hook 'c-mode-common-hook     (lambda () (linum-mode)))
 
 
+
+
+
+;; Workgroup minor mode
 (require 'workgroups)
 (setq wg-prefix-key (kbd "C-3"))
 (workgroups-mode 1)
@@ -122,7 +165,19 @@
 
 
 
+;; IDO mode
+(require 'ido)
+(ido-mode t)
 
+
+
+;; Highlighter minor mode
+(require 'highlighter-minor-mode)
+
+
+
+
+;; Custom code by Willi, for Willi
 (defun duplicate-line ()
   (interactive)
   (beginning-of-line)
