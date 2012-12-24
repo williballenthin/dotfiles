@@ -25,3 +25,4 @@ bar.sh-30547|/home/willi/.dzen/bar.sh
 xmonad.hs-21338|/home/willi/.xmonad/xmonad.hs
 brightness-up.sh-24546|/opt/brightness-up.sh
 brightness-down.sh-18284|/opt/brightness-down.sh
+xmonad_autostart.sh-23305|/home/willi/.xmonad/xmonad_autostart.sh

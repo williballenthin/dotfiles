@@ -1,0 +1,6 @@
+#!/bin/bash
+
+(/home/willi/.dzen/bar.sh | dzen2 -ta r) &
+trayer --edge top --align left --widthtype request --height 15 &
+sleep 1
+nm-applet &
