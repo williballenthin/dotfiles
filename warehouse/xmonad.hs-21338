@@ -31,7 +31,7 @@ keysStrip x = foldr M.delete            (keysDefault x) (keysToDel x)
 myKeys x    = foldr (uncurry M.insert)  (keysStrip x)   (keysToAdd x)
 
 main = do
-     spawn "zsh /home/user/.dzen/bar.sh | dzen2 -ta r"
+     spawn "zsh /home/willi/.xmonad/xmonad_autostart.sh"
      xmonad $ defaultConfig 
        { manageHook = manageDocks <+> manageHook defaultConfig
        , layoutHook = avoidStruts $ layoutHook defaultConfig	

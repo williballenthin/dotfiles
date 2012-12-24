@@ -37,7 +37,8 @@ gettxbytes() {
 }
 
 getwifiquality() {
-    expr  100 \* $(iwconfig  2>/dev/null| grep "Link Quality" | cut -d "=" -f 2 | cut -d " " -f 1 | sed -e "s|/| / |g");
+    QUALITY=$(iwconfig  2>/dev/null| grep "Link Quality" | cut -d "=" -f 2 | cut -d " " -f 1 | sed -e "s|/| / |g");
+    expr  100 \* $QUALITY;
 }
 
 getwifiessid() {
@@ -75,7 +76,7 @@ while true; do
     RXdif=$(expr $RXcur - $RXlast);
     RXdif=$(expr $RXdif / $KBPS);
     TXdif=$(expr $TXcur - $TXlast);
-    TXdif=$(expr $RXdif / $KBPS);
+    TXdif=$(expr $TXdif / $KBPS);
     RXlast=$RXcur; 
     TXlast=$TXcur;
     TX_COLOR="white";

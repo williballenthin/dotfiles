@@ -14,7 +14,8 @@
 
 
 
-
+(menu-bar-mode 0)
+(tool-bar-mode 0)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -36,14 +37,15 @@
 (add-to-list 'load-path "~/.emacs.d/")
 ;(add-to-list 'load-path "/opt/slime/")
 
-;; Theming
-(set-face-attribute 'default nil :height 80 :font "Inconsolata Medium 9")
+
 
 (load-file "~/.emacs.d/color-theme-solarized.el")
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-solarized-dark)))
+;     (color-theme-solarized-dark)
+     (color-theme-tty-dark)
+     ))
 
 
 
