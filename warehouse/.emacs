@@ -1,4 +1,4 @@
-;;; .emacs for Willi Ballenthin <williballenthin.com>
+;; .emacs for Willi Ballenthin <williballenthin.com>
 ;;; Things to learn and remember:
 ;;;   - personal key map: C-2
 ;;;   - workgroup mode: C-3
@@ -107,6 +107,17 @@
 (add-hook 'python-mode-hook 'flymake-mode)
 
 
+;; Autocomplete minor mode
+(add-to-list 'load-path "~/.emacs.d/autocomplete-mode/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete-mode//ac-dict")
+(ac-config-default)
+
+
+(setq jedi:setup-keys t)
+(autoload 'jedi:setup "jedi" "Jedi Autocomplete" t)
+(add-hook 'python-mode-hook 'jedi:setup)
+
 
 
 
@@ -121,11 +132,6 @@
 
 
 
-;; Autocomplete minor mode
-(add-to-list 'load-path "~/.emacs.d/autocomplete-mode/")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete-mode//ac-dict")
-(ac-config-default)
 
 
 
