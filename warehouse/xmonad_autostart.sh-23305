@@ -4,3 +4,4 @@
 trayer --edge top --align left --widthtype request --height 15 &
 sleep 1
 nm-applet &
+python /opt/mouse_jitter.py &;
