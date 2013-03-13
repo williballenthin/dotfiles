@@ -65,6 +65,8 @@ alias top='htop'
 alias play='mpg123'
 alias up='cd ..'
 alias e="emacsclient -c"
+alias l="ls -laht"
+alias o="xdg-open"
 
 google() {
         qstring=""
