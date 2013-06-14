@@ -36,7 +36,9 @@ source $ZSH/oh-my-zsh.sh
 ZSH_THEME=evan
 
 # Customize to your needs...
-export PATH=/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+export GOPATH=$HOME/go
+export GOROOT=$HOME/hg/go
+export PATH=/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$GOPATH/bin:$GOROOT/bin:
 
 
 
@@ -65,6 +67,8 @@ alias top='htop'
 alias play='mpg123'
 alias up='cd ..'
 alias e="emacsclient -c"
+alias l="ls -laht"
+alias o="xdg-open"
 
 google() {
         qstring=""

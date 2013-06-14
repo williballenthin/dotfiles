@@ -1,7 +1,7 @@
 dmenu-bind.sh|/home/willi/.config/dmenu/dmenu-bind.sh
 menu.xml|/home/willi/.config/openbox/menu.xml
 rc.xml|/home/willi/.config/openbox/rc.xml
-autostart|/home/willi/.config/openbox/autostart
+autostart-1234|/home/willi/.config/openbox/autostart
 terminalrc|/home/willi/.config/Terminal/terminalrc
 config|/home/willi/.config/terminator/config
 tint2rc|/home/willi/.config/tint2/tint2rc
@@ -25,3 +25,10 @@ bar.sh-30547|/home/willi/.dzen/bar.sh
 xmonad.hs-21338|/home/willi/.xmonad/xmonad.hs
 brightness-up.sh-24546|/opt/brightness-up.sh
 brightness-down.sh-18284|/opt/brightness-down.sh
+xmonad_autostart.sh-23305|/home/willi/.xmonad/xmonad_autostart.sh
+xmonad_autostart.sh-crouton|/home/willi/.xmonad/xmonad_autostart.sh
+mouse_jitter.py-3000|/opt/mouse_jitter.py
+ramdisk.sh-5921|/opt/ramdisk.sh
+.Xmodmap-31980|/home/willi/.Xmodmap
+ramdisk.sh-11726|/opt/ramdisk.sh
+.screenrc-18568|/home/willi/.screenrc
