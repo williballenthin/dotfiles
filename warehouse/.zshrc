@@ -141,3 +141,9 @@ function pw() {
 }
 
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+PATH=$PATH:/opt/Sweetscape;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 94E6EA6B-7B3E-7A2C-61FE-A781E326C7C0
