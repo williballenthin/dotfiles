@@ -31,3 +31,4 @@ mouse_jitter.py-3000|/opt/mouse_jitter.py
 ramdisk.sh-5921|/opt/ramdisk.sh
 .Xmodmap-31980|/home/willi/.Xmodmap
 ramdisk.sh-11726|/opt/ramdisk.sh
+.screenrc-18568|/home/willi/.screenrc
