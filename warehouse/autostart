@@ -35,9 +35,13 @@ xset b off
 ## issues
 keep_my_mouse &
 
+
+xmodmap ~/.xmodmap
+
+
 ## Enable both external monitors if present
-if disper -l | grep "DELL 2709W" ; then
-	if disper -l | grep "DELL U3011" ; then
+if disper -l | grep "DELL U3011" ; then  # 30" monitor
+	if disper -l | grep "DELL 2709W" ; then  # 27" monitor
 		# acquire this by using nvidia-settings to layout as desired
 		# then disper -p to export the current config.
 		echo "backend: nvidia
@@ -45,6 +49,23 @@ associated displays: DFP-1, DFP-2
 metamode: DFP-1: nvidia-auto-select @1920x1200 +2560+0, DFP-2: 2560x1600 @2560x1600 +0+0
 scaling: stretched, stretched
 xinerama info order: DFP-2, DFP-1" | disper -i ;
+    else
+        echo "backend: nvidia
+associated displays: DFP-2, DFP-3
+metamode: DFP-2: 2560x1600 @2560x1600 +0+0
+scaling: stretched, default
+xinerama info order:" | disper -i ;
+	fi
+fi
+if disper -l | grep "VMO LCD QHD 1" ; then  # 30" monitor
+	if disper -l | grep "HP w2207" ; then  # 22" monitor
+		# acquire this by using nvidia-settings to layout as desired
+		# then disper -p to export the current config.
+		echo "backend: nvidia
+associated displays: CRT-0, DFP-3, DFP-4
+metamode: CRT-0: 1680x1050 @1680x1050 +2560+0, DFP-4: 2560x1440 @2560x1440 +0+0
+scaling: default, default, stretched
+xinerama info order:" | disper -i ;
 	fi
 fi
 
