@@ -127,6 +127,8 @@
 (require 'flymake-lua)
 (add-hook 'lua-mode-hook 'flymake-lua-load)
 
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'lua-mode))
+
 
 
 
@@ -178,7 +180,15 @@
 (require 'highlighter-minor-mode)
 
 
-
+;; spaces, not tabs!
+(require 'whitespace)
+(autoload 'global-whitespace-mode           "whitespace" "Toggle whitespace visualization."        t)
+(add-hook 'after-change-major-mode-hook 
+          '(lambda () 
+	     (setq-default indent-tabs-mode nil)
+	     (setq c-basic-indent 2)
+	     (setq tab-width 2)
+	     (setq indent-tabs-mode nil)))
 
 ;; Custom code by Willi, for Willi
 (defun duplicate-line ()
