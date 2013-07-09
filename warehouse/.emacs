@@ -215,6 +215,19 @@
     (delete-trailing-whitespace))
   (message "Cleaned region."))
 
+(defun replace-all-occurances (word replacement)
+  "replace-all-occurances replaces all occurances of `word` 
+   with `replacement` in the current buffer."
+  (save-excursion
+    (beginning-of-buffer)
+    (replace-string word replacement)))
+
+(defun replace-current-word (replacement)
+  "replace-current-word replaces all occurances of the 
+   current word with `replacement`"
+  (interactive "sReplacement:")
+  (replace-all-occurances (current-word) replacement))
+
 ;; Personal keymap
 (define-prefix-command 'willi-keymap)
 (global-set-key (kbd "C-2") 'willi-keymap)
@@ -222,5 +235,6 @@
 (define-key willi-keymap (kbd "C-p") 'prettify-buffer)
 (define-key willi-keymap (kbd "C-w") 'clean-whitespace-buffer)
 (define-key willi-keymap (kbd "C-c") 'compile)
+(define-key willi-keymap (kbd "C-r") 'replace-current-word)
 
 
