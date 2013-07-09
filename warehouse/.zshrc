@@ -29,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cpanm debian django extract github gnu-utils history-substring-search perl pip python ssh-agent svn terminator)
+plugins=(git cpanm debian django extract github gnu-utils history-substring-search perl pip python ssh-agent svn terminator colored-man colorize encode64 git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,3 +145,9 @@ function pw() {
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:/usr/local/go/bin
+export GOPATH=/home/willi/vm-share/Go
+
+if [[ -f "~/.zshrc.local" ]]; then
+    source "~/.zshrc.local";
+fi
