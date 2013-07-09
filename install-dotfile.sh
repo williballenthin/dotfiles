@@ -5,7 +5,9 @@
 
 
 #### CONFIGURE DEFAULT HERE:
-DOTFILEHOME="/home/willi/Git/dotfiles/";
+if [[ ! "$DOTFILEHOME" ]]; then
+  DOTFILEHOME="/home/willi/Git/dotfiles/";
+fi
 #### END CONFIGURE DEFAULT
 
 
