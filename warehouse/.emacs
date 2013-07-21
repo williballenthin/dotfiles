@@ -5,7 +5,7 @@
 
 (defun set-env-var-from-shell (var)
   "Set up Emacs' environment variable to match that used by the user's shell."
-  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string (concat "$SHELL --login -i -c 'echo $" var)))))
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n\-]*$" "" (shell-command-to-string (concat "$SHELL --login -i -c 'echo $" var "'")))))
     (setenv var path-from-shell)))
 
 
@@ -14,13 +14,12 @@
 
   This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
   (interactive)
-  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n\-]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (set-exec-path-from-shell-PATH)
 (set-env-var-from-shell "GOPATH")
-
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -184,6 +183,13 @@
 (my-ac-config)
 
 
+
+;; Java stuff
+(add-hook 'java-mode-hook 'flymake-mode-on)
+(defun my-java-flymake-init ()
+  (list "javac" (list (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-with-folder-structure))))
+(add-to-list 'flymake-allowed-file-name-masks '("\\.java$" my-java-flymake-init flymake-simple-cleanup))
 
 
 ;; Python display
