@@ -1,6 +1,7 @@
 #!/bin/bash
 
-while [[ 1 == 1 ]] ;
-    do setxkbmap;
+while [[ 1 == 1 ]] ; do 
+    setxkbmap;
+    xmodmap ~/.xmodmap;
     sleep 15;
 done

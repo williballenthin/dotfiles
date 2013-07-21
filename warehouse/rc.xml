@@ -222,6 +222,34 @@
         <desktop>4</desktop>
       </action>
     </keybind>
+    
+    <!-- from xmonad setup -->
+    <keybind key="W-1">
+      <action name="Desktop">
+        <desktop>1</desktop>
+      </action>
+    </keybind>    
+    <keybind key="W-2">
+      <action name="Desktop">
+        <desktop>2</desktop>
+      </action>
+    </keybind>    
+    <keybind key="W-3">
+      <action name="Desktop">
+        <desktop>3</desktop>
+      </action>
+    </keybind>    
+    <keybind key="W-4">
+      <action name="Desktop">
+        <desktop>4</desktop>
+      </action>
+    </keybind>    
+    <keybind key="W-S-c">
+	  <action name="Close"/>
+    </keybind>      
+   
+      
+    
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -315,6 +343,15 @@
           <name>ipython</name>
         </startupnotify>
         <command>terminator -x ipython</command>
+      </action>
+    </keybind>
+    <keybind key="W-b">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>bpython</name>
+        </startupnotify>
+        <command>terminator -x bpython</command>
       </action>
     </keybind>
     <keybind key="W-w">

@@ -36,7 +36,9 @@ source $ZSH/oh-my-zsh.sh
 ZSH_THEME=evan
 
 # Customize to your needs...
-export PATH=/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+export GOPATH=$HOME/go
+export GOROOT=$HOME/hg/go
+export PATH=/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$GOPATH/bin:$GOROOT/bin:
 
 
 
@@ -154,3 +156,8 @@ fi
 PATH=$PATH:/opt/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 8C13F59B-E126-3EA5-C25D-2435E15962EF
 
 PATH=$PATH:/opt/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 56BE20D5-FA0F-D226-687C-435EEA6841D9
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+PATH=$PATH:/opt/Sweetscape;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 94E6EA6B-7B3E-7A2C-61FE-A781E326C7C0
+PATH=/usr/local/jdk1.8.0/bin:"$PATH"; export PATH

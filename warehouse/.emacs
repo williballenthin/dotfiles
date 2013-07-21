@@ -1,9 +1,25 @@
-;; .emacs for Willi Ballenthin <williballenthin.com>
+;;; .emacs for Willi Ballenthin <williballenthin.com>
 ;;; Things to learn and remember:
 ;;;   - personal key map: C-2
 ;;;   - workgroup mode: C-3
 
+(defun set-env-var-from-shell (var)
+  "Set up Emacs' environment variable to match that used by the user's shell."
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n\-]*$" "" (shell-command-to-string (concat "$SHELL --login -i -c 'echo $" var "'")))))
+    (setenv var path-from-shell)))
 
+
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
+
+  This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n\-]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(set-exec-path-from-shell-PATH)
+(set-env-var-from-shell "GOPATH")
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -16,7 +32,7 @@
 
 (el-get 'sync)
 
-
+(set-face-attribute 'default nil :height 140)
 
 
 
@@ -98,9 +114,13 @@
 
 
 
+(add-to-list 'load-path "/home/willi/hg/go/misc/emacs/" t)
+(require 'go-mode-load)
+
 
 
 ;; Flymake mode for syntax checking
+(require 'go-flymake)
 (load-file "~/.emacs.d/flymake-cursor.el")
 (when (load "flymake" t)
   (defun flymake-pycheckers-init ()
@@ -112,10 +132,13 @@
       (list "/usr/local/bin/pycheckers" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheckers-init)))
 (add-hook 'python-mode-hook 'flymake-mode)
+(add-hook 'go-mode-hook 'flymake-mode)
+
 
 
 ;; Autocomplete minor mode
 (add-to-list 'load-path "~/.emacs.d/autocomplete-mode/")
+(require 'go-autocomplete)
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete-mode//ac-dict")
 (ac-config-default)
@@ -135,6 +158,8 @@
 
 (require 'flymake-lua)
 (add-hook 'lua-mode-hook 'flymake-lua-load)
+
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'lua-mode))
 
 
 
@@ -158,6 +183,13 @@
 (my-ac-config)
 
 
+
+;; Java stuff
+(add-hook 'java-mode-hook 'flymake-mode-on)
+(defun my-java-flymake-init ()
+  (list "javac" (list (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-with-folder-structure))))
+(add-to-list 'flymake-allowed-file-name-masks '("\\.java$" my-java-flymake-init flymake-simple-cleanup))
 
 
 ;; Python display
@@ -187,7 +219,15 @@
 (require 'highlighter-minor-mode)
 
 
-
+;; spaces, not tabs!
+(require 'whitespace)
+(autoload 'global-whitespace-mode           "whitespace" "Toggle whitespace visualization."        t)
+(add-hook 'after-change-major-mode-hook 
+          '(lambda () 
+	     (setq-default indent-tabs-mode nil)
+	     (setq c-basic-indent 2)
+	     (setq tab-width 2)
+	     (setq indent-tabs-mode nil)))
 
 ;; Custom code by Willi, for Willi
 (defun duplicate-line ()
