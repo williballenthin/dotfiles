@@ -146,8 +146,11 @@ function pw() {
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/go/bin
-export GOPATH=/home/willi/vm-share/Go
 
-if [[ -f "~/.zshrc.local" ]]; then
-    source "~/.zshrc.local";
+if [[ -f "/home/willi/.zshrc.local" ]]; then
+    source "/home/willi/.zshrc.local";
 fi
+
+PATH=$PATH:/opt/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 8C13F59B-E126-3EA5-C25D-2435E15962EF
+
+PATH=$PATH:/opt/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 56BE20D5-FA0F-D226-687C-435EEA6841D9
