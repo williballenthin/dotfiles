@@ -29,16 +29,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cpanm debian django extract github gnu-utils history-substring-search perl pip python ssh-agent svn terminator colored-man colorize encode64 git-extras)
+plugins=(git cpanm debian django extract github gnu-utils history-substring-search perl pip python svn terminator colored-man colorize encode64 git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
 ZSH_THEME=evan
 
 # Customize to your needs...
-export GOPATH=$HOME/go
-export GOROOT=$HOME/hg/go
-export PATH=/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$GOPATH/bin:$GOROOT/bin:
+export PATH=/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
 
 
@@ -69,6 +67,11 @@ alias up='cd ..'
 alias e="emacsclient -c"
 alias l="ls -laht"
 alias o="xdg-open"
+alias dv="dirs -v"
+
+j() {
+    pushd +"$1";
+}
 
 google() {
         qstring=""
@@ -145,6 +148,26 @@ function pw() {
 }
 
 
+# from: http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
+export MARKPATH=$HOME/.marks
+function jump { 
+        cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+function mark { 
+        mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+function unmark { 
+        rm -i "$MARKPATH/$1"
+}
+function marks {
+        ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+}
+function _completemarks {
+      reply=($(ls $MARKPATH))
+}
+compctl -K _completemarks jump
+compctl -K _completemarks unmark
+
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/go/bin
@@ -161,3 +184,6 @@ PATH=$PATH:/opt/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DEL
 
 PATH=$PATH:/opt/Sweetscape;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 94E6EA6B-7B3E-7A2C-61FE-A781E326C7C0
 PATH=/usr/local/jdk1.8.0/bin:"$PATH"; export PATH
+
+
+PATH="$PATH":/data/data/Git/python-registry/samples; export PATH

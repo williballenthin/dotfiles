@@ -32,7 +32,7 @@
 
 (el-get 'sync)
 
-(set-face-attribute 'default nil :height 140)
+
 
 
 
@@ -278,3 +278,5 @@
 (define-key willi-keymap (kbd "C-r") 'replace-current-word)
 
 
+(require 'willi-local)
+;(set-face-attribute 'default nil :height 140)
