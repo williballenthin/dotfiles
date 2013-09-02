@@ -29,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cpanm debian django extract github gnu-utils history-substring-search perl pip python svn terminator colored-man colorize encode64 git-extras)
+plugins=(gdoc git cpanm debian django extract github gnu-utils history-substring-search perl pip python svn terminator colored-man colorize encode64 git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -148,6 +148,38 @@ function pw() {
 }
 
 
+function willi-git() {
+    REMOTE_DIR="/home/ubuntu/Git/$(basename  $(pwd))"".git";
+
+    ssh -i ~/.ssh/aws.pem ubuntu@54.243.153.154 "mkdir \"$REMOTE_DIR\"; git init --bare \"$REMOTE_DIR\"";
+    git remote add willi-git ubuntu@54.243.153.154:"$REMOTE_DIR"; 
+    git push --all willi-git;
+}
+alias wg willi-git;
+
+function git-add-all() {
+    if [ ! -d ".git" ]; then
+        echo "You must be in the root of a Git repository!";
+        return -1;
+    fi
+
+    CONFIG=".git/config";
+
+
+    if [[ $(cat .git/config| grep "\[remote" | grep "all" | wc -l) -ne 0 ]]; then
+        echo "Git remote \"all\" already configured."
+        return -2;
+    fi
+
+    echo "[remote \"all\"]" >> "$CONFIG";
+    git remote -v | grep "fetch" | grep "\(master\|willi\)" | awk '{print "\turl = "$2}' >> "$CONFIG"; 
+}
+alias gaa git-add-all;
+
+
+ssh-add ~/.ssh/aws.pem >/dev/null 2>&1;
+
+
 # from: http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
 function jump { 
@@ -187,3 +219,4 @@ PATH=/usr/local/jdk1.8.0/bin:"$PATH"; export PATH
 
 
 PATH="$PATH":/data/data/Git/python-registry/samples; export PATH
+PATH="$PATH":/data/data/Git/LfLe/; export PATH
