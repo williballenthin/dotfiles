@@ -1,4 +1,3 @@
-
 !urxvt*font:             xft:terminus:pixelsize=12
 urxvt*termName:         rxvt
 urxvt*background:       #0c0d0e
@@ -18,6 +17,9 @@ URxvt*fading:        0
 URxvt*tintColor:     #ffffff
 URxvt*shading:        0
 URxvt*inheritPixmap:     False
+
+! THIS IS ZENBURN:
+! http://crunchbang.org/forums/viewtopic.php?pid=89357#p89357
 
 ! black + red
 !urxvt*color0:     #3f3f3f
