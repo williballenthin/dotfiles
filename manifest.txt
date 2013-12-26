@@ -32,3 +32,6 @@ ramdisk.sh-5921|/opt/ramdisk.sh
 .Xmodmap-31980|/home/willi/.Xmodmap
 ramdisk.sh-11726|/opt/ramdisk.sh
 .screenrc-18568|/home/willi/.screenrc
+xinitrc|/home/willi/.xinitrc
+Xdefaults|/home/willi/.Xdefaults
+compton.conf|/home/willi/.compton.conf
