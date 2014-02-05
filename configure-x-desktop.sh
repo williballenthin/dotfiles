@@ -1,5 +1,5 @@
 sudo apt-get update
-sudo apt-get install xorg ghc libx11-dev cabal-install libxft-dev libxrandr-dev make libxinerama-dev git rvxt-unicode python-software-properties software-properties-common vim zsh openssh-server
+sudo apt-get install xorg ghc libx11-dev cabal-install libxft-dev libxrandr-dev make libxinerama-dev git rvxt-unicode python-software-properties software-properties-common vim zsh openssh-server screen python-pip python-setuptools feh python-dev libjpeg-dev irssi
 chsh "${USER}" -s "/bin/zsh"
 wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="gallifrey"/g' ~/.zshrc
@@ -41,9 +41,25 @@ sudo apt-get update
 sudo apt-get install compton
 wget https://raw.github.com/williballenthin/dotfiles/master/warehouse/compton.conf -O .compton.conf
 
+cd ~/software
+git clone https://github.com/everett1992/wp.git
+sudo pip install -I PIL
+sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib
+sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib
+sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib
+mkdir ~/.wallpapers
+# TODO: download wallpaper
+cd ~/software/wp
+for file in ~/.wallpapers/*; do 
+    echo "$file"; 
+    bash ./wp add "$file"; 
+done
+
 cd ~
 wget https://raw.github.com/williballenthin/dotfiles/blob/master/warehouse/.Xmodmap-31980 -O .Xmodmap
 echo "xsetroot -cursor_name left_ptr" >> ~/.xinitrc
 echo "xmodmap ~/.Xmodmap" >> ~/.xinitrc
 echo "compton -b" >> ~/.xinitrc
+echo "bash ~/software/wp/wp change" >> ~/.xinitrc
 echo "exec xmonad" >> ~/.xinitrc
+
