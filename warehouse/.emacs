@@ -119,6 +119,10 @@
 
 
 
+(require 'moonscript-mode)
+
+
+
 ;; Flymake mode for syntax checking
 (require 'go-flymake)
 (load-file "~/.emacs.d/flymake-cursor.el")
