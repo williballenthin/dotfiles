@@ -3,11 +3,12 @@
 urxvt*termName:         rxvt
 urxvt*background:       #0c0d0e
 urxvt*foreground:       #7f8f9f
-urxvt*scrollBar:        true 
+urxvt*scrollBar:        false 
 urxvt*matcher.button:   1
 urxvt.transparent:    false
 urxvt*allow_bold:    true
 urxvt*cursorBlink:   true
+URxvt*internalBorder:   5
 
 !Xft*dpi:                96
 Xft*antialias:          true
