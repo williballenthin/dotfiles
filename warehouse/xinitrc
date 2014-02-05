@@ -1,4 +1,0 @@
-xsetroot -cursor_name left_ptr
-xmodmap ~/.Xmodmap
-compton -b
-exec ~/.cabal/bin/xmonad
