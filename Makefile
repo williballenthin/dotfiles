@@ -2,12 +2,12 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb weechat-curses
 
 
 .PHONY: remove_cli_utils
 remove_cli_utils:
-	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget
+	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget dwb weechat-curses
 
 
 .PHONY: oh_my_zsh
@@ -201,16 +201,26 @@ remove_fetch_wallpaper:
 
 .PHONY: xinitrc
 xinitrc:
-	if ! grep "__XCURSOR__" ~/.xinitrc; then echo "xsetroot -cursor_name left_ptr  # __XCURSOR__" >> ~/.xinitrc; fi
-	if ! grep "__XRDB__" ~/.xinitrc; then echo "xrdb -merge ~/.Xresources  # __XRDB__" >> ~/.xinitrc; fi
-	if ! grep "__XMODMAP__" ~/.xinitrc; then echo "xmodmap ~/.Xmodmap  # __XMODMAP__" >> ~/.xinitrc; fi
-	if ! grep "__COMPTON__" ~/.xinitrc; then echo "compton -b  # __COMPTON__" >> ~/.xinitrc; fi
-	if ! grep "__XMONAD__" ~/.xinitrc; then echo "exec xmonad  # __XMONAD__" >> ~/.xinitrc; fi
+	if [ ! -h ~/.xmonad/start-xmonad.sh ]; then ln -s $$(pwd)/warehouse/start-xmonad.sh ~/.xmonad/start-xmonad.sh; fi
+	echo "bash /.xmonad/start-xmonad.sh" > ~/.xinitrc
 
 
 .PHONY: remove_xinitrc
 remove_xinitrc:
 	rm -f ~/.xinitrc
+	rm -f ~/.xmonad/start-xmonad.sh
+
+
+.PHONY: xmonad_desktop
+xmonad_desktop:
+	if [ ! -h ~/.xmonad/start-xmonad.sh ]; then ln -s $$(pwd)/warehouse/start-xmonad.sh ~/.xmonad/start-xmonad.sh; fi
+	sudo ln -s $$(pwd)/warehouse/xmonad.desktop /usr/share/xsessions/xmonad.desktop
+
+
+.PHONY: remove_xmonad_desktop
+remove_xmonad_desktop:
+	rm -f ~/.xmonad/start-xmonad.sh
+	if [ -h /usr/share/xsessions/xmonad.desktop ]; then sudo unlink /usr/share/xsessions/xmonad.desktop; fi
 
 
 .PHONY: intel_desktop_tools
@@ -225,6 +235,10 @@ remove_intel_desktop_tools:
 
 .PHONY: all_intel_software
 all_intel_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools
+
+
+.PHONY: install_ubuntu_server_intel
+install_ubuntu_server_intel: all_intel_software xinitrc
 
 
 .PHONY: all_arm_software  # Ubuntu ARM doesn't have a Compton PPA package
