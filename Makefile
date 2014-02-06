@@ -2,12 +2,12 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb weechat-curses
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb weechat-curses htop
 
 
 .PHONY: remove_cli_utils
 remove_cli_utils:
-	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget dwb weechat-curses
+	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget dwb weechat-curses htop
 
 
 .PHONY: oh_my_zsh
@@ -209,6 +209,18 @@ wallpaper: fetch_wallpaper
 remove_wallpaper:
 	if [ -h ~/.wallpaper/wallpaper.sh ]; then unlink ~/.wallpaper/wallpaper.sh; fi
 	sudo apt-get -y remove feh
+
+
+.PHONY: gtk_appearance
+gtk_appearance:
+	if [ ! -h ~/.themes ]; then ln -s $$(pwd)/warehouse/.themes ~/.themes; fi
+	if [ ! -h ~/.gtkrc-2.0 ]; then ln -s $$(pwd)/warehouse/.gtkrc-2.0 ~/.gtkrc-2.0; fi
+
+
+.PHONY: remove_gtk_appearance
+remove_gtk_appearance:
+	if [ -h ~/.themes ]; then unlink ~/.themes; fi
+	if [ -h ~/.gtkrc-2.0 ]; then unlink ~/.gtkrc-2.0; fi
 
 
 .PHONY: xinitrc
