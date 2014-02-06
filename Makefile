@@ -62,7 +62,7 @@ remove_pycheckers:
 # TODO(wb): make the default ~/.software, but also read from env variable
 .PHONY: software_dir
 software_dir:
-	if [ ! -d ~/software ]; then mkdir ~/software; fi
+	if [ ! -d ~/.software ]; then mkdir ~/.software; fi
 
 
 .PHONY: x11
@@ -77,8 +77,8 @@ remove_x11:
 
 .PHONY: dmenu
 dmenu: software_dir cli_utils x11
-	if [ ! -d ~/software/dmenu-4.5 ]; then                   \
-    cd ~/software                                        &&\
+	if [ ! -d ~/.software/dmenu-4.5 ]; then                   \
+    cd ~/.software                                        &&\
       wget http://dl.suckless.org/tools/dmenu-4.5.tar.gz &&\
       tar xf dmenu-4.5.tar.gz                            &&\
       cd dmenu-4.5                                       &&\
@@ -87,18 +87,18 @@ dmenu: software_dir cli_utils x11
 
 .PHONY: remove_demu
 remove_dmenu:
-	if [ -d ~/software/dmenu-4.5 ]; then \
-    cd ~/software/dmenu-4.5          &&\
+	if [ -d ~/.software/dmenu-4.5 ]; then \
+    cd ~/.software/dmenu-4.5          &&\
       sudo make uninstall clean      &&\
-      cd ~/software                  &&\
+      cd ~/.software                  &&\
       rm -r dmenu-4.5; fi
   # TODO(wb): technically we need `make` here
 
 
 .PHONY: dzen
 dzen: software_dir cli_utils x11
-	if [ ! -d ~/software/dzen ]; then                \
-    cd ~/software                                &&\
+	if [ ! -d ~/.software/dzen ]; then                \
+    cd ~/.software                                &&\
       git clone https://github.com/robm/dzen.git &&\
       cd dzen                                    &&\
       sudo make clean install; fi
@@ -106,10 +106,10 @@ dzen: software_dir cli_utils x11
 
 .PHONY: remove_dzen
 remove_dzen:
-	if [ -d ~/software/dzen ]; then \
-    cd ~/software/dzen          &&\
+	if [ -d ~/.software/dzen ]; then \
+    cd ~/.software/dzen          &&\
       sudo make uninstall clean &&\
-      cd ~/software             &&\
+      cd ~/.software             &&\
       sudo rm -r dzen; fi            # need sudo for some git files
   # TODO(wb): technically we need `make` here
 
