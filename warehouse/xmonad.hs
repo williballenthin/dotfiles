@@ -7,6 +7,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
+import XMonad.Layout.ThreeColumns
 import XMonad.Prompt
 import XMonad.Prompt.Input
 import qualified Data.Map as M
@@ -51,6 +52,7 @@ keysToDel x =
     ]
 
 myLayout = avoidStruts (noBorders Full
+                    ||| ThreeCol 1 (3/100) (1/2)
                     ||| spiral (6/7)
                     ||| tiled
                     ||| (tabbed shrinkText myTConf))

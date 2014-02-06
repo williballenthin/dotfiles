@@ -189,7 +189,7 @@ remove_compton:
 
 .PHONY: fetch_wallpaper
 fetch_wallpaper:
-	mkdir ~/.wallpaper
+	if [ ! -d ~/.wallpaper ]; then mkdir ~/.wallpaper; fi
 	wget http://s.imgur.com/a/7883i/zip -O ~/.wallpaper/archive.zip
 	cd ~/.wallpaper && unzip archive.zip
 
