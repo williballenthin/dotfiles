@@ -184,7 +184,7 @@ compton: cli_utils
 remove_compton:
 	if [ -h ~/.compton.conf ]; then unlink ~/.compton.conf; fi
 	sudo apt-get -y remove compton
-  sudo apt-add-repository --remove ppa:richardgv/compton
+	sudo apt-add-repository --remove ppa:richardgv/compton
 
 
 .PHONY: fetch_wallpaper
@@ -197,6 +197,18 @@ fetch_wallpaper:
 .PHONY: remove_fetch_wallpaper
 remove_fetch_wallpaper:
 	rm -f ~/.wallpaper
+
+
+.PHONY: wallpaper
+wallpaper: fetch_wallpaper
+	sudo apt-get -y install feh
+	if [ ! -h ~/.wallpaper/wallpaper.sh ]; then ln -s $$(pwd)/warehouse/wallpaper.sh ~/.wallpaper/wallpaper.sh; fi
+
+
+.PHONY: remove_wallpaper
+remove_wallpaper:
+	if [ -h ~/.wallpaper/wallpaper.sh ]; then unlink ~/.wallpaper/wallpaper.sh; fi
+	sudo apt-get -y remove feh
 
 
 .PHONY: xinitrc
