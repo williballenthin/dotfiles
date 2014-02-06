@@ -187,6 +187,18 @@ remove_compton:
   sudo apt-add-repository --remove ppa:richardgv/compton
 
 
+.PHONY: fetch_wallpaper
+fetch_wallpaper:
+	mkdir ~/.wallpaper
+	wget http://s.imgur.com/a/7883i/zip -O ~/.wallpaper/archive.zip
+	cd ~/.wallpaper && unzip archive.zip
+
+
+.PHONY: remove_fetch_wallpaper
+remove_fetch_wallpaper:
+	rm -f ~/.wallpaper
+
+
 .PHONY: xinitrc
 xinitrc:
 	if ! grep "__XCURSOR__" ~/.xinitrc; then echo "xsetroot -cursor_name left_ptr  # __XCURSOR__" >> ~/.xinitrc; fi
@@ -211,12 +223,12 @@ remove_intel_desktop_tools:
 	sudo apt-get -y remove rxvt-unicode
 
 
-.PHONY: all_intel
-all_intel: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools
+.PHONY: all_intel_software
+all_intel_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools
 
 
-.PHONY: all_arm  # Ubuntu ARM doesn't have a Compton PPA package
-all_arm: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources python
+.PHONY: all_arm_software  # Ubuntu ARM doesn't have a Compton PPA package
+all_arm_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources python
 
 
 .PHONY: remove_all
