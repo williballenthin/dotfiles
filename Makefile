@@ -32,6 +32,20 @@ remove_screen:
 	if [ -h ~/.screenrc ]; then unlink ~/.screenrc; fi
 
 
+.PHONY: vim
+vim: cli_utils
+	if [ ! -h ~/.vimrc ]; then ln -s "$$(pwd)"/warehouse/.vimrc ~/.vimrc; fi
+	mkdir -p ~/.vim/autoload
+	mkdir -p ~/.vim/bundle
+	wget --no-check-certificate -O ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+
+.PHONY: remove_vim
+remove_vim:
+	if [ -h ~/.vimrc ]; then unlink ~/.vimrc; fi
+	rm -rf ~/.vim/autoload
+	rm -rf ~/.vim/bundle
+
+
 .PHONY: python
 python:
 	sudo apt-get -y install python-dev python-pip
