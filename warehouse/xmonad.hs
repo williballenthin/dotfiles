@@ -9,17 +9,17 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
 import XMonad.Prompt
 import XMonad.Prompt.Input
-import qualified Data.Map as M		
+import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 import System.IO
 
 import XMonad.Hooks.ICCCMFocus
 
 queryBuilder :: String -> String
-queryBuilder query = "query=$(echo \"" ++ query ++ "\" | sed -e \"s/ /+/g\") && luakit \"www.google.com/search?q=$query\""
+queryBuilder query = "query=$(echo \"" ++ query ++ "\" | sed -e \"s/ /+/g\") && dwb \"www.google.com/search?q=$query\""
 
 queryPrompt :: XPConfig -> X ()
-queryPrompt c = 
+queryPrompt c =
     inputPrompt c "query" ?+ \query ->
     spawn (queryBuilder query)
     >> return()
@@ -37,18 +37,18 @@ myManageHook = composeAll
 
 
 
-keysToAdd x = 
-	  [ ((mod1Mask, xK_Tab), windows W.focusDown)
-          , ((mod4Mask, xK_s), withFocused $ windows . W.sink)
-	  , ((mod4Mask, xK_g), queryPrompt defaultXPConfig)
-	  , ((mod4Mask, xK_t), spawn "urxvt")
-          , ((mod4Mask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
-          , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")
-          , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")
-	  ]
-keysToDel x = 
-	  [ (mod4Mask, xK_t)
-	  ]
+keysToAdd x =
+    [ ((mod1Mask, xK_Tab), windows W.focusDown)
+    , ((mod4Mask, xK_s), withFocused $ windows . W.sink)
+    , ((mod4Mask, xK_g), queryPrompt defaultXPConfig)
+    , ((mod4Mask, xK_t), spawn "urxvt")
+    , ((mod4Mask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
+    , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")
+    , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")
+    ]
+keysToDel x =
+    [ (mod4Mask, xK_t)
+    ]
 
 myLayout = avoidStruts (noBorders Full
                     ||| spiral (6/7)
@@ -66,11 +66,10 @@ keysStrip x = foldr M.delete            (keysDefault x) (keysToDel x)
 myKeys x    = foldr (uncurry M.insert)  (keysStrip x)   (keysToAdd x)
 
 main = do
-     spawn "zsh /home/willi/.xmonad/xmonad_autostart.sh"
-     xmonad $ defaultConfig 
+     xmonad $ defaultConfig
        { manageHook = manageDocks <+> myManageHook
-       , layoutHook = myLayout	
-       , startupHook = setWMName "LG3D"	
+       , layoutHook = myLayout
+       , startupHook = setWMName "LG3D"
        , workspaces = myWorkspaces
        , modMask = mod4Mask
        , keys = myKeys
@@ -78,5 +77,5 @@ main = do
        , focusedBorderColor = "#817267"
        , borderWidth = 2
        , logHook = takeTopFocus
-       }    
- 
+       }
+
