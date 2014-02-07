@@ -57,7 +57,7 @@ myLayout = avoidStruts (noBorders Full
                     ||| tiled
                     ||| (tabbed shrinkText myTConf))
     where
-        tiled = smartSpacing 5 $ Tall nmaster delta ratio
+        tiled = smartSpacing 15 $ Tall nmaster delta ratio
         nmaster = 1
         ratio = 4/6
         delta = 3/100
