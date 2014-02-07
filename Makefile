@@ -83,6 +83,7 @@ software_dir:
 .PHONY: pyp
 pyp: software_dir
 	wget http://pyp.googlecode.com/files/pyp_beta -O ~/.software/pyp
+	chmod +x ~/.software/pyp
 	sudo ln -s ~/.software/pyp /usr/local/bin/pyp
 
 
