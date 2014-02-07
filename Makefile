@@ -24,7 +24,7 @@ remove_oh_my_zsh:
 
 .PHONY: screen
 screen: cli_utils
-	if [ ! -h ~/.screenrc ]; then ln -s "$$(pwd)"/warehouse/screenrc-18568 ~/.screenrc; fi
+	if [ ! -h ~/.screenrc ]; then ln -s "$$(pwd)"/warehouse/.screenrc-18568 ~/.screenrc; fi
 
 
 .PHONY: remove_screen
