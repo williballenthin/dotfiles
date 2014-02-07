@@ -79,6 +79,19 @@ software_dir:
 	if [ ! -d ~/.software ]; then mkdir ~/.software; fi
 
 
+# TODO(wb): where should the local PATH be?
+.PHONY: pyp
+pyp: software_dir
+	wget http://pyp.googlecode.com/files/pyp_beta -O ~/.software/pyp
+	sudo ln -s ~/.software/pyp /usr/local/bin/pyp
+
+
+.PHONY: remove_pyp
+remove_pyp:
+	if [ -h /usr/local/bin/pyp ]; then unlink /usr/local/bin/pyp; fi
+	rm -f ~/.software/pyp
+
+
 .PHONY: x11
 x11:
 	sudo apt-get -y install xorg libx11-dev libxft-dev libxrandr-dev libxinerama-dev
