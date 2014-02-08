@@ -2,12 +2,12 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb weechat-curses htop
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb weechat-curses htop subversion
 
 
 .PHONY: remove_cli_utils
 remove_cli_utils:
-	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget dwb weechat-curses htop
+	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget dwb weechat-curses htop subversion
 
 
 .PHONY: oh_my_zsh
@@ -253,12 +253,14 @@ remove_xinitrc:
 xmonad_desktop:
 	if [ ! -h ~/.xmonad/start-xmonad.sh ]; then ln -s $$(pwd)/warehouse/start-xmonad.sh ~/.xmonad/start-xmonad.sh; fi
 	sudo ln -s $$(pwd)/warehouse/xmonad.desktop /usr/share/xsessions/xmonad.desktop
+	if [ ! -h ~/.xmonad/bar.sh ]; then ln -s $$(pwd)/warehouse/bar.sh ~/.xmonad/bar.sh; fi
 
 
 .PHONY: remove_xmonad_desktop
 remove_xmonad_desktop:
 	rm -f ~/.xmonad/start-xmonad.sh
 	if [ -h /usr/share/xsessions/xmonad.desktop ]; then sudo unlink /usr/share/xsessions/xmonad.desktop; fi
+	if [ -h ~/.xmonad/bar.sh ]; then unlink ~/.xmonad/bar.sh; fi
 
 
 .PHONY: intel_desktop_tools
