@@ -39,6 +39,7 @@ vim: cli_utils
 	mkdir -p ~/.vim/bundle
 	wget --no-check-certificate -O ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
+
 .PHONY: remove_vim
 remove_vim:
 	if [ -h ~/.vimrc ]; then unlink ~/.vimrc; fi
@@ -70,6 +71,18 @@ remove_pycheckers:
 	if [ -h /usr/local/bin/pycheckers ]; then sudo unlink /usr/local/bin/pycheckers; fi
 	sudo rm -f /opt/pycheckers.py
 	-sudo pip uninstall pep8 pyflakes
+
+
+.PHONY: lua
+lua:
+	sudo apt-get install lua5.1 luarocks
+	sudo luarocks install luafilesystem moonscript
+
+
+.PHONY: remove_lua
+remove_lua:
+	sudo luarocks remove luafilesystem moonscript
+	sudo apt-get remove lua5.1 luarocks
 
 
 # note, this doesn't have a cleanup recipe
