@@ -170,11 +170,22 @@ remove_dzen:
   # TODO(wb): technically we need `make` here
 
 
+.PHONY: localpath
+localpath:
+	if ! grep "__LOCAL_PATH__" ~/.zshrc; then \
+		echo 'PATH=$$PATH:~/.path  # __LOCAL_PATH__' >> ~/.zshrc; fi
+
+
+.PHONY: remove_localpath
+remove_localpath:
+	sed -i -e "s/.*__LOCAL_PATH__.*//g" ~/.zshrc
+
+
 .PHONY: xmonad
 xmonad: cli_utils x11
 	sudo apt-get -y install ghc cabal-install
 	if ! grep "__CABAL_PATH__" ~/.zshrc; then                            \
-    echo "PATH=${PATH}:~/.cabal/bin  # __CABAL_PATH__" >> ~/.zshrc; fi
+    echo 'PATH=$$PATH:~/.cabal/bin  # __CABAL_PATH__' >> ~/.zshrc; fi
 	cabal update
 	cabal install --user xmonad
 	cabal install --user xmonad-contrib --flags="-use_xft"
