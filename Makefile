@@ -74,15 +74,17 @@ remove_pycheckers:
 
 
 .PHONY: lua
-lua:
+lua: vim
 	sudo apt-get install lua5.1 luarocks
-	sudo luarocks install luafilesystem moonscript
+	sudo luarocks install luafilesystem moonscript LuaSocket
+	cd ~/.vim/bundle && git clone git://github.com/leafo/moonscript-vim.git
 
 
 .PHONY: remove_lua
 remove_lua:
-	sudo luarocks remove luafilesystem moonscript
+	sudo luarocks remove luafilesystem moonscript LuaSocket
 	sudo apt-get remove lua5.1 luarocks
+	rm -r ~/.vim/bundle/moonscript-vim
 
 
 # note, this doesn't have a cleanup recipe
@@ -98,6 +100,19 @@ pyp: software_dir
 	wget http://pyp.googlecode.com/files/pyp_beta -O ~/.software/pyp
 	chmod +x ~/.software/pyp
 	sudo ln -s ~/.software/pyp /usr/local/bin/pyp
+
+
+.PHONY: truecrypt
+truecrypt: cli_utils software_dir
+	wget http://www.truecrypt.org/download/truecrypt-7.1a-linux-x64.tar.gz ~/.software/truecrypt-7.1a-linux-x64.tar.gz
+	cd ~/.software && \
+		tar xf truecrypt-7.1a-linux-x64.tar.gz && \
+		sudo ./truecrypt-7.1a-setup-x64
+
+
+.PHONY: remove_truecrypt
+remove_truecrypt:
+	sudo /usr/bin/truecrypt-uninstall.sh
 
 
 .PHONY: remove_pyp
