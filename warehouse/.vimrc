@@ -28,16 +28,11 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
-
 set so=14 " keep cursor away from sceen edges
-" Highlight cursor line.
-"augroup CursorLine
-"  au!
-"  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"  au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-"  au WinLeave * setlocal nocursorline
-"  au WinLeave * setlocal nocursorcolumn
-"augroup END
+
+set cursorline
+:hi CursorLine   cterm=NONE ctermbg=DarkGray guibg=DarkGray
+:hi CursorColumn cterm=NONE ctermbg=DarkGray guibg=DarkGray
 
 set mouse=n
 set ttymouse=xterm2  " allow resizing of splits with mouse
@@ -56,3 +51,6 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
