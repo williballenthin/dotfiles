@@ -13,20 +13,22 @@ getmemtotal() {
 }
 
 getmemused() {
-    free -h | grep Mem | awk '{ print $3}';
+    free -h | grep "cache:" | awk '{ print $3}';
 }
 
 getcpuload() {
     cat /proc/loadavg | cut -d " " -f 1-3;
 }
 
+getchatcount() {
+    wc -l ~/.weechat/highlights.txt | cut -d " " -f 1;
+}
+
 while true; do 
-    ### DATE
     DATE=$(fdate);
-
-    ### CPU
     LOAD=$(getcpuload);
+    CHATS=$(getchatcount);
 
-    echo "cpu: ${LOAD}  |  Mem: $(getmemused) / $(getmemtotal)  |  ^fg(white)${DATE}^fg()";
+    echo "chat: $CHATS  |  cpu: $LOAD  |  Mem: $(getmemused) / $(getmemtotal)  |  ^fg(white)$DATE^fg()  ";
     sleep $INTERVAL;
 done;
