@@ -87,7 +87,7 @@ remove_ruby:
 
 
 .PHONY: timetrap
-.timetrap: ruby
+timetrap: ruby
 	sudo apt-get -y install libsqlite3-dev
 	sudo gem install timetrap
 
@@ -96,6 +96,17 @@ remove_ruby:
 remote_timetrap:
 	sudo apt-get remove libsqlite3-dev
 	sudo gem remove timetrap
+
+
+.PHONY: work_stuff
+work_stuff: timetrap
+	sudo apt-get -y install libreoffice-impress libreoffice-writer
+
+
+.PHONY: remove_work_stuff
+remove_work_stuff: remove_timetrap
+	sudo apt-get -y remove libreoffice-*
+
 
 .PHONY: lua
 lua: vim
