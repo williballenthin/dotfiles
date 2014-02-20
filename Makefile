@@ -38,6 +38,8 @@ vim: cli_utils
 	mkdir -p ~/.vim/autoload
 	mkdir -p ~/.vim/bundle
 	wget --no-check-certificate -O ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+	cd ~/.vim/bundle && \
+		git clone https://github.com/nvie/vim-flake8.git
 
 
 .PHONY: remove_vim
@@ -50,7 +52,7 @@ remove_vim:
 .PHONY: python
 python:
 	sudo apt-get -y install python-dev python-pip
-	sudo pip install virtualenv
+	sudo pip install virtualenv flake8
 
 
 .PHONY: remove_python
