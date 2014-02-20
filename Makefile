@@ -75,6 +75,28 @@ remove_pycheckers:
 	-sudo pip uninstall pep8 pyflakes
 
 
+.PHONY: ruby
+ruby: 
+	sudo apt-get -y install rubygems
+
+
+.PHONY: remove_ruby
+remove_ruby:
+	sudo apt-get -y remove rubygems
+	sudo apt-get -y autoremove
+
+
+.PHONY: timetrap
+.timetrap: ruby
+	sudo apt-get -y install libsqlite3-dev
+	sudo gem install timetrap
+
+
+.PHONY: remove_timetrap
+remote_timetrap:
+	sudo apt-get remove libsqlite3-dev
+	sudo gem remove timetrap
+
 .PHONY: lua
 lua: vim
 	sudo apt-get install lua5.1 luarocks
