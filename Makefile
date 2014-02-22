@@ -2,12 +2,12 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus dwb weechat-curses htop subversion jq
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq
 
 
 .PHONY: remove_cli_utils
 remove_cli_utils:
-	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget dwb weechat-curses htop subversion jq
+	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget weechat-curses htop subversion jq
 
 
 .PHONY: oh_my_zsh
@@ -309,6 +309,16 @@ gtk_appearance:
 remove_gtk_appearance:
 	if [ -h ~/.themes ]; then unlink ~/.themes; fi
 	if [ -h ~/.gtkrc-2.0 ]; then unlink ~/.gtkrc-2.0; fi
+
+
+.PHONY: dwb
+dwb:
+	sudo apt-get -y install dwb
+
+
+.PHONY: remove_dwb
+remove_dwb:
+	sudo apt-get -y remove dwb
 
 
 .PHONY: xinitrc
