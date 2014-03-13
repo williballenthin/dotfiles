@@ -206,6 +206,16 @@ remove_dzen:
   # TODO(wb): technically we need `make` here
 
 
+.PHONY: trayer
+trayer:
+	sudo apt-get -y install trayer
+
+
+.PHONY: remove_trayer
+remove_trayer:
+	sudo apt-get -y remove trayer
+
+
 .PHONY: localpath
 localpath:
 	if ! grep "__LOCAL_PATH__" ~/.zshrc; then \
@@ -290,7 +300,7 @@ remove_fetch_wallpaper:
 
 
 .PHONY: wallpaper
-wallpaper: fetch_wallpaper
+wallpaper:
 	sudo apt-get -y install feh
 	if [ ! -h ~/.wallpaper/wallpaper.sh ]; then ln -s $$(pwd)/warehouse/wallpaper.sh ~/.wallpaper/wallpaper.sh; fi
 
@@ -321,7 +331,6 @@ dwb:
 .PHONY: remove_dwb
 remove_dwb:
 	sudo apt-get -y remove dwb
-
 
 .PHONY: xinitrc
 xinitrc:
@@ -360,7 +369,7 @@ remove_intel_desktop_tools:
 
 
 .PHONY: all_intel_software
-all_intel_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools
+all_intel_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools trayer
 
 
 .PHONY: install_ubuntu_server_gui_intel
@@ -368,11 +377,11 @@ install_ubuntu_server_gui_intel: all_intel_software xinitrc
 
 
 .PHONY: all_arm_software  # Ubuntu ARM doesn't have a Compton PPA package
-all_arm_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources python
+all_arm_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources python trayer
 
 
 .PHONY: remove_all
-remove_all: remove_screen remove_pycheckers remove_x11 remove_dmenu remove_dzen remove_xmonad remove_xmodmap remove_xresources remove_compton remove_python remove_intel_desktop_tools remove_cli_utils
+remove_all: remove_screen remove_pycheckers remove_x11 remove_dmenu remove_dzen remove_xmonad remove_xmodmap remove_xresources remove_compton remove_python remove_intel_desktop_tools remove_cli_utils remove_trayer
 	sudo apt-get -y autoremove
 
 
