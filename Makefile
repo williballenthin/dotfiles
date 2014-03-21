@@ -2,13 +2,13 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs
 	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit" 
 
 
 .PHONY: remove_cli_utils
 remove_cli_utils:
-	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget weechat-curses htop subversion jq
+	sudo apt-get -y remove ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget weechat-curses htop subversion jq iotop nethogs
 
 
 .PHONY: oh_my_zsh
