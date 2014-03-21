@@ -4,5 +4,5 @@ xmodmap ~/.Xmodmap  # __XMODMAP__
 compton -b  # __COMPTON__
 bash ~/.wallpaper/wallpaper.sh &  # __WALLPAPER__
 xscreensaver &
-{bash bar.sh | dzen2 -ta r -fn 'Droid Sans Mono-7'} &
+{bash ~/.xmonad/bar.sh | dzen2 -ta r -fn 'Droid Sans Mono-7'} &
 ~/.cabal/bin/xmonad  # __XMONAD__
