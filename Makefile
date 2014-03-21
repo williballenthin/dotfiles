@@ -38,9 +38,8 @@ vim: cli_utils
 	if [ ! -h ~/.vimrc ]; then ln -s "$$(pwd)"/warehouse/.vimrc ~/.vimrc; fi
 	mkdir -p ~/.vim/autoload
 	mkdir -p ~/.vim/bundle
-	wget --no-check-certificate -O ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-	cd ~/.vim/bundle && \
-		git clone https://github.com/nvie/vim-flake8.git
+	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	vim +BundleInstall +qall
 
 
 .PHONY: remove_vim

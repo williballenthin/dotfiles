@@ -1,8 +1,40 @@
 " pathogen, from https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
+" execute pathogen#infect()
 
-"set encoding=utf8
+"  ----- BEGIN VUNDLE -----
 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle, required
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'nvie/vim-flake8'
+
+
+filetype plugin indent on     " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle commands are not allowed.
+" Put your stuff after this line
+
+"  ----- END VUNDLE -----
+
+
+set encoding=utf8
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -11,14 +43,9 @@ set smarttab
 let indent_guides_enable_on_vim_startup = 1
 
 
+set number
 syntax on
 set t_co=256
-" set background=dark
-" colorscheme solarized
-
-set number
-
-filetype plugin indent on
 
 " NERDTree, from https://github.com/scrooloose/nerdtree
 "
