@@ -63,8 +63,9 @@ work_stuff: timetrap
 .PHONY: lua
 lua: vim
 	sudo apt-get install lua5.1 luarocks
-	sudo luarocks install luafilesystem moonscript LuaSocket
-	cd ~/.vim/bundle && git clone git://github.com/leafo/moonscript-vim.git
+	sudo luarocks install luafilesystem
+	sudo luarocks install LuaSocket
+	sudo luarocks install moonscript
 
 
 # note, this doesn't have a cleanup recipe
