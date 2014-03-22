@@ -83,6 +83,21 @@ pyp: software_dir
 	sudo ln -s ~/.software/pyp /usr/local/bin/pyp
 
 
+.PHONY: golang
+golang: software_dir
+	sudo apt-get -y install mercurial
+	cd ~/.software && \
+		hg clone -u release https://code.google.com/p/go && \
+		cd go/src && \
+		./all.bash && \
+		if ! grep "__PATH_GOLANG__" ~/.zshrc; then \
+			echo 'PATH=$$PATH:~/.software/go/bin/  # __PATH_GOLANG__' >> ~/.zshrc; fi
+	# GOPATH NOT SET
+	# echo 'export GOPATH=/data/data/go  # __GOPATH__' >> ~/.zshrc
+	# go get -u github.com/nsf/gocode
+	# echo 'PATH=$$PATH:$$GOPATH/bin/  # __GOLANG_PATH_BIN__' >> ~/.zshrc;
+
+
 .PHONY: truecrypt
 truecrypt: cli_utils software_dir
 	wget http://www.truecrypt.org/download/truecrypt-7.1a-linux-x64.tar.gz ~/.software/truecrypt-7.1a-linux-x64.tar.gz
