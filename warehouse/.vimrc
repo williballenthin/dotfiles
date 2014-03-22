@@ -15,6 +15,11 @@ Bundle 'gmarik/vundle'
 
 Bundle 'scrooloose/nerdtree'
 Bundle 'nvie/vim-flake8'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'leafo/moonscript-vim'
+Bundle 'undx/vim-gocode'
+Bundle 'jnwhiteh/vim-golang'
+
 
 
 filetype plugin indent on     " required
@@ -32,6 +37,19 @@ filetype plugin indent on     " required
 " Put your stuff after this line
 
 "  ----- END VUNDLE -----
+
+
+
+" golang support
+"
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+
 
 
 set encoding=utf8
