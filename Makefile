@@ -3,7 +3,7 @@
 .PHONY: cli_utils
 cli_utils:
 	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs
-	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit" 
+	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 
 
 .PHONY: remove_cli_utils
@@ -40,6 +40,9 @@ vim: cli_utils
 	mkdir -p ~/.vim/bundle
 	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 	vim +BundleInstall +qall
+	sudo apt-get -y install cmake libclang1-3.4
+	cd ~/.vim/bundle/YouCompleteMe && \
+		./install.sh
 
 
 .PHONY: remove_vim
@@ -47,6 +50,7 @@ remove_vim:
 	if [ -h ~/.vimrc ]; then unlink ~/.vimrc; fi
 	rm -rf ~/.vim/autoload
 	rm -rf ~/.vim/bundle
+	sudo apt-get -y remote cmake libclang1-3.4
 
 
 .PHONY: python
