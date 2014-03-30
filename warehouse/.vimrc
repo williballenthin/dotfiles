@@ -20,6 +20,7 @@ Bundle 'leafo/moonscript-vim'
 Bundle 'undx/vim-gocode'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'bling/vim-airline'
+Bundle 'mileszs/ack.vim'
 
 Bundle 'airblade/vim-gitgutter'
 " Gutter should be black
