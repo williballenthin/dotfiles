@@ -2,8 +2,9 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs ack-grep
 	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+	sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep 
 
 
 .PHONY: oh_my_zsh
