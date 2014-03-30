@@ -19,6 +19,11 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'leafo/moonscript-vim'
 Bundle 'undx/vim-gocode'
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'bling/vim-airline'
+
+Bundle 'airblade/vim-gitgutter'
+" Gutter should be black
+highlight SignColumn ctermbg=0
 
 
 
@@ -56,7 +61,7 @@ set encoding=utf8
 set smartindent
 set tabstop=4
 set shiftwidth=4
-set expandtab
+"set expandtab
 set smarttab
 let indent_guides_enable_on_vim_startup = 1
 
@@ -99,3 +104,6 @@ autocmd BufWinLeave * call clearmatches()
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+nmap J :bn<CR>
+nmap K :bp<CR>
