@@ -112,7 +112,9 @@ remove_work_stuff: remove_timetrap
 .PHONY: lua
 lua: vim
 	sudo apt-get install lua5.1 luarocks
-	sudo luarocks install luafilesystem moonscript LuaSocket
+	sudo luarocks install luafilesystem
+	sudo luarocks install moonscript
+	sudo luarocks install LuaSocket
 	cd ~/.vim/bundle && git clone git://github.com/leafo/moonscript-vim.git
 
 
@@ -291,7 +293,7 @@ fetch_wallpaper:
 	if [ ! -d ~/.wallpaper ]; then mkdir ~/.wallpaper; fi
 	wget http://s.imgur.com/a/7883i/zip -O ~/.wallpaper/archive.zip
 	cd ~/.wallpaper && unzip archive.zip
-	cd ~/.wallpaper && for i in $$(seq 1 158); do I=$$(printf "%%03d" "$$i"); wget "http://www.squidfingers.com/_patterns/files/pattern_"$$I".zip"\; unzip "pattern_"$$I".zip"; rm "pattern_"$$I".zip"; done && rm -r __MACOSX;
+	cd ~/.wallpaper && for i in $$(seq 1 158); do I=$$(printf "%%03d" "$$i"); echo "$$I"; wget "http://www.squidfingers.com/_patterns/files/pattern_"$$I".zip"; unzip "pattern_"$$I".zip"; rm "pattern_"$$I".zip"; done && rm -r __MACOSX;
 
 
 .PHONY: remove_fetch_wallpaper
