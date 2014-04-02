@@ -137,6 +137,18 @@ trayer:
 	sudo apt-get -y install trayer
 
 
+.PHONY: dunst
+dunst: software_dir cli_utils x11
+	sudo apt-get install libdbus-1-dev libxinerama-dev libxft-dev libxss-dev libxdg-basedir-dev libglib2.0-dev libpango1.0-dev
+	cd ~/.software && \
+      git clone git://github.com/knopwob/dunst && \
+      cd dunst && \
+      make && \
+      sudo make install
+	if [ ! -h ~/.dunstrc ]; then \
+      ln -s $$(pwd)/warehouse/dunstrc ~/.dunstrc; fi
+
+
 .PHONY: localpath
 localpath:
 	if ! grep "__LOCAL_PATH__" ~/.zshrc; then \
