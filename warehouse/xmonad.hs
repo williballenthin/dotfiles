@@ -42,7 +42,7 @@ keysToAdd x =
     [ ((mod1Mask, xK_Tab), windows W.focusDown)
     , ((mod4Mask, xK_s), withFocused $ windows . W.sink)
     , ((mod4Mask, xK_g), queryPrompt defaultXPConfig)
-    , ((mod4Mask, xK_t), spawn "urxvt")
+    , ((mod4Mask, xK_t), spawn "urxvt -pe tabbed")
     , ((mod4Mask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
     , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")
