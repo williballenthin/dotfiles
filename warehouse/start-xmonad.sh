@@ -6,5 +6,6 @@ bash ~/.wallpaper/wallpaper.sh &  # __WALLPAPER__
 xscreensaver &
 (bash ~/.xmonad/bar.sh | dzen2 -ta r -fn 'Droid Sans Mono-7') &
 trayer --edge top --align left --widthtype request --height 15 &
+killall xfce4-notifyd  # sorry, but there's no associated "autostart" file per-user
 dunst -config ~/.dunstrc &
 ~/.cabal/bin/xmonad  # __XMONAD__
