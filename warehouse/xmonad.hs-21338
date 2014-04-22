@@ -40,7 +40,7 @@ keysToAdd x =
 	  [ ((mod1Mask, xK_Tab), windows W.focusDown)
           , ((mod4Mask, xK_s), withFocused $ windows . W.sink)
 	  , ((mod4Mask, xK_g), queryPrompt defaultXPConfig)
-	  , ((mod4Mask, xK_t), spawn "urxvt")
+	  , ((mod4Mask, xK_t), spawn "gnome-terminal")
 	  , ((mod4Mask, xK_F6), spawn "/opt/brightness-down")
 	  , ((mod4Mask, xK_F7), spawn "/opt/brightness-up")
           , ((mod4Mask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
@@ -75,9 +75,7 @@ main = do
        , workspaces = myWorkspaces
        , modMask = mod4Mask
        , keys = myKeys
-       , normalBorderColor = "#332d29"
-       , focusedBorderColor = "#817267"
-       , borderWidth = 2
+       , focusedBorderColor = "#0000FF"
        , logHook = takeTopFocus
        }    
 

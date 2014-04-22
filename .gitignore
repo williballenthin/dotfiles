@@ -1,2 +1,7 @@
+warehouse/.emacs.d/el-get/*
+warehouse/.emacs.d/eshell
+warehouse/.emacs.d/eshell/*
+warehouse/.emacs.d/auto-save-list/*
+warehouse/.emacs.d/willi-local.el
 *~
-.#*
+nohup.out
