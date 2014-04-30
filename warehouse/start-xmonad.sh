@@ -3,7 +3,7 @@ xrdb -merge ~/.Xresources  # __XRDB__
 xmodmap ~/.Xmodmap  # __XMODMAP__
 compton -b  # __COMPTON__
 bash ~/.wallpaper/wallpaper.sh &  # __WALLPAPER__
-xscreensaver &
+xautolock -time 5 -locker 'i3lock -g' &
 (bash ~/.xmonad/bar.sh | dzen2 -ta r -fn 'Droid Sans Mono-7') &
 trayer --edge top --align left --widthtype request --height 15 &
 killall xfce4-notifyd  # sorry, but there's no associated "autostart" file per-user

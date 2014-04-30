@@ -2,7 +2,7 @@
 
 .PHONY: cli_utils
 cli_utils:
-	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs ack-grep
+	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs ack-grep 
 	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 	sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep 
 
@@ -132,6 +132,17 @@ dzen: software_dir cli_utils x11
       sudo make clean install; fi
 
 
+.PHONY: lock
+lock: software_dir cli_utils x11
+	sudo apt-get -y install libxcb1-dev libxcb-util0-dev libpam0g-dev libcairo2-dev libxcb-xinerama0-dev libev-dev libx11-xcb-dev libxkbfile-dev libxkbcommon-dev libxcb-dpms0-dev libxcb-image0-dev xautolock
+	if [ ! -d ~/.software/i3lock ]; then \
+		cd ~/.software && \
+		git clone https://github.com/shiver/i3lock.git && \
+		cd i3lock && \
+		make && \
+		sudo make install; fi
+
+
 .PHONY: trayer
 trayer:
 	sudo apt-get -y install trayer
@@ -232,7 +243,7 @@ intel_desktop_tools:
 
 
 .PHONY: all_intel_software
-all_intel_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools trayer
+all_intel_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources compton python intel_desktop_tools trayer lock
 
 
 .PHONY: install_ubuntu_server_gui_intel
@@ -240,7 +251,7 @@ install_ubuntu_server_gui_intel: all_intel_software xinitrc
 
 
 .PHONY: all_arm_software  # Ubuntu ARM doesn't have a Compton PPA package
-all_arm_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources python trayer
+all_arm_software: cli_utils oh_my_zsh screen pycheckers software_dir x11 dmenu dzen xmonad xmodmap xresources python trayer lock
 
 
 .PHONY: install_ubuntu_server_cli
