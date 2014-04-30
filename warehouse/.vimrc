@@ -55,6 +55,7 @@ filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
+au BufNewFile,BufRead *.gotemplate set filetype=go
 
 
 
@@ -108,3 +109,7 @@ set showmode
 
 nmap J :bn<CR>
 nmap K :bp<CR>
+
+
+" Python should not use tabs, but spaces
+autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
