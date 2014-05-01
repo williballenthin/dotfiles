@@ -1,4 +1,3 @@
-
 .PHONY: cli_utils
 cli_utils:
 	sudo apt-get upgrade
@@ -80,7 +79,7 @@ software_dir:
 # TODO(wb): where should the local PATH be?
 .PHONY: pyp
 pyp: software_dir
-	wget http://pyp.googlecode.com/files/pyp_beta -O ~/.software/pyp
+	wget http://pyp.googlecode.com/files/pyp -O ~/.software/pyp
 	chmod +x ~/.software/pyp
 	sudo ln -s ~/.software/pyp /usr/local/bin/pyp
 
