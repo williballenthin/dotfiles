@@ -22,6 +22,7 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'bling/vim-airline'
 Bundle 'mileszs/ack.vim'
 
+Bundle 'git://github.com/rainux/vim-vala.git'
 Bundle 'airblade/vim-gitgutter'
 " Gutter should be black
 highlight SignColumn ctermbg=0
