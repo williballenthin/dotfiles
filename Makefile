@@ -1,7 +1,6 @@
-
-
 .PHONY: cli_utils
 cli_utils:
+	sudo apt-get upgrade
 	sudo apt-get -y install ssh openssh-server sshfs git vim python-software-properties software-properties-common zsh make build-essential tig wget screen ranger cmus weechat-curses htop subversion jq iotop nethogs ack-grep 
 	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 	sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep 
@@ -80,7 +79,7 @@ software_dir:
 # TODO(wb): where should the local PATH be?
 .PHONY: pyp
 pyp: software_dir
-	wget http://pyp.googlecode.com/files/pyp_beta -O ~/.software/pyp
+	wget http://pyp.googlecode.com/files/pyp -O ~/.software/pyp
 	chmod +x ~/.software/pyp
 	sudo ln -s ~/.software/pyp /usr/local/bin/pyp
 
