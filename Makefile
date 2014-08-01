@@ -158,6 +158,16 @@ dunst: software_dir cli_utils x11
 	if [ ! -h ~/.dunstrc ]; then \
       ln -s $$(pwd)/warehouse/dunstrc ~/.dunstrc; fi
 
+.PHONY: calculon
+calculon: software_dir
+	if [ ! -d ~/.software/calculon ]; then   \
+    cd ~/.software                           \
+      git clone https://github.com/snarez/calculon.git  \
+      cd calculon  \
+      virtualenv .  \
+      bin/python setup.py install \
+      bin/pip install bpython
+
 
 .PHONY: localpath
 localpath:
