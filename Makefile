@@ -46,7 +46,7 @@ pycheckers: python
 
 .PHONY: ruby
 ruby:
-	sudo apt-get -y install rubygems
+	sudo apt-get -y install ruby ruby-dev
 
 
 .PHONY: timetrap
@@ -167,6 +167,7 @@ calculon: software_dir
       virtualenv .  \
       bin/python setup.py install \
       bin/pip install bpython
+	fi
 
 
 .PHONY: localpath
@@ -189,6 +190,10 @@ xmonad: cli_utils x11
 	~/.cabal/bin/xmonad --recompile
   # TODO(wb): need to modify terminal if on ARM
 
+
+.PHONY: tmux
+tmux:
+	if [ ! -h ~/.tmux.conf ]; then ln -s "$$(pwd)"/warehouse/.tmux.conf ~/.tmux.conf; fi
 
 .PHONY: xmodmap
 xmodmap:
