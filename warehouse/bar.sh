@@ -24,11 +24,11 @@ getchatcount() {
     wc -l ~/.weechat/highlights.txt | cut -d " " -f 1;
 }
 
-while true; do 
-    DATE=$(fdate);
-    LOAD=$(getcpuload);
-    CHATS=$(getchatcount);
+getbattery() {
+    bash ~/.path/battery;
+}
 
-    echo "chat: $CHATS  |  cpu: $LOAD  |  Mem: $(getmemused) / $(getmemtotal)  |  ^fg(white)$DATE^fg()  ";
+while true; do 
+	echo "battery: $(getbattery) | chat: $(getchatcount) |  cpu: $(getcpuload)  |  Mem: $(getmemused) / $(getmemtotal)  |  ^fg(white)$(fdate)^fg()  ";
     sleep $INTERVAL;
 done;
