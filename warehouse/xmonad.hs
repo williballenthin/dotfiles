@@ -8,6 +8,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.GridVariants
 import XMonad.Prompt
 import XMonad.Prompt.Input
 import qualified Data.Map as M
@@ -52,6 +53,7 @@ keysToDel x =
     ]
 
 myLayout = avoidStruts (noBorders Full
+                    ||| SplitGrid XMonad.Layout.GridVariants.B 1 1 (2/5) (16/10) (5/100)
                     ||| ThreeCol 1 (3/100) (1/2)
                     ||| spiral (6/7)
                     ||| tiled
