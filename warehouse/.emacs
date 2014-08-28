@@ -38,7 +38,7 @@
 
 
 (menu-bar-mode 0)
-(tool-bar-mode 0)
+;(tool-bar-mode 0)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -62,13 +62,13 @@
 
 
 
-(require 'color-theme-solarized)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-solarized-dark)
+;(require 'color-theme-solarized)
+;(eval-after-load "color-theme"
+;  '(progn
+;     (color-theme-initialize)
+;(color-theme-solarized-dark)
 ;     (color-theme-tty-dark)
-     ))
+;     ))
 
 
 
@@ -274,13 +274,13 @@
 
 ;; Personal keymap
 (define-prefix-command 'willi-keymap)
-(global-set-key (kbd "C-2") 'willi-keymap)
 (define-key willi-keymap (kbd "C-*") 'duplicate-line)
 (define-key willi-keymap (kbd "C-p") 'prettify-buffer)
 (define-key willi-keymap (kbd "C-w") 'clean-whitespace-buffer)
 (define-key willi-keymap (kbd "C-c") 'compile)
 (define-key willi-keymap (kbd "C-r") 'replace-current-word)
+(global-set-key (kbd "C-2") 'willi-keymap)
 
+;(require 'willi-local)
 
-(require 'willi-local)
 ;(set-face-attribute 'default nil :height 140)

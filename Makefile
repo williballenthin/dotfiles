@@ -17,6 +17,12 @@ oh_my_zsh: cli_utils
 screen: cli_utils
 	if [ ! -h ~/.screenrc ]; then ln -s "$$(pwd)"/warehouse/.screenrc-18568 ~/.screenrc; fi
 
+.PHONY: emacs
+emacs: cli_utils
+	sudo apt-get -y install emacs24-nox
+	if [ ! -h ~/.emacs ]; then ln -s "$$(pwd)"/warehouse/.emacs ~/.emacs ; fi
+	if [ ! -h ~/.emacs.d ]; then ln -s "$$(pwd)"/warehouse/.emacs.d ~/.emacs.d ; fi
+
 
 .PHONY: vim
 vim: cli_utils
