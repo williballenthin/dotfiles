@@ -21,6 +21,8 @@ Bundle 'undx/vim-gocode'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'bling/vim-airline'
 Bundle 'mileszs/ack.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
 
 Bundle 'git://github.com/rainux/vim-vala.git'
 Bundle 'airblade/vim-gitgutter'
