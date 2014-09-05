@@ -112,6 +112,8 @@ set showmode
 
 nmap J :bn<CR>
 nmap K :bp<CR>
+nmap <F7> :CtrlP<CR>
+nmap <F8> :TagbarToggle<CR>
 
 
 " Python should not use tabs, but spaces
