@@ -33,7 +33,7 @@ vim: cli_utils
 	vim +BundleInstall +qall
 	sudo apt-get -y install cmake libclang1-3.4
 	cd ~/.vim/bundle/YouCompleteMe && \
-		./install.sh
+		./install.sh --clang-completer
 
 
 .PHONY: python

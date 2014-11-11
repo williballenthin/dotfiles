@@ -47,6 +47,18 @@ Bundle 'mileszs/ack.vim'
 " KEYMAP===============================
 " don't know yet, thinking "\a :Ack [query goes here, how2prompt?]"
 
+" ------------ TagBar --------------------------------------------------------
+Bundle 'majutsushi/tagbar'
+" KEYMAP===============================
+:nmap <leader>t :TagbarToggle<CR>
+
+" ------------ vim-gitgutter -------------------------------------------------
+" SETTINGS===============================
+Bundle 'airblade/vim-gitgutter'
+" Gutter should be black
+highlight SignColumn ctermbg=0
+
+
 " ------------ Others ---------------------------------------------------------
 Bundle 'nvie/vim-flake8'
 Bundle 'Valloric/YouCompleteMe'
@@ -54,12 +66,7 @@ Bundle 'leafo/moonscript-vim'
 Bundle 'undx/vim-gocode'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'bling/vim-airline'
-
 Bundle 'git://github.com/rainux/vim-vala.git'
-Bundle 'airblade/vim-gitgutter'
-" Gutter should be black
-highlight SignColumn ctermbg=0
-
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 filetype plugin indent on     " required
@@ -143,6 +150,8 @@ set showmode
 
 nmap J :bn<CR>
 nmap K :bp<CR>
+nmap <F7> :CtrlP<CR>
+nmap <F8> :TagbarToggle<CR>
 
 
 " Python should not use tabs, but spaces
