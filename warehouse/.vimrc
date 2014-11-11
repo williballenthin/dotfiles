@@ -1,5 +1,5 @@
-" pathogen, from https://github.com/tpope/vim-pathogen
-" execute pathogen#infect()
+:let mapleader = "\\"
+
 
 "  ----- BEGIN VUNDLE -----
 
@@ -10,35 +10,60 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+
 " let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
 
+" ------------ NerdTree -------------------------------------------------------
 Bundle 'scrooloose/nerdtree'
+" KEYMAP===============================
+:nmap <leader>e :NERDTreeToggle<CR>
+
+" ------------ CtrlP ----------------------------------------------------------
+Bundle 'https://github.com/kien/ctrlp.vim'
+
+" KEYMAP===============================
+" default: control-p --> :CtrlP
+:nmap ; :CtrlPBuffer<CR>
+
+" SETTINGS==============================
+"
+" from Things of Variable interest blog
+" http://statico.github.io/vim.html
+:let g:ctrlp_match_window_bottom = 1
+:let g:ctrlp_match_window_reversed = 0
+:let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+:let g:ctrlp_working_path_mode = 0
+:let g:ctrlp_dotfiles = 0
+:let g:ctrlp_switch_buffer = 0
+
+" ------------ Ack -----------------------------------------------------------
+Bundle 'mileszs/ack.vim'
+" KEYMAP===============================
+" don't know yet, thinking "\a :Ack [query goes here, how2prompt?]"
+
+" ------------ Others ---------------------------------------------------------
 Bundle 'nvie/vim-flake8'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'leafo/moonscript-vim'
 Bundle 'undx/vim-gocode'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'bling/vim-airline'
-Bundle 'mileszs/ack.vim'
 
 Bundle 'git://github.com/rainux/vim-vala.git'
 Bundle 'airblade/vim-gitgutter'
 " Gutter should be black
 highlight SignColumn ctermbg=0
 
-
-
-filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-"
+filetype plugin indent on     " required
+
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 " Put your stuff after this line
@@ -64,14 +89,22 @@ set encoding=utf8
 set smartindent
 set tabstop=4
 set shiftwidth=4
-"set expandtab
+set expandtab
 set smarttab
 let indent_guides_enable_on_vim_startup = 1
+
+" from Things of Variable interest blog
+" http://statico.github.io/vim.html
+:set incsearch
+:set ignorecase
+:set smartcase
+:set hlsearch
+:nmap \q :nohlsearch<CR>
 
 
 set number
 syntax on
-set t_co=256
+"set t_co=256
 
 " NERDTree, from https://github.com/scrooloose/nerdtree
 "
