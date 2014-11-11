@@ -172,7 +172,7 @@ calculon: software_dir
       cd calculon  \
       virtualenv .  \
       bin/python setup.py install \
-      bin/pip install bpython
+      bin/pip install bpython;\
 	fi
 
 
