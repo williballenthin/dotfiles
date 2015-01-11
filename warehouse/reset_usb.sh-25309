@@ -1,4 +1,0 @@
-#!/bin/bash
-
-modprobe -vr ehci_hcd;
-modprobe -v  ehci_hcd;

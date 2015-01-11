@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir /tmp/ramdisk;
-chmod 777 /tmp/ramdisk;
-mount -t tmpfs -o size=1G tmpfs /tmp/ramdisk;
-

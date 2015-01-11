@@ -1,6 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=XMonad
-Comment=Lightweight tiling window manager
-Exec=bash /home/willi/.xmonad/start-xmonad.sh
-Type=XSession

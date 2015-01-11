@@ -1,4 +1,0 @@
-#!/bin/bash
-
-/opt/cisco/vpn/bin/vpnagentd;
-/opt/cisco/vpn/bin/vpnui;
