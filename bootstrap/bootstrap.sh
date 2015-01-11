@@ -14,9 +14,6 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
       cat ~/.ssh/id_rsa.pub;
     popd;
 fi
-git config --global user.email "willi.ballenthin@gmail.com"
-git config --global user.name "Willi Ballenthin"
-
 
 echo "";
 echo "===================================";
