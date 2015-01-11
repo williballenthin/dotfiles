@@ -5,6 +5,6 @@ dotfiles
 
 ## Installation
 
-1. Clone this repository
-2. Execute the recipes using `make`
-
+1. Use GNU Stow.
+2. `cd ~/.dotfiles` (that's where this directory should be located).
+3. `stow compton zsh xmonad` etc.
