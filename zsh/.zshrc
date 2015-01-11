@@ -139,3 +139,5 @@ function _completemarks {
 }
 compctl -K _completemarks jump
 compctl -K _completemarks unmark
+
+nixq(){ nix-env -qa \* -P | fgrep -i "$1"; }
