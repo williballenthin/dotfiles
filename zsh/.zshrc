@@ -141,3 +141,6 @@ compctl -K _completemarks jump
 compctl -K _completemarks unmark
 
 nixq(){ nix-env -qa \* -P | fgrep -i "$1"; }
+
+export LIBRARY_PATH=$LIBRARY_PATH:~/.nix-profile/lib
+export CPATH=$LIBRARY_PATH:~/.nix-profile/include
