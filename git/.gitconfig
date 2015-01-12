@@ -1,3 +1,5 @@
 [user]
 	email = willi.ballenthin@gmail.com
 	name = Willi Ballenthin
+[core]
+	fileMode = false
