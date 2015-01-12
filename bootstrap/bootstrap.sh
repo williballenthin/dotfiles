@@ -2,7 +2,7 @@ for PKG in "compton" "dmenu" "dunst" "dwbWrapper" "dzen2" \
     "getopt" "git" "htop" "i3lock" "libnotify" "rxvt_unicode_with-plugins" \
     "stow" "trayer" "vim" "vimPlugins.vundle" "wget" "xautolock" \
     "haskellPackages.xmonad" "haskellPackages.xmonadContrib" "haskellPackages.xmonadExtras" \
-    "haskellPackages.xmobar" \
+    "haskellPackages.xmobar" "subversion" "less" "tmux" "iotop" "tree" "man" \
 ; do
     nix-env -iA nixos.pkgs."$PKG";
 done
