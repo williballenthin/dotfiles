@@ -1,4 +1,4 @@
-:let mapleader = "\\"
+:let mapleader = ","
 
 
 "  ----- BEGIN VUNDLE -----
@@ -7,9 +7,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-set rtp+=/nix/store/plz3cak5ykpb958c8jx7ixdwy1jp52mw-vimplugin-vundle/share/vim-plugins/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " Brief help
 " :BundleList          - list configured bundles
@@ -18,15 +17,15 @@ call vundle#rc()
 " :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " ------------ NerdTree -------------------------------------------------------
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " KEYMAP===============================
 :nmap <leader>e :NERDTreeToggle<CR>
 
 " ------------ CtrlP ----------------------------------------------------------
-Bundle 'https://github.com/kien/ctrlp.vim'
+Plugin 'https://github.com/kien/ctrlp.vim'
 
 " KEYMAP===============================
 " default: control-p --> :CtrlP
@@ -44,38 +43,55 @@ Bundle 'https://github.com/kien/ctrlp.vim'
 :let g:ctrlp_switch_buffer = 0
 
 " ------------ Ack -----------------------------------------------------------
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 " KEYMAP===============================
 " don't know yet, thinking "\a :Ack [query goes here, how2prompt?]"
 
 " ------------ TagBar --------------------------------------------------------
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 " KEYMAP===============================
 :nmap <leader>t :TagbarToggle<CR>
 
 " ------------ vim-gitgutter -------------------------------------------------
 " SETTINGS===============================
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 " Gutter should be black
 highlight SignColumn ctermbg=0
 
 
+" ------------ go-vim --------------------------------------------------------
+Plugin 'fatih/vim-go'
+" SETTINGS===============================
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+" KEYMAP===============================
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
 " ------------ Others ---------------------------------------------------------
-Bundle 'nvie/vim-flake8'
-"Bundle 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
-Bundle 'leafo/moonscript-vim'
-Bundle 'undx/vim-gocode'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'bling/vim-airline'
-Bundle 'git://github.com/rainux/vim-vala.git'
+Plugin 'nvie/vim-flake8'
+"Plugin 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
+Plugin 'leafo/moonscript-vim'
+Plugin 'bling/vim-airline'
+Plugin 'git://github.com/rainux/vim-vala.git'
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 filetype plugin indent on     " required
 
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
+" NOTE: comments after Plugin commands are not allowed.
 " Put your stuff after this line
 
+call vundle#end()
 "  ----- END VUNDLE -----
 
 
@@ -157,3 +173,4 @@ nmap <F8> :TagbarToggle<CR>
 
 " Python should not use tabs, but spaces
 autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+
