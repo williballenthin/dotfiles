@@ -145,16 +145,25 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t))")
 (setq org-outline-path-complete-in-steps t)
 
 
-
-
 ;;;;;;;;;;;;;;;;   GOLANG STUFF   ;;;;;;;;;;;;;;;;;;;;;;;;;
+; `go get -u github.com/nsf/gocode`
 (require 'go-mode)  ; install via packages.el
 
 (require 'go-eldoc)  ; install via packages.el
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
+; `go get -u github.com/dougm/goflymake`
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
 (require 'go-flymake)  ; install via packages.el
 
 (setenv "PATH" (concat (getenv "PATH") ":" (concat (getenv "GOPATH") "~/code/go/bin/")))
 
+;;;;;;;;;;;;;;;;   PYTHON STUFF   ;;;;;;;;;;;;;;;;;;;;;;;;;
+; `sudo pip install pylint`
+(require 'flycheck)  ; install via packages.el
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(require 'jedi)
+; then do: M-x jedi:install-server
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
