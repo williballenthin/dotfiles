@@ -18,6 +18,12 @@
 (require 'evil)
 (evil-mode 1)
 
+;; swap buffers using willi's favorite VIM mapping
+(define-key evil-normal-state-map "J" 'next-buffer)
+(define-key evil-normal-state-map "K" 'previous-buffer)
+;; note, the opposite is `evil-insert-state-map`)
+(define-key evil-normal-state-map ";" 'ido-switch-buffer)
+
 ;; highlight-symbol mode
 (global-set-key [(control f3)] 'highlight-symbol)
 (global-set-key [f3] 'highlight-symbol-next)
@@ -57,6 +63,10 @@
 ;; IDO mode for interactively doing things with buffers
 (require 'ido)
 (ido-mode t)
+
+;; i'd like to use git-gutter, but it doesn't work with flychecker,
+;;   which also uses the fringe/gutter buffer
+;(require 'git-gutter-fringe+)
 
 ;; spaces, not tabs!
 (require 'whitespace)
@@ -116,7 +126,7 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t))
 :PROPERTIES:
 :ADDED: %U
 :END:
-SCHEDULED: %(org-insert-time-stamp (org-read-date nil t))")
+date: %(org-insert-time-stamp (org-read-date nil t))")
 
         ("c" "Quick capture" entry
             (file+headline "~/oh/todo.org" "Inbox")
@@ -154,7 +164,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t))")
 
 ; `go get -u github.com/dougm/goflymake`
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
-(require 'go-flymake)  ; install via packages.el
+;(require 'go-flymake)  ; install via packages.el
 
 (setenv "PATH" (concat (getenv "PATH") ":" (concat (getenv "GOPATH") "~/code/go/bin/")))
 
