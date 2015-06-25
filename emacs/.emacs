@@ -97,6 +97,8 @@
 
 
 ;;;;;;;;;;;;;;;;   ORG-MODE   ;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "WORKING(w!)" "DONE(d!)")))
 (setq org-capture-templates
     (quote (
         ("t" "Todo" entry
@@ -104,6 +106,7 @@
               "* TODO %^{Thing} %^g
 :PROPERTIES:
 :ADDED: %U
+:LOGGING: TODO(t!) WORKING(w!) DONE(d!)
 :END:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t))
 %?")
@@ -135,6 +138,15 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 :ADDED: %U
 :END:")
 
+        ("p" "Expense" entry
+            (file+datetree "~/oh/todo.org")
+              "* TODO expense: %^{expense} %^g
+:PROPERTIES:
+:ADDED: %U
+:BILLCODE: %^{billcode}
+:END:
+ total: %^{total}")
+
 )))
 
 (setq org-agenda-files '("~/oh/todo.org"))
@@ -156,6 +168,11 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 
 
 ;;;;;;;;;;;;;;;;   GOLANG STUFF   ;;;;;;;;;;;;;;;;;;;;;;;;;
+(setenv "GOPATH" "/home/willi/code/go")
+(setenv "PATH" (concat (getenv "PATH") ":" (concat (getenv "GOPATH") "/bin")))
+;; exec-path is like PATH for emacs
+(setq exec-path (append exec-path (list (concat (getenv "GOPATH") "/bin"))))
+
 ; `go get -u github.com/nsf/gocode`
 (require 'go-mode)  ; install via packages.el
 
@@ -165,8 +182,13 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 ; `go get -u github.com/dougm/goflymake`
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
 ;(require 'go-flymake)  ; install via packages.el
+(add-hook 'before-save-hook 'gofmt-before-save)
 
-(setenv "PATH" (concat (getenv "PATH") ":" (concat (getenv "GOPATH") "~/code/go/bin/")))
+;; via: https://github.com/nsf/gocode
+(require 'auto-complete)
+(require 'go-autocomplete)  ;; install via packages.el
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;;;;;;;;;;;;;;;;   PYTHON STUFF   ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; `sudo pip install pylint`
