@@ -1,3 +1,25 @@
+; package-install color-theme
+; package-install jedi
+; package-install highlight-symbol
+; package-install highlight-parenthesis
+; package-install go-mode
+; package-install go-eldoc
+; package-install go-autocomplete
+; package-install flymake-go
+; package-install flycheck
+; package-install evil
+; package-install ac-python
+; package-install magit
+; package-install evil-magit
+; package-install hs-minor-mode 
+;
+;; clojure stuff
+; package-install slime
+; package-install cider
+; package-install clojure-mode
+; package-install paredit
+
+
 ;;;;;;;;;;;;;;;;   PACKAGES   ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; load package manager
 (require 'package)
@@ -47,6 +69,7 @@
 
 ;; show line numbers
 (add-hook 'python-mode-hook       (lambda () (linum-mode)))
+(add-hook 'go-mode-hook       (lambda () (linum-mode)))
 (add-hook 'c-mode-common-hook     (lambda () (linum-mode)))
 
 ;; highlight the symbol under the cursor
@@ -95,6 +118,9 @@
  )
 (load-theme 'zenburn t)
 
+;;;;;;;;;;;;;;;;   GIT        ;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'evil-magit)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;;;;;;;;;;;;;;;;   ORG-MODE   ;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-todo-keywords
@@ -168,7 +194,7 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 
 
 ;;;;;;;;;;;;;;;;   GOLANG STUFF   ;;;;;;;;;;;;;;;;;;;;;;;;;
-(setenv "GOPATH" "/home/willi/code/go")
+(setenv "GOPATH" "/home/willi/go")
 (setenv "PATH" (concat (getenv "PATH") ":" (concat (getenv "GOPATH") "/bin")))
 ;; exec-path is like PATH for emacs
 (setq exec-path (append exec-path (list (concat (getenv "GOPATH") "/bin"))))
@@ -190,6 +216,15 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 (require 'auto-complete-config)
 (ac-config-default)
 
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (global-set-key (kbd "C-c s") 'hs-show-block)
+            (global-set-key (kbd "C-c S") 'hs-show-all)
+            (global-set-key (kbd "C-c h") 'hs-hide-block)
+            (global-set-key (kbd "C-c H") 'hs-hide-all)
+            (hs-minor-mode t)))
+
 ;;;;;;;;;;;;;;;;   PYTHON STUFF   ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; `sudo pip install pylint`
 (require 'flycheck)  ; install via packages.el
@@ -199,3 +234,7 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 ; then do: M-x jedi:install-server
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+
+; The value is in 1/10pt, so 100 will give you 10pt, etc. 
+; via: http://stackoverflow.com/a/296316/87207
+(set-face-attribute 'default nil :height 100)
