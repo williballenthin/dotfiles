@@ -23,6 +23,7 @@ Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 " KEYMAP===============================
 :nmap <leader>e :NERDTreeToggle<CR>
+:nmap <F6> :NERDTreeToggle<CR>
 
 " ------------ CtrlP ----------------------------------------------------------
 Plugin 'https://github.com/kien/ctrlp.vim'
@@ -30,6 +31,7 @@ Plugin 'https://github.com/kien/ctrlp.vim'
 " KEYMAP===============================
 " default: control-p --> :CtrlP
 :nmap ; :CtrlPBuffer<CR>
+:nmap <F7> :CtrlP<CR>
 
 " SETTINGS==============================
 "
@@ -50,7 +52,8 @@ Plugin 'mileszs/ack.vim'
 " ------------ TagBar --------------------------------------------------------
 Plugin 'majutsushi/tagbar'
 " KEYMAP===============================
-:nmap <leader>t :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 
 " ------------ vim-gitgutter -------------------------------------------------
 " SETTINGS===============================
@@ -75,14 +78,13 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>n <Plug>(go-rename)
 
 " ------------ Others ---------------------------------------------------------
 Plugin 'nvie/vim-flake8'
 Plugin 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
 Plugin 'leafo/moonscript-vim'
 Plugin 'bling/vim-airline'
-Plugin 'git://github.com/rainux/vim-vala.git'
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 filetype plugin indent on     " required
@@ -107,8 +109,6 @@ filetype plugin indent on
 syntax on
 au BufNewFile,BufRead *.gotemplate set filetype=go
 
-
-
 set encoding=utf8
 set smartindent
 set tabstop=4
@@ -124,7 +124,6 @@ let indent_guides_enable_on_vim_startup = 1
 :set smartcase
 :set hlsearch
 :nmap \q :nohlsearch<CR>
-
 
 set number
 syntax on
@@ -150,8 +149,6 @@ set ttymouse=xterm2  " allow resizing of splits with mouse
 " Automatically leave insert mode after 'updatetime' (4s by default).
 au CursorHoldI * stopinsert
 
-set list listchars=tab:⇥⇥,
-
 " trailing whitespace highlighted
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -167,8 +164,6 @@ set showmode
 
 nmap J :bn<CR>
 nmap K :bp<CR>
-nmap <F7> :CtrlP<CR>
-nmap <F8> :TagbarToggle<CR>
 
 
 " Python should not use tabs, but spaces
