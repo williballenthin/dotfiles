@@ -140,7 +140,7 @@ date: %(org-insert-time-stamp (org-read-date nil t))")
 
         ("p" "Expense" entry
             (file+datetree "~/oh/todo.org")
-              "* TODO expense: %^{expense} %^g
+              "* TODO Expense: %^{expense} %^g
 :PROPERTIES:
 :ADDED: %U
 :BILLCODE: %^{billcode}
