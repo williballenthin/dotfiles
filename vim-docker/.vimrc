@@ -126,7 +126,7 @@ let indent_guides_enable_on_vim_startup = 1
 :nmap \q :nohlsearch<CR>
 
 
-"set number
+set number
 syntax on
 "set t_co=256
 
