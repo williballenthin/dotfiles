@@ -85,6 +85,8 @@ Plugin 'nvie/vim-flake8'
 Plugin 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
 Plugin 'leafo/moonscript-vim'
 Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 filetype plugin indent on     " required
