@@ -77,6 +77,9 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
+" ------------ typescript --------------------------------------------------------
+Plugin 'leafgarland/typescript-vim'
+
 " ------------ Others ---------------------------------------------------------
 Plugin 'nvie/vim-flake8'
 "Plugin 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
