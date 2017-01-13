@@ -23,6 +23,8 @@ Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 " KEYMAP===============================
 :nmap <leader>e :NERDTreeToggle<CR>
+:nmap <F6> :NERDTreeToggle<CR>
+
 
 " ------------ CtrlP ----------------------------------------------------------
 Plugin 'https://github.com/kien/ctrlp.vim'
@@ -86,6 +88,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'leafo/moonscript-vim'
 Plugin 'bling/vim-airline'
 Plugin 'git://github.com/rainux/vim-vala.git'
+Plugin 'flazz/vim-colorschemes'
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 filetype plugin indent on     " required
@@ -115,8 +118,9 @@ au BufNewFile,BufRead *.gotemplate set filetype=go
 set encoding=utf8
 set smartindent
 set tabstop=4
-set shiftwidth=4
+set softtabstop=0
 set expandtab
+set shiftwidth=4
 set smarttab
 let indent_guides_enable_on_vim_startup = 1
 
