@@ -84,6 +84,8 @@ Plugin 'leafgarland/typescript-vim'
 
 " ------------ Others ---------------------------------------------------------
 Plugin 'nvie/vim-flake8'
+autocmd BufWritePost *.py call Flake8()
+
 "Plugin 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
 Plugin 'leafo/moonscript-vim'
 Plugin 'bling/vim-airline'
