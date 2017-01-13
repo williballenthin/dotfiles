@@ -1,10 +1,3 @@
-; package-install highlight-symbol
-; package-install highlight-parenthesis
-; package-install evil
-; package-install magit
-; package-install evil-magit
-; package-install zenburn-theme
-;
 ;; clojure stuff
 ; package-install slime
 ; package-install cider
@@ -90,8 +83,11 @@
                           (setq indent-tabs-mode nil))))
 
 (use-package zenburn-theme
-             :ensure t
-             :config (load-theme 'zenburn t))
+  :ensure t
+  :config (load-theme 'zenburn t))
+
+(use-package clojure-mode
+  :ensure t)
 
 (use-package parinfer
   :ensure t
@@ -99,11 +95,11 @@
   (progn
     (setq parinfer-extensions
           '(defaults       ; should be included.
-            pretty-parens  ; different paren styles for different modes.
-            evil           ; If you use Evil.
-            paredit        ; Introduce some paredit commands.
-            smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-            smart-yank))   ; Yank behavior depend on mode.
+             pretty-parens  ; different paren styles for different modes.
+             evil           ; If you use Evil.
+             paredit        ; Introduce some paredit commands.
+             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
+             smart-yank))   ; Yank behavior depend on mode.
     (add-hook 'clojure-mode-hook #'parinfer-mode)
     (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
     (add-hook 'common-lisp-mode-hook #'parinfer-mode)
@@ -222,9 +218,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
     (parinfer zenburn-theme highlight-parentheses evil-magit highlight-symbol evil-leader evil bind-key diminish use-package))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
