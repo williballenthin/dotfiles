@@ -75,7 +75,9 @@
                (setq-default indent-tabs-mode nil)
                (setq c-basic-indent 2)
                (setq tab-width 2)
-               (setq indent-tabs-mode nil))))
+               (setq indent-tabs-mode nil)
+               (setq show-trailing-whitespace t)))
+
 
 (use-package zenburn-theme
   :ensure t
