@@ -76,7 +76,7 @@
                (setq c-basic-indent 2)
                (setq tab-width 2)
                (setq indent-tabs-mode nil)
-               (setq show-trailing-whitespace t)))
+               (setq show-trailing-whitespace t))))
 
 
 (use-package zenburn-theme
@@ -111,7 +111,7 @@
 (use-package org
   :ensure t
   :init
-  (progn 
+  (progn
     (setq org-todo-keywords
           '((sequence "TODO(t)" "WORKING(w!)" "DONE(d!)")))
 
