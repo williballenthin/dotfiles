@@ -1,8 +1,8 @@
 [user]
-	email = willi.ballenthin@gmail.com
-	name = Willi Ballenthin
+    email = willi.ballenthin@gmail.com
+    name = Willi Ballenthin
 [core]
-	fileMode = false
+    fileMode = false
 [alias]
     branches = branch -a
     tags = tag
@@ -13,3 +13,13 @@
     amend = commit --amend
     graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     precommit = diff --cached --diff-algorithm=minimal -w
+    showtool = "!f() { git difftool $1^ $1; }; f"
+    added = difftool --cached
+[diff]
+    tool = icdiff
+[difftool]
+    prompt = false
+[difftool "icdiff"]
+    cmd = /usr/bin/icdiff --line-numbers $LOCAL $REMOTE
+[pager]
+    difftool = true
