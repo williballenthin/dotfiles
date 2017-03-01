@@ -88,6 +88,8 @@
 
 (use-package parinfer
   :ensure t
+  :bind
+  (("C-," . parinfer-toggle-mode))
   :config
   (progn
     (setq parinfer-extensions
