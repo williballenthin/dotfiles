@@ -44,11 +44,6 @@ Plugin 'https://github.com/kien/ctrlp.vim'
 :let g:ctrlp_dotfiles = 0
 :let g:ctrlp_switch_buffer = 0
 
-" ------------ Ack -----------------------------------------------------------
-Plugin 'mileszs/ack.vim'
-" KEYMAP===============================
-" don't know yet, thinking "\a :Ack [query goes here, how2prompt?]"
-
 " ------------ TagBar --------------------------------------------------------
 Plugin 'majutsushi/tagbar'
 " KEYMAP===============================
@@ -60,36 +55,10 @@ Plugin 'airblade/vim-gitgutter'
 " Gutter should be black
 highlight SignColumn ctermbg=0
 
-
-" ------------ go-vim --------------------------------------------------------
-Plugin 'fatih/vim-go'
-" SETTINGS===============================
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-" KEYMAP===============================
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-
-" ------------ typescript --------------------------------------------------------
-Plugin 'leafgarland/typescript-vim'
-
 " ------------ Others ---------------------------------------------------------
 Plugin 'nvie/vim-flake8'
 autocmd BufWritePost *.py call Flake8()
-
-"Plugin 'Valloric/YouCompleteMe'  " requires Python 2 support in VIM
-Plugin 'leafo/moonscript-vim'
 Plugin 'bling/vim-airline'
-Plugin 'git://github.com/rainux/vim-vala.git'
 Plugin 'flazz/vim-colorschemes'
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -101,21 +70,6 @@ filetype plugin indent on     " required
 
 call vundle#end()
 "  ----- END VUNDLE -----
-
-
-
-" golang support
-"
-" Some Linux distributions set filetype in /etc/vimrc.
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
-au BufNewFile,BufRead *.gotemplate set filetype=go
-
-
 
 set encoding=utf8
 set smartindent
