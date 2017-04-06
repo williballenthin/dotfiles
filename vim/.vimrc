@@ -55,9 +55,11 @@ Plugin 'airblade/vim-gitgutter'
 " Gutter should be black
 highlight SignColumn ctermbg=0
 
+" ------------ ale -------------------------------------------------
+Plugin 'w0rp/ale'
+let g:ale_lint_on_text_changed = 'normal'
+
 " ------------ Others ---------------------------------------------------------
-Plugin 'nvie/vim-flake8'
-autocmd BufWritePost *.py call Flake8()
 Plugin 'bling/vim-airline'
 Plugin 'flazz/vim-colorschemes'
 " To ignore plugin indent changes, instead use:
