@@ -14,4 +14,4 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vund
     wget https://raw.githubusercontent.com/williballenthin/dotfiles/master/vim/.vimrc -O /root/.vimrc && \
     vim +PluginInstall +qall && \
     wget https://raw.githubusercontent.com/williballenthin/dotfiles/master/tmux/.tmux.conf -O /root/.tmux.conf && \
-    pip3 install flake8 pylint mypy ipython
+    pip3 install pylint mypy ipython
