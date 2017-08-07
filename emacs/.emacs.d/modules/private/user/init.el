@@ -45,6 +45,7 @@
   :config
   (progn
     (autoload 'global-whitespace-mode "whitespace" "Toggle whitespace visualization." t)
+    (setq whitespace-line-column 120)
     (global-whitespace-mode t)))
 
 
