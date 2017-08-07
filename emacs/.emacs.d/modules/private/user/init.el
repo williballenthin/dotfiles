@@ -22,6 +22,7 @@
     (package-install 'use-package))
 
 
+(require 'bind-key)
 (use-package evil-magit
   :ensure t
   :bind (("C-x i" . magit-status))
