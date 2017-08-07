@@ -1,53 +1,38 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="daveverwer"
-
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
-
 # Comment this out to disable weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
-
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
-
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
-
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(gdoc git cpanm debian django extract github gnu-utils history-substring-search perl pip python svn terminator colored-man colorize encode64 git-extras)
-
 source $ZSH/oh-my-zsh.sh
-
 ## options from: http://askubuntu.com/questions/1577/moving-from-bash-to-zsh
 setopt completeinword
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
-
 # superglobs
 setopt extendedglob
 unsetopt caseglob
-
 getopt interactivecomments # pound sign in interactive prompt
 REPORTTIME=10
-
-
 ###########   BASH / ZSH COMMON ##################
-
 EMACSCLIENT="emacsclient --alternate-editor=\"\" -c"
 alias top='htop'
 alias play='mpg123'
@@ -56,31 +41,23 @@ alias e="emacsclient -c"
 alias l="ls -laht"
 alias o="xdg-open"
 alias dv="dirs -v"
-
 j() {
     pushd +"$1";
 }
-
 google() {
         qstring=""
-
         for arg in $*
         do
                   qstring="$qstring+$arg"
         done
-
         w3m -no-cookie "http://www.google.com/search?q=$qstring";
 }
-
-
 s() {
         grep -r "$1" .
 }
-
 f() {
         find . -iname "*$1*"
 }
-
 # A shortcut function that simplifies usage of xclip.
 # - Accepts input from either stdin (pipe), or params.
 # - If the input is a filename that exists, then it
@@ -119,7 +96,6 @@ cb() {
     fi
   fi
 }
-
 # from: http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
 function jump {

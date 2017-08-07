@@ -100,6 +100,7 @@
              smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
              smart-yank))   ; Yank behavior depend on mode.
     (dolist (hook '(clojure-mode-hook
+                    clojurescript-mode-hook
                     emacs-lisp-mode-hook
                     common-lisp-mode-hook
                     scheme-mode-hook
@@ -190,7 +191,8 @@
   (dolist (hook '(python-mode-hook
                   go-mode-hook
                   c-mode-hook
-                  clojure-mode-hook))
+                  clojure-mode-hook
+                  clojurescript-mode-hook))
     (add-hook hook #'linum-mode)))
 
 
