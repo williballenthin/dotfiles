@@ -21,7 +21,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     " wb
     Plug 'simrat39/rust-tools.nvim'
-    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    Plug 'preservim/nerdtree'
     Plug 'airblade/vim-gitgutter'
     Plug 'folke/which-key.nvim'
 call plug#end()
@@ -75,6 +75,10 @@ augroup END
 " wb: set leader key to space
 let g:mapleader=" "
 
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
 " register keybinding help
 " which-key will show popup of completions after `timeoutlen`
 lua << EOF
@@ -89,7 +93,7 @@ wk.register({
     ["<leader>p"] = { "<cmd>lua require'telescope.builtin'.find_files{}<cr>", "find files" },
     ["<leader>rg"] = { "<cmd>lua require'telescope.builtin'.live_grep{}<cr>", "ripgrep" },
 
-    ["<leader>f"] = {"<cmd>CHADopen<cr>", "file browser"},
+    ["<leader>f"] = {"<cmd>NERDTreeToggle<cr>", "file browser"},
 
     ["<leader>g"] = {
         name = "+lsp",
