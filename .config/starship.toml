@@ -1,0 +1,5 @@
+[aws]
+disabled = true
+
+[python]
+symbol = "py "
