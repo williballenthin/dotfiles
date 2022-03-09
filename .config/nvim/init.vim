@@ -50,7 +50,6 @@ set mouse=a  " mouse support
 colorscheme PaperColor
 
 lua <<EOF
-require("treesitter")
 require("statusbar")
 require("completion")
 EOF
