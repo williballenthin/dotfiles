@@ -1,3 +1,9 @@
+# 1. install nix
+# 2. install home-manager
+# 3. checkout williballenthin/dotfiles
+# 4. symlink home.nix to ~/.config/nixpkgs/home.nix
+# 5. home-manager switch
+# 6. set shell to: /home/user/.nix-profile/bin/fish
 { config, pkgs, ... }:
 
 {
@@ -23,19 +29,38 @@
     pkgs.tmux
     pkgs.git
     pkgs.neovim
+    pkgs.fzf
+    pkgs.ranger
+    pkgs.broot
+    pkgs.visidata
+    pkgs.jless
+    pkgs.direnv
+    pkgs.starship
+    pkgs.tig
+    pkgs.gitui
+    pkgs.bat
+    pkgs.exa
+    pkgs.hexyl
+    pkgs.gron
+    pkgs.delta
+    pkgs.dua
+    pkgs.fish
+    pkgs.starship
 
     # for nvim/treesitter compilation
     pkgs.gcc11
     pkgs.libstdcxx5
   ];
 
+  # we don't have vim installed here,
+  # but using during development of home.nix.
+  # installed via apt
   home.file.".vim/bundle/Vundle.vim".source = pkgs.fetchFromGitHub {
     owner = "VundleVim";
     repo = "Vundle.vim";
     rev = "b255382d6242d7ea3877bf059d2934125e0c4d95";
     hash = "sha256-hufBZwTL3BT1S2iOOb1TXTW2/Vvp52i6afu5gRmddTo=";
   };
-
   home.file.".vimrc".source = ../vim/.vimrc;
 
   home.file.".local/share/nvim/site/autoload/plug.vim".source = pkgs.fetchFromGitHub {
@@ -49,4 +74,5 @@
 
   home.file.".gitconfig".source = ../git/.gitconfig;
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
+  home.file.".config/starship.toml".source = ../.config/starship.toml;
 }
