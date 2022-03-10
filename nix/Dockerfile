@@ -36,5 +36,6 @@ RUN echo ". /home/user/.nix-profile/etc/profile.d/hm-session-vars.sh" >> /home/u
 # rm ~/.config/nixpkgs/home.nix
 # ln -s /home/user/.dotfiles/nix/home.nix ~/.config/nixpkgs/home.nix
 # home-manager switch
-# nvim, :PlugInstall, :PlugStatus
+# nvim +:PlugInstall +qa
+# nvim +:TSUpdate +qa
 # chsh --shell /home/user/.nix-profile/bin/fish

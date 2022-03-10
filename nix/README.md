@@ -15,7 +15,8 @@ ln -s /home/user/.dotfiles/nix/home.nix ~/.config/nixpkgs/home.nix
 home-manager switch
 
 # initial setup of neovim plugins
-nvim, :PlugInstall, :PlugStatus
+nvim +:PlugInstall +qa
+nvim +:TSUpdate +qa
 
 # set default shell to fish
 chsh --shell /home/user/.nix-profile/bin/fish
