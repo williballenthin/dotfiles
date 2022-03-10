@@ -1,7 +1,8 @@
 ## User configuration via nix and home-manager
 
 
-Once nix and home-manager are installed, use the following steps.
+Once [nix and home-manager](http://ghedam.at/24353/tutorial-getting-started-with-home-manager-for-nix)
+are installed, use the following steps.
 Alternatively, check out the Dockerfile for an example.
 
 ```
