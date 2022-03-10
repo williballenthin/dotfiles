@@ -27,6 +27,7 @@
 
   home.packages = [
     pkgs.tmux
+    pkgs.openssh
     pkgs.git
     pkgs.neovim
     pkgs.fzf
@@ -75,4 +76,5 @@
   home.file.".gitconfig".source = ../git/.gitconfig;
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
   home.file.".config/starship.toml".source = ../.config/starship.toml;
+  home.file.".config/fish/config.fish".source = ../.config/fish/config.fish;
 }
