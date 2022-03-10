@@ -3,3 +3,6 @@ disabled = true
 
 [python]
 symbol = "py "
+
+[nix_shell]
+format = "❄️ "

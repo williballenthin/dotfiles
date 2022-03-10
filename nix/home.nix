@@ -78,4 +78,9 @@
   home.file.".config/starship.toml".source = ../.config/starship.toml;
   home.file.".config/fish/config.fish".source = ../.config/fish/config.fish;
   home.file.".config/fish/functions".source = ../.config/fish/functions;
+
+  # fast, persistent nix integration with direnv
+  # https://github.com/nix-community/nix-direnv
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 }
