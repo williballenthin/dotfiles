@@ -4,8 +4,13 @@
 # 4. symlink home.nix to ~/.config/nixpkgs/home.nix
 # 5. home-manager switch
 # 6. set shell to: /home/user/.nix-profile/bin/fish
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  inherit (pkgs) stdenv;
+  inherit (lib) mkIf;
+  pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
+in                                         
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -36,7 +41,6 @@
     pkgs.visidata
     pkgs.jless
     pkgs.direnv
-    pkgs.starship
     pkgs.tig
     pkgs.gitui
     pkgs.bat
@@ -46,9 +50,18 @@
     pkgs.delta
     pkgs.dua
     pkgs.fish
+  ]
+  ++ lib.optionals stdenv.isDarwin [
+    # via https://github.com/NixOS/nixpkgs/issues/160876
+    # starship is broken in unstable
+    # so we use an old snapshot from 21.11
+    pkgs2111.starship
+  ]
+  ++ lib.optionals stdenv.isLinux [
     pkgs.starship
 
     # for nvim/treesitter compilation
+    # darwin already has clang??
     pkgs.gcc11
     pkgs.libstdcxx5
   ];
