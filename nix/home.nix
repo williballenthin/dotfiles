@@ -50,6 +50,8 @@ in
     pkgs.delta
     pkgs.dua
     pkgs.fish
+    pkgs.less
+    pkgs.htop
   ]
   ++ lib.optionals stdenv.isDarwin [
     # via https://github.com/NixOS/nixpkgs/issues/160876
