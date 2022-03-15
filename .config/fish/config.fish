@@ -1,3 +1,5 @@
+source ~/.config/fish/local.fish
+
 set -gx EDITOR nvim
 
 direnv hook fish | source
