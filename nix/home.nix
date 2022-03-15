@@ -35,6 +35,7 @@ in
     pkgs.openssh
     pkgs.git
     pkgs.neovim
+    pkgs.ripgrep
     pkgs.fzf
     pkgs.ranger
     pkgs.broot
