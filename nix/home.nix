@@ -36,6 +36,7 @@ in
     pkgs.git
     pkgs.neovim
     pkgs.ripgrep
+    pkgs.fd
     pkgs.fzf
     pkgs.ranger
     pkgs.broot
