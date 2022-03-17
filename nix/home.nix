@@ -94,7 +94,20 @@ in
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
   home.file.".config/starship.toml".source = ../.config/starship.toml;
   home.file.".config/fish/config.fish".source = ../.config/fish/config.fish;
-  home.file.".config/fish/functions".source = ../.config/fish/functions;
+  home.file.".config/fish/fish_plugins".source = ../.config/fish/fish_plugins;
+
+  home.file.".config/fish/completions/fisher.fish".source = pkgs.fetchFromGitHub {
+    owner = "jorgebucaran";
+    repo = "fisher";
+    rev = "93dafd242b52a0dc6bea54130d0ea041830c7fd6";
+    hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+  } + "/completions/fisher.fish";
+  home.file.".config/fish/functions/fisher.fish".source = pkgs.fetchFromGitHub {
+    owner = "jorgebucaran";
+    repo = "fisher";
+    rev = "93dafd242b52a0dc6bea54130d0ea041830c7fd6";
+    hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+  } + "/functions/fisher.fish";
 
   # fast, persistent nix integration with direnv
   # https://github.com/nix-community/nix-direnv
