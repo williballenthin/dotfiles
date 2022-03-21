@@ -34,6 +34,7 @@ in
     pkgs.tmux
     pkgs.openssh
     pkgs.git
+    pkgs.gnupg
     pkgs.neovim
     pkgs.ripgrep
     pkgs.fd
