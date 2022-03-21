@@ -3,6 +3,10 @@ source ~/.config/fish/local.fish
 set -gx EDITOR nvim
 
 direnv hook fish | source
+# disable direnv logging
+# via: https://github.com/direnv/direnv/issues/68#issuecomment-519030360
+set -gx DIRENV_LOG_FORMAT ""
+
 starship init fish | source
 
 if status --is-interactive
