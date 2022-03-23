@@ -35,6 +35,7 @@ in
     pkgs.openssh
     pkgs.git
     pkgs.gnupg
+    pkgs.icdiff
     pkgs.neovim
     pkgs.ripgrep
     pkgs.fd
