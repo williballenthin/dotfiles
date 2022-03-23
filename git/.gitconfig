@@ -4,6 +4,9 @@
     signingkey = /Users/user/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/97eaf6acd9a1a2ceae31b33216737a6a.pub
 [core]
     fileMode = false
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
 [alias]
     branches = branch -a
     tags = tag
@@ -16,15 +19,33 @@
     precommit = diff --cached --diff-algorithm=minimal -w
     showtool = "!f() { git difftool $1^ $1; }; f"
     added = difftool --cached
+[merge]
+    conflictstyle = diff3
 [diff]
-    tool = icdiff
+    tool = delta
+    colorMoved = default
 [difftool]
     prompt = false
-[difftool "icdiff"]
-    cmd = icdiff --line-numbers $LOCAL $REMOTE
 [pager]
     difftool = true
 [gpg]
     format = ssh
 [commit]
     gpgsign = true
+[delta]
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+    features = zebra-dark
+[delta "zebra-dark"]
+    minus-style = syntax "#330f0f"
+    minus-emph-style = syntax "#4f1917"
+    plus-style = syntax "#0e2f19"
+    plus-emph-style = syntax "#174525"
+    map-styles = \
+       bold purple => syntax "#330f29", \
+       bold blue => syntax "#271344", \
+       bold cyan => syntax "#0d3531", \
+       bold yellow => syntax "#222f14"
+    zero-style = syntax
+    whitespace-error-style = "#aaaaaa"
