@@ -36,6 +36,7 @@ in
     pkgs.git
     pkgs.gnupg
     pkgs.neovim
+    pkgs.watch
     pkgs.ripgrep
     pkgs.fd
     pkgs.fzf
