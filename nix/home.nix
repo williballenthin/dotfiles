@@ -56,6 +56,10 @@ in
     pkgs.fish
     pkgs.less
     pkgs.htop
+    pkgs.hyperfine
+    # let rust manage itself
+    # since we'll want to use vs code tools, etc.
+    pkgs.rustup
   ]
   ++ lib.optionals stdenv.isDarwin [
     # via https://github.com/NixOS/nixpkgs/issues/160876
