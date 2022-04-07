@@ -16,6 +16,7 @@ if status --is-interactive
     abbr --add --global cat bat
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
+    abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
 end
 
 # fzf.fish config
