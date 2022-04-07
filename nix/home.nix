@@ -63,6 +63,8 @@ in
     # let rust manage itself
     # since we'll want to use vs code tools, etc.
     pkgs.rustup
+    # for spacemacs
+    pkgs.source-code-pro
   ]
   ++ lib.optionals stdenv.isDarwin [
     # via https://github.com/NixOS/nixpkgs/issues/160876
