@@ -120,6 +120,7 @@ in
 #      sha256 = "sha256-xKSjb88YL5fByieMnaLscLRVfyV22fdzxRyHSNj3J9g=";
 #    };
 #  };
+  home.file.".spacemacs".source = ../emacs/.spacemacs;
 
   home.file.".gitconfig".source = ../git/.gitconfig;
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
