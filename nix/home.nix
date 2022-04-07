@@ -34,8 +34,11 @@ in
     pkgs.tmux
     pkgs.openssh
     pkgs.git
+    pkgs.rlwrap
+    pkgs.jq
     pkgs.gnupg
     pkgs.neovim
+    pkgs.emacs
     pkgs.watch
     pkgs.ripgrep
     pkgs.fd
