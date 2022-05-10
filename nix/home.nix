@@ -77,10 +77,11 @@ in
   ++ lib.optionals stdenv.isLinux [
     pkgs.starship
 
+    pkgs.docker-compose
+
     # for nvim/treesitter compilation
     # darwin already has clang??
     pkgs.gcc11
-    pkgs.libstdcxx5
   ];
 
   # we don't have vim installed here,
