@@ -63,6 +63,8 @@ in
     # let rust manage itself
     # since we'll want to use vs code tools, etc.
     pkgs.rustup
+    pkgs.rust-analyzer
+    pkgs.rustracer
     # for spacemacs
     pkgs.source-code-pro
   ]
