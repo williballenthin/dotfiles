@@ -30,8 +30,8 @@
     difftool = true
 [gpg]
     format = ssh
-[commit]
-    gpgsign = true
+#[commit]
+#    gpgsign = true
 [delta]
     navigate = true
     side-by-side = true
