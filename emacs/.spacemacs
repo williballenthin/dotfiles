@@ -44,7 +44,12 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (git :variables git-magit-status-fullscreen t)
      helm
-     lsp
+     javascript
+     (lsp :variables 
+           lsp-rust-server 'rust-analyzer 
+           rust-backend 'lsp 
+           lsp-rust-analyzer-inlay-hints-mode t 
+           lsp-rust-analyzer-server-display-inlay-hints t)
      markdown
      multiple-cursors
      python
@@ -53,6 +58,7 @@ This function should only modify configuration layer settings."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
+     (rust :variables rust-backend 'lsp)
      syntax-checking
      ;; version-control
      treemacs)
