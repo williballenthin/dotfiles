@@ -56,6 +56,7 @@ in
     pkgs.gron
     pkgs.delta
     pkgs.dua
+    pkgs.nethogs
     pkgs.fish
     pkgs.less
     pkgs.htop
@@ -78,6 +79,7 @@ in
     pkgs.starship
 
     pkgs.docker-compose
+    pkgs.sanoid
 
     # for nvim/treesitter compilation
     # darwin already has clang??
