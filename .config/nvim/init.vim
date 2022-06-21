@@ -53,7 +53,34 @@ colorscheme PaperColor
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  ensure_installed = {
+      "bash",
+      "c",
+      "c_sharp",
+      "clojure", 
+      "cmake", 
+      "cpp", 
+      "css", 
+      "dockerfile", 
+      "fish", 
+      "go",
+      "html",
+      "java", 
+      "javascript",
+      "json",
+      "lua",
+      "make",
+      "nix",
+      "perl",
+      "php",
+      "python",
+      "rust",
+      "tsx",
+      "typescript",
+      "vim",
+      "yaml",
+      "zig",
+  },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
