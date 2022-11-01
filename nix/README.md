@@ -22,3 +22,39 @@ nvim +:TSUpdate +qa
 # set default shell to fish
 chsh --shell /home/user/.nix-profile/bin/fish
 ```
+
+
+## flakes
+
+enable flakes:
+
+```
+mkdir ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+```
+
+create flake with direnv:
+
+```
+nix flake new -t github:nix-community/nix-direnv .
+```
+
+or with [devshell](https://github.com/numtide/devshell/blob/master/docs/getting_started.md):
+
+```
+nix flake new -t "github:numtide/devshell" .
+```
+
+or put the devshell in a central repository:
+
+```
+nix flake new -t "github:numtide/devshell" ~/projects/foo
+```
+
+and make the `.envrc` look like this:
+
+```
+#!/usr/bin/env bash
+watch_file ~/projects/foo/devshell.toml
+use flake ~/projects/foo
+```
