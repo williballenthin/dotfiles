@@ -34,6 +34,7 @@ in
     pkgs.tmux
     pkgs.openssh
     pkgs.git
+    pkgs.git-lfs
     pkgs.rlwrap
     pkgs.jq
     pkgs.gnupg
@@ -137,13 +138,15 @@ in
   home.file.".config/fish/completions/fisher.fish".source = pkgs.fetchFromGitHub {
     owner = "jorgebucaran";
     repo = "fisher";
-    rev = "93dafd242b52a0dc6bea54130d0ea041830c7fd6";
+    # 4.4.3
+    rev = "36810b39401536650d7a1018c8f3832f51741950";
     hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
   } + "/completions/fisher.fish";
   home.file.".config/fish/functions/fisher.fish".source = pkgs.fetchFromGitHub {
     owner = "jorgebucaran";
     repo = "fisher";
-    rev = "93dafd242b52a0dc6bea54130d0ea041830c7fd6";
+    # 4.4.3
+    rev = "36810b39401536650d7a1018c8f3832f51741950";
     hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
   } + "/functions/fisher.fish";
 
