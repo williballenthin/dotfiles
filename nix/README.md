@@ -57,4 +57,7 @@ and make the `.envrc` look like this:
 #!/usr/bin/env bash
 watch_file ~/projects/foo/devshell.toml
 use flake ~/projects/foo
+
+# and if you want to use python (need packages.python311 in the devshell.toml):
+# layout python
 ```
