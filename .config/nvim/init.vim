@@ -121,7 +121,7 @@ EOF
 " wb: enable rust-tools
 lua <<EOF
 require('rust-tools').setup({})
-require('rust-tools.inlay_hints').set_inlay_hints()
+require('rust-tools').inlay_hints.enable()
 EOF
 
 " wb: delay before swap file and git gutter updated
