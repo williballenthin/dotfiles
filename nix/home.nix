@@ -133,6 +133,11 @@ in
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
   home.file.".config/starship.toml".source = ../.config/starship.toml;
   home.file.".config/fish/config.fish".source = ../.config/fish/config.fish;
+  home.file.".config/fish/functions/fzf.fish".source = ../.config/fish/functions/fzf.fish;
+
+  # i think this file is no longer used by fisher,
+  # but it contains the list of plugins i'd like to use.
+  # you may have to do `fisher install foo` for each line in the file.
   home.file.".config/fish/fish_plugins".source = ../.config/fish/fish_plugins;
 
   home.file.".config/fish/completions/fisher.fish".source = pkgs.fetchFromGitHub {
