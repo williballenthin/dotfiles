@@ -4,12 +4,17 @@
 # 4. symlink home.nix to ~/.config/nixpkgs/home.nix
 # 5. home-manager switch
 # 6. set shell to: /home/user/.nix-profile/bin/fish
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
+  pkgsUnstable = import <nixpkgs-unstable> {};
+  pkgs2211 = import <nixos-22.11> {};
+  pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
+
+  # update here for dist-upgrade
+  pkgs = pkgs2211;
   inherit (pkgs) stdenv;
   inherit (lib) mkIf;
-  pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
 in                                         
 {
   home.username = (builtins.getEnv "USER");
@@ -46,7 +51,6 @@ in
     pkgs.broot
     pkgs.visidata
     pkgs.jless
-    pkgs.direnv
     pkgs.tig
     pkgs.gitui
     pkgs.bat
@@ -60,6 +64,9 @@ in
     pkgs.less
     pkgs.htop
     pkgs.hyperfine
+    pkgsUnstable.ov
+    # direnv enabled via hm programs below
+    #pkgs.direnv
     # let rust manage itself
     # since we'll want to use vs code tools, etc.
     pkgs.rustup
