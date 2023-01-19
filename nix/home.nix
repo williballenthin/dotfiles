@@ -66,6 +66,7 @@ in
     # since we'll want to use vs code tools, etc.
     pkgs.rustup
     pkgs.rust-analyzer
+    pkgs.bacon
     # broken right now
     # pkgs.rustracer
     # for spacemacs
