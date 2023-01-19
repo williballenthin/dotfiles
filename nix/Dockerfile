@@ -25,6 +25,8 @@ RUN curl -L https://nixos.org/nix/install | sh
 RUN echo ". /home/user/.nix-profile/etc/profile.d/nix.sh" >> /home/user/.profile
 RUN . /home/user/.profile && \
     nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager && \
+    nix-channel --add https://nixos.org/channels/nixos-22.11 nixos-22.11 && \
+    nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable && \
     nix-channel --update
 RUN echo "export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}" >> /home/user/.profile
 RUN . /home/user/.profile && \
