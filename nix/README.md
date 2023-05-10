@@ -8,6 +8,7 @@ Alternatively, check out the Dockerfile for an example.
 ```
 nix-channel --add https://nixos.org/channels/nixos-22.11 nixos-22.11
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+nix-channel --update
 
 git clone git@github.com:williballenthin/dotfiles.git /home/user/.dotfiles
 
