@@ -6,6 +6,7 @@ are installed, use the following steps.
 Alternatively, check out the Dockerfile for an example.
 
 ```
+nix-channel --add https://nixos.org/channels/nixos-23.05 nixos-23.05
 nix-channel --add https://nixos.org/channels/nixos-22.11 nixos-22.11
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
 

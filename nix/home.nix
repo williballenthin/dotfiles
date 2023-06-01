@@ -8,11 +8,12 @@
 
 let
   pkgsUnstable = import <nixpkgs-unstable> {};
+  pkgs2305 = import <nixos-23.05> {};
   pkgs2211 = import <nixos-22.11> {};
   pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
 
   # update here for dist-upgrade
-  pkgs = pkgs2211;
+  pkgs = pkgs2305;
   inherit (pkgs) stdenv;
   inherit (lib) mkIf;
 in                                         
