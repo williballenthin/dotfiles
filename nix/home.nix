@@ -56,6 +56,7 @@ in
     pkgs.bat
     pkgs.exa
     pkgs.hexyl
+    pkgs.ent
     pkgs.gron
     pkgs.delta
     pkgs.dua
@@ -64,6 +65,7 @@ in
     pkgs.less
     pkgs.htop
     pkgs.hyperfine
+    pkgs.asciinema
     pkgsUnstable.ov
     # direnv enabled via hm programs below
     #pkgs.direnv
