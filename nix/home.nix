@@ -73,7 +73,7 @@ in
     # let rust manage itself
     # since we'll want to use vs code tools, etc.
     pkgs.rustup
-    pkgs.rust-analyzer
+    #pkgs.rust-analyzer
     pkgs.bacon
     # broken right now
     # pkgs.rustracer
