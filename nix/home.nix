@@ -7,10 +7,11 @@
 { config, lib, ... }:
 
 let
-  pkgsUnstable = import <nixpkgs-unstable> {};
-  pkgs2305 = import <nixos-23.05> {};
-  pkgs2211 = import <nixos-22.11> {};
-  pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
+  pkgs2305 = import <nixos-23.05> { };
+  # you can reference these below if needing to use an old version, pinned version, etc.
+  #pkgsUnstable = import <nixpkgs-unstable> {};
+  #pkgs2211 = import <nixos-22.11> { };
+  #pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
 
   # update here for dist-upgrade
   pkgs = pkgs2305;
@@ -62,19 +63,16 @@ in
     pkgs.gron
     pkgs.delta
     pkgs.dua
-    pkgs.nethogs
     pkgs.fish
     pkgs.less
     pkgs.htop
     pkgs.hyperfine
-    pkgs.asciinema
-    pkgsUnstable.ov
+    pkgs.starship
     # direnv enabled via hm programs below
     #pkgs.direnv
     # let rust manage itself
     # since we'll want to use vs code tools, etc.
     pkgs.rustup
-    #pkgs.rust-analyzer
     pkgs.bacon
     # broken right now
     # pkgs.rustracer
@@ -88,13 +86,9 @@ in
     pkgs.pkg-config
   ]
   ++ lib.optionals stdenv.isDarwin [
-    # via https://github.com/NixOS/nixpkgs/issues/160876
-    # starship is broken in unstable
-    # so we use an old snapshot from 21.11
-    pkgs2111.starship
   ]
   ++ lib.optionals stdenv.isLinux [
-    pkgs.starship
+    pkgs.nethogs
 
     pkgs.docker-compose
     pkgs.sanoid
