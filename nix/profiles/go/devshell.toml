@@ -1,0 +1,18 @@
+# https://numtide.github.io/devshell
+
+[[commands]]
+name = "profile"
+command = "echo 'go'"
+help = "show profile (go)"
+
+[[env]]
+# temporary fix
+# see https://github.com/NixOS/nixpkgs/issues/194929
+# see https://github.com/NixOS/nixpkgs/pull/192943
+name = "NIX_CC"
+value = "/garbage"
+
+[devshell]
+packages = [
+  "go",
+]
