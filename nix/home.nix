@@ -41,6 +41,7 @@ in
     pkgs.git
     pkgs.unzip
     pkgs.git-lfs
+    pkgs.zstd
     pkgs.rlwrap
     pkgs.jq
     pkgs.gnupg
