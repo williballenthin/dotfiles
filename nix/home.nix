@@ -39,6 +39,7 @@ in
     pkgs.tmux
     pkgs.openssh
     pkgs.git
+    pkgs.unzip
     pkgs.git-lfs
     pkgs.rlwrap
     pkgs.jq
@@ -77,6 +78,12 @@ in
     # pkgs.rustracer
     # for spacemacs
     pkgs.source-code-pro
+  ]
+  ++ [
+    # for lancelot dev in vscode remote
+    pkgs.gnumake
+    pkgs.cmake
+    pkgs.pkg-config
   ]
   ++ lib.optionals stdenv.isDarwin [
   ]

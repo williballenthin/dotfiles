@@ -7,8 +7,7 @@
   outputs = { self, flake-utils, devshell, nixpkgs }:
     flake-utils.lib.eachDefaultSystem (system: {
       devShell =
-        let
-        pkgs = import nixpkgs {
+        let pkgs = import nixpkgs {
           inherit system;
 
           overlays = [ devshell.overlays.default ];
