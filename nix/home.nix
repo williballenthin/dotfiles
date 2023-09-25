@@ -156,14 +156,16 @@ in
     repo = "fisher";
     # 4.4.3
     rev = "36810b39401536650d7a1018c8f3832f51741950";
-    hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    #hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    hash = "sha256-q9Yi6ZlHNFnPN05RpO+u4B5wNR1O3JGIn2AJ3AEl4xs=";
   } + "/completions/fisher.fish";
   home.file.".config/fish/functions/fisher.fish".source = pkgs.fetchFromGitHub {
     owner = "jorgebucaran";
     repo = "fisher";
     # 4.4.3
     rev = "36810b39401536650d7a1018c8f3832f51741950";
-    hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    #hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    hash = "sha256-q9Yi6ZlHNFnPN05RpO+u4B5wNR1O3JGIn2AJ3AEl4xs=";
   } + "/functions/fisher.fish";
 
   # fast, persistent nix integration with direnv

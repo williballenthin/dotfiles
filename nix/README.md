@@ -14,8 +14,8 @@ nix-channel --update
 git clone git@github.com:williballenthin/dotfiles.git /home/user/.dotfiles
 
 # replace home.nix with the one in this repo
-rm ~/.config/nixpkgs/home.nix
-ln -s /home/user/.dotfiles/nix/home.nix ~/.config/nixpkgs/home.nix
+rm ~/.config/home-manager/home.nix
+ln -s /home/user/.dotfiles/nix/home.nix ~/.config/home-manager/home.nix
 
 # deploy the changes
 home-manager switch
