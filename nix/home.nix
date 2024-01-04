@@ -46,7 +46,11 @@ in
     pkgs.jq
     pkgs.gnupg
     pkgs.neovim
-    pkgs.emacs
+    pkgs.emacs29
+    # for building emacs->vterm
+    pkgs.libtool
+    # for emacs->clipboard
+    pkgs.wl-clipboard
     pkgs.watch
     pkgs.ripgrep
     pkgs.fd
@@ -77,8 +81,6 @@ in
     pkgs.bacon
     # broken right now
     # pkgs.rustracer
-    # for spacemacs
-    pkgs.source-code-pro
   ]
   ++ [
     # for lancelot dev in vscode remote
@@ -119,26 +121,8 @@ in
 
   xdg.configFile."nvim/init.vim".source = ../.config/nvim/init.vim;
 
-# spacemacs expects to be able to write to its files,
-# so having nix own the files from the repo doesn't work (today).
-# so just checkout the directory manually:
-#
-#     git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
-#
-# otherwise, we'd use this:
-#
-#  home.file.".emacs.d" = {
-#    # don't make the directory read only so that impure melpa can still happen for now.
-#    # see: https://discourse.nixos.org/t/home-manager-spacemacs/8033/2
-#    recursive = true;
-#    source = pkgs.fetchFromGitHub {
-#      owner = "syl20bnr";
-#      repo = "spacemacs";
-#      rev = "5c0650282fe09f852ecd4109bf2a6bc9cb5a950b";
-#      sha256 = "sha256-xKSjb88YL5fByieMnaLscLRVfyV22fdzxRyHSNj3J9g=";
-#    };
-#  };
-  home.file.".spacemacs".source = ../emacs/.spacemacs;
+  home.file.".emacs.d/early-init.el".source = ../emacs/early-init.el;
+  home.file.".emacs.d/init.el".source = ../emacs/init.el;
 
   home.file.".gitconfig".source = ../git/.gitconfig;
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
