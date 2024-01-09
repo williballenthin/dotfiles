@@ -97,6 +97,10 @@
   (set-face-attribute 'mode-line nil
     ; using doom-one base4 for bg color
     :background "#3f444a" :box '(:line-width 1 :color "black"))
+  ; tab bar for window management
+  ; hide the tab bar when it has only one tab, and show it again when more tabs are created.
+  (tab-bar-mode)
+  (setq tab-bar-show 1)
 
   :bind
   (("M-x" . counsel-M-x))
@@ -131,13 +135,13 @@
 
   (general-define-key
     :states '(normal emacs)
-    ";" 'switch-to-buffer-other-frame 
+    ";" 'counsel-switch-buffer
 
     "J" 'other-window
     "K" '(lambda () (interactive) (other-window -1))
 
-    "L" 'other-frame
-    "H" '(lambda () (interactive) (other-frame -1)))
+    "L" 'tab-bar-switch-to-next-tab
+    "H" 'tab-bar-switch-to-prev-tab)
 
   (general-create-definer leader-keys
     :states '(normal insert visual emacs)
@@ -159,24 +163,25 @@
      "f" '(:ignore t :which-key "file system")
     "f <escape>" '(keyboard-escape-quit :which-key t)
     "fs" 'dirvish
-    ;; buffer/window/frame management
+    ;; buffer/window/tab management
     "a" '(:ignore t :which-key "window")
     "a <escape>" '(keyboard-escape-quit :which-key t)
     "a-" 'split-window-below
     "a|" 'split-window-right
 
-    "ag" 'switch-to-buffer-other-frame 
+    "ag" 'switch-to-buffer-other-tab
 
     "aj" '((lambda () (interactive) (other-window 1)) :which-key "next window")
     "ak" '((lambda () (interactive) (other-window -1)) :which-key "prev window")
 
-    "al" '((lambda () (interactive) (other-frame 1)) :which-key "next frame")
-    "ah" '((lambda () (interactive) (other-frame -1)) :which-key "prev frame")
+    "al" 'tab-bar-switch-to-next-tab
+    "ah" 'tab-bar-switch-to-prev-tab
 
     "adb" 'kill-current-buffer
     "adw" 'delete-window
-    "adf" 'delete-frame
 
+    "atj" 'tab-bar-switch-to-next-tab
+    "atk" 'tab-bar-switch-to-prev-tab
   ))
  
 (use-package projectile
@@ -270,3 +275,5 @@
 
 ; setup: M-x nerd-icons-install-fonts
 (use-package nerd-icons)
+
+(use-package symbol-overlay)
