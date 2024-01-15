@@ -17,6 +17,7 @@ if status --is-interactive
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
     abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
+    abbr --add --global em nohup emacs --user="" --maximized .  > /dev/null 2>&1 &
 end
 
 # fzf.fish config
