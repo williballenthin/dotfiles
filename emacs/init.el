@@ -104,7 +104,18 @@
 
   :bind
   (("M-x" . counsel-M-x))
-)
+
+  :custom
+  ; tell display-buffer to reuse existing windows as much as possible,
+  ; including in other frames.
+  ; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+  (set-variable 'display-buffer-base-action
+    '((display-buffer-reuse-window display-buffer-same-window)
+      (reusable-frames . t)))
+  ; prevent splits by telling display-buffer to switch to
+  ; the target buffer in the current window.
+  ; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+  (set-variable 'even-window-sizes nil))
 
 (use-package evil
   :demand ; No lazy loading
