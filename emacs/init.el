@@ -164,7 +164,9 @@
     "bl" '(counsel-switch-buffer :which-key "list buffers")
      "f" '(:ignore t :which-key "file system")
     "f <escape>" '(keyboard-escape-quit :which-key t)
+    "ff" 'find-file
     "fs" 'dirvish
+    "fq" 'dirvish-quit
     ;; buffer/window/tab management
     "a" '(:ignore t :which-key "window")
     "a <escape>" '(keyboard-escape-quit :which-key t)
