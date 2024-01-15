@@ -115,6 +115,11 @@
   ; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
   (setq even-window-sizes nil)
 
+  ; recent files
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 25)
+  (setq recentf-max-saved-items 25)
+
   :bind
   (("M-x" . counsel-M-x)))
 
@@ -204,19 +209,56 @@
   (leader-keys
     :states 'normal
     "SPC" '(projectile-find-file :which-key "find file")
-
-    ;; Buffers
-    "b b" '(projectile-switch-to-buffer :which-key "switch buffer")
-
-    ;; Projects
-    "p" '(:ignore t :which-key "projects")
-    "p <escape>" '(keyboard-escape-quit :which-key t)
-    "p p" '(projectile-switch-project :which-key "switch project")
-    "p a" '(projectile-add-known-project :which-key "add project")
-    "p r" '(projectile-remove-known-project :which-key "remove project"))
+    ;; notable keybindings
+    ;;
+    ;;   b - projectile-switch-to-buffer
+    ;;   p - projectile-switch-project
+    ;;       projectile-add-known-project
+    "p" '(:keymap projectile-command-map :which-key "projectile"))
   :init
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy))
+
+;; tabspaces to group tab-local buffers into workspaces,
+;; integrated with project.el/projectile.
+;; https://github.com/mclear-tools/tabspaces
+;;
+;; workspaces are resumed upon reload, assuming to save
+;; the session periodically..
+;;
+;; use evil keybindings:
+;;   <leader> at  - "tab"
+;;   o            - "open" project
+;;   s            - "save"
+;;   d            - "close"
+;;   l            - list, but use H/L or atj/atk for this
+(use-package tabspaces
+  :hook
+  (after-init . tabspaces-mode)
+
+  :commands (tabspaces-switch-or-create-workspace
+             tabspaces-open-or-create-project-and-workspace)
+
+  :custom
+  (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-default-tab "Default")
+  (tabspaces-remove-to-default t)
+  (tabspaces-include-buffers '("*scratch*"))
+  (tabspaces-initialize-project-with-todo t)
+  (tabspaces-todo-file-name "project-todo.org")
+  ;; sessions
+  (tabspaces-session t)
+  (tabspaces-session-auto-restore t)
+
+  :general
+  (leader-keys
+    "at" '(:ignore t :which-key "tabs (workspace)")
+    "ato" 'tabspaces-open-or-create-project-and-workspace
+    "atl" 'tabspaces-switch-or-create-workspace
+    "ats" 'tabspaces-save-session
+    "atd" 'tabspaces-close-workspace
+    "at<escape>" '(keyboard-escape-quit :which-key t)
+    ))
 
 (use-package ivy
   :init
