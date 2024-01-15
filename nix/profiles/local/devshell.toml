@@ -1,0 +1,13 @@
+# https://numtide.github.io/devshell
+
+[[commands]]
+name = "profile"
+command = "echo 'local'"
+help = "show profile (local)"
+
+[devshell]
+packages = [
+  "go",
+  "python311",
+]
+

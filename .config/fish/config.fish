@@ -10,8 +10,8 @@ set -gx DIRENV_LOG_FORMAT ""
 starship init fish | source
 
 if status --is-interactive
-    abbr --add --global ll exa --long --git
-    abbr --add --global lt exa --tree --level=2 --long --git
+    abbr --add --global ll eza --long --git
+    abbr --add --global lt eza --tree --level=2 --long --git
     abbr --add --global gs tig status
     abbr --add --global cat bat
     # via: https://stackoverflow.com/a/59069793/87207
@@ -20,5 +20,5 @@ if status --is-interactive
 end
 
 # fzf.fish config
-set fzf_preview_dir_cmd exa --all --color=always
+set fzf_preview_dir_cmd eza --all --color=always
 set fzf_fd_opts --hidden --exclude=.git
