@@ -101,6 +101,8 @@
   ; hide the tab bar when it has only one tab, and show it again when more tabs are created.
   (tab-bar-mode)
   (setq tab-bar-show 1)
+  ; don't create backup files
+  (setq make-backup-files nil)
 
   :bind
   (("M-x" . counsel-M-x))
