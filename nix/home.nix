@@ -36,9 +36,12 @@ in
   programs.home-manager.enable = true;
 
   home.packages = [
+    # expect underlying system to provide:
+    #   - ssh
+    #   - git
+    # which is reasonable, since these dotfiles come from a github repo.
+
     pkgs.tmux
-    pkgs.openssh
-    pkgs.git
     pkgs.unzip
     pkgs.git-lfs
     pkgs.zstd
