@@ -101,6 +101,8 @@
   ; hide the tab bar when it has only one tab, and show it again when more tabs are created.
   (tab-bar-mode)
   (setq tab-bar-show 1)
+  ; don't create backup files
+  (setq make-backup-files nil)
 
   :bind
   (("M-x" . counsel-M-x))
@@ -173,7 +175,9 @@
     "bl" '(counsel-switch-buffer :which-key "list buffers")
      "f" '(:ignore t :which-key "file system")
     "f <escape>" '(keyboard-escape-quit :which-key t)
+    "ff" 'find-file
     "fs" 'dirvish
+    "fq" 'dirvish-quit
     ;; buffer/window/tab management
     "a" '(:ignore t :which-key "window")
     "a <escape>" '(keyboard-escape-quit :which-key t)
@@ -285,3 +289,35 @@
 (use-package nerd-icons)
 
 (use-package symbol-overlay)
+
+(use-package company
+  :hook
+  (prog-mode . company-mode)
+
+  :bind
+  (:map company-active-map
+    ("<tab>" . company-complete-selection))
+
+  :custom
+  (company-minimum-prefix-length 3)
+  (company-idle-delay 0.1))
+
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda () (require 'lsp-pyright))))
+
+(use-package lsp-mode
+  :after
+  lsp-pyright
+  :config
+  (general-def 'normal lsp-mode :definer 'minor-mode
+      "SPC l" lsp-command-map)
+  :hook ((prog-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp
+  :custom
+  (help-at-pt-timer-delay 0.9)
+  (help-at-pt-display-when-idle '(flymake-overlay)))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)

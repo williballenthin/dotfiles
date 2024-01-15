@@ -55,6 +55,8 @@ in
     pkgs.libtool
     # for emacs->clipboard
     pkgs.wl-clipboard
+    # for emacs->pyright LSP
+    pkgs.pyright
     pkgs.watch
     pkgs.ripgrep
     pkgs.fd
