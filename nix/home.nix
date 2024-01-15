@@ -7,14 +7,15 @@
 { config, lib, ... }:
 
 let
-  pkgs2305 = import <nixos-23.05> { };
+  pkgs2311 = import <nixos-23.11> { };
   # you can reference these below if needing to use an old version, pinned version, etc.
   #pkgsUnstable = import <nixpkgs-unstable> {};
+  #pkgs2305 = import <nixos-23.05> { };
   #pkgs2211 = import <nixos-22.11> { };
   #pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
 
   # update here for dist-upgrade
-  pkgs = pkgs2305;
+  pkgs = pkgs2311;
   inherit (pkgs) stdenv;
   inherit (lib) mkIf;
 in                                         
@@ -65,7 +66,7 @@ in
     pkgs.tig
     pkgs.gitui
     pkgs.bat
-    pkgs.exa
+    pkgs.eza
     pkgs.hexyl
     pkgs.ent
     pkgs.gron
