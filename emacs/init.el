@@ -163,7 +163,7 @@
   (leader-keys
     "x" '(counsel-M-x :which-key "execute command")
     "r" '((lambda () (interactive) (restart-emacs)) :which-key "restart emacs")
-    "i" '((lambda () (interactive) (find-file user-init-file)) :which-key "open init file")
+    "i" '((lambda () (interactive) (find-file "~/.dotfiles/emacs/init.el")) :which-key "open init file")
 
     ;; Buffer
     "b" '(:ignore t :which-key "buffer")
