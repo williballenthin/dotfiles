@@ -93,6 +93,7 @@ in
     pkgs.gnumake
     pkgs.cmake
     pkgs.pkg-config
+    pkgs.iosevka
   ]
   ++ lib.optionals stdenv.isDarwin [
   ]

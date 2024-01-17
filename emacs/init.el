@@ -1,12 +1,12 @@
-; some configuration derived from:
-; https://arne.me/articles/emacs-from-scratch-part-one-foundations
+;; some configuration derived from:
+;; https://arne.me/articles/emacs-from-scratch-part-one-foundations
 
-(tool-bar-mode -1)             ; Hide the outdated icons
-(scroll-bar-mode -1)           ; Hide the always-visible scrollbar
-(setq inhibit-splash-screen t) ; Remove the "Welcome to GNU Emacs" splash screen
-(setq use-file-dialog nil)      ; Ask for textual confirmation instead of GUI
+(tool-bar-mode -1)             ;; Hide the outdated icons
+(scroll-bar-mode -1)           ;; Hide the always-visible scrollbar
+(setq inhibit-splash-screen t) ;; Remove the "Welcome to GNU Emacs" splash screen
+(setq use-file-dialog nil)      ;; Ask for textual confirmation instead of GUI
 
-; via https://github.com/radian-software/straight.el
+;; via https://github.com/radian-software/straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
     (expand-file-name
@@ -23,12 +23,12 @@
     (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-; use-package for tidier specification and better performance
+;; use-package for tidier specification and better performance
 (straight-use-package 'use-package)
 
-; make use-package use straight.el by default 
+;; make use-package use straight.el by default 
 (setq straight-use-package-by-default t)
-; always :defer t for lazy loading
+;; always :defer t for lazy loading
 (setq use-package-always-defer t)
 
 (use-package gcmh
@@ -36,16 +36,16 @@
   :config
   (gcmh-mode 1))
 
-; local configuration
+;; local configuration
 (use-package emacs
   :init
-  ; remove default scratch message/help text
+  ;; remove default scratch message/help text
   (setq initial-scratch-message nil)
   (defun display-startup-echo-area-message ()
     (message ""))
-  ; enable y/n instead of only yes/no
+  ;; enable y/n instead of only yes/no
   (defalias 'yes-or-no-p 'y-or-n-p)
-  ; make everything utf-8
+  ;; make everything utf-8
   (set-charset-priority 'unicode)
   (setq locale-coding-system 'utf-8
         coding-system-for-read 'utf-8
@@ -55,22 +55,22 @@
   (set-selection-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
   (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-  ; use spaces by default
+  ;; use spaces by default
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 2)
-  ; correct keybindings on macOS
+  ;; correct keybindings on macOS
   (when (eq system-type 'darwin)
     (setq mac-command-modifier 'super)
     (setq mac-option-modifier 'meta)
     (setq mac-control-modifier 'control))
-  ; relative line numbers in prog mode
+  ;; relative line numbers in prog mode
   (defun ab/enable-line-numbers ()
     "Enable relative line numbers"
     (interactive)
     (display-line-numbers-mode)
     (setq display-line-numbers 'relative))
   (add-hook 'prog-mode-hook #'ab/enable-line-numbers)
-  ; clipboard on wayland
+  ;; clipboard on wayland
   (when (display-graphic-p)
     (progn
         (setq wl-copy-process nil)
@@ -83,48 +83,88 @@
             (process-send-eof wl-copy-process))
         (defun wl-paste ()
             (if (and wl-copy-process (process-live-p wl-copy-process))
-                nil ; should return nil if we're the current paste owner
+                nil ;; should return nil if we're the current paste owner
                 (shell-command-to-string "wl-paste -n | tr -d \\r")))
         (setq interprogram-cut-function 'wl-copy)
         (setq interprogram-paste-function 'wl-paste)))
-  ; escape should exit menus
+  ;; escape should exit menus
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-  ; enable the mouse under the terminal
+  ;; enable the mouse under the terminal
   (when (not (display-graphic-p))
     (xterm-mouse-mode))
-  ; mark active window modeline
-  ; via: https://irreal.org/blog/?p=11874
+  ;; mark active window modeline
+  ;; via: https://irreal.org/blog/?p=11874
   (set-face-attribute 'mode-line nil
-    ; using doom-one base4 for bg color
+    ;; using doom-one base4 for bg color
     :background "#3f444a" :box '(:line-width 1 :color "black"))
-  ; tab bar for window management
-  ; hide the tab bar when it has only one tab, and show it again when more tabs are created.
+  ;; tab bar for window management
+  ;; hide the tab bar when it has only one tab, and show it again when more tabs are created.
   (tab-bar-mode)
   (setq tab-bar-show 1)
-  ; don't create backup files
+  ;; don't create backup files
   (setq make-backup-files nil)
 
-  ; tell display-buffer to reuse existing windows as much as possible,
-  ; including in other frames.
-  ; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+  ;; tell display-buffer to reuse existing windows as much as possible,
+  ;; including in other frames.
+  ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
   (setq display-buffer-base-action
     '((display-buffer-reuse-window display-buffer-same-window)
       (reusable-frames . t)))
-  ; prevent splits by telling display-buffer to switch to
-  ; the target buffer in the current window.
-  ; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+  ;; prevent splits by telling display-buffer to switch to
+  ;; the target buffer in the current window.
+  ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
   (setq even-window-sizes nil)
 
-  ; recent files
+  ;; recent files
   (recentf-mode 1)
   (setq recentf-max-menu-items 25)
   (setq recentf-max-saved-items 25)
+
+  ;; don't confirm killing vterm subprocess on exit/restart
+  (setq confirm-kill-processes nil)
+
+  ;; theming
+  (require-theme 'modus-themes)
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t)
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'modus-operandi :no-confirm)
+
+  ;; this has to come after modus theme loading, for some reason.
+  (set-face-attribute 'default nil :family "Iosevka")
+  (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
+  (set-face-attribute 'org-modern-symbol nil :family "Iosevka")
+
+  ;; org-modern
+  (setq
+    ;; Edit settings
+    org-auto-align-tags nil
+    org-tags-column 0
+    org-catch-invisible-edits 'show-and-error
+    org-special-ctrl-a/e t
+    org-insert-heading-respect-content t
+
+    ;; Org styling, hide markup etc.
+    org-hide-emphasis-markers t
+    org-pretty-entities t
+    org-ellipsis "…"
+
+    ;; Agenda styling
+    org-agenda-tags-column 0
+    org-agenda-block-separator ?─
+    org-agenda-time-grid
+    '((daily today require-timed)
+    (800 1000 1200 1400 1600 1800 2000)
+    " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+    org-agenda-current-time-string
+    "◀── now ─────────────────────────────────────────────────")
+
 
   :bind
   (("M-x" . counsel-M-x)))
 
 (use-package evil
-  :demand ; No lazy loading
+  :demand ;; No lazy loading
   :init
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
@@ -134,7 +174,7 @@
 (use-package which-key
   :demand
   :init
-  ; Open after .5s instead of 1s
+  ;; Open after .5s instead of 1s
   (setq which-key-idle-delay 0.5)
   :config
   (which-key-mode))
@@ -182,6 +222,7 @@
     "ff" 'find-file
     "fs" 'dirvish
     "fq" 'dirvish-quit
+    "fr" 'counsel-recentf
     ;; buffer/window/tab management
     "a" '(:ignore t :which-key "window")
     "a <escape>" '(keyboard-escape-quit :which-key t)
@@ -301,7 +342,7 @@
 
 (use-package dirvish
   :init
-  ; clipboard on wayland
+  ;; clipboard on wayland
   (if (display-graphic-p)
     (setq dirvish-attributes
         ;'(vc-state subtree-state collapse all-the-icons git-msg file-time file-size))
@@ -317,16 +358,15 @@
     "fd" 'dirvish-fd
   ))
 
-(use-package doom-themes
-  :demand
-  :config
-  (load-theme 'doom-one t))
+(use-package org-modern
+  :init
+  (with-eval-after-load 'org (global-org-modern-mode)))
 
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
 
-; setup: M-x nerd-icons-install-fonts
+;; setup: M-x nerd-icons-install-fonts
 (use-package nerd-icons)
 
 (use-package symbol-overlay)
