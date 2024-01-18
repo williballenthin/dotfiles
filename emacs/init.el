@@ -132,8 +132,7 @@
       (progn
         ;; this has to come after modus theme loading, for some reason.
         (set-face-attribute 'default nil :family "Iosevka")
-        (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-        (set-face-attribute 'org-modern-symbol nil :family "Iosevka")))
+        (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")))
     ;; mark active window modeline
     ;; via: https://irreal.org/blog/?p=11874
     (set-face-attribute 'mode-line nil
@@ -412,4 +411,4 @@
   :ensure t
   :after tree-sitter;
   :config
-  (tree-sitter-langs-install-grammars)
+  (tree-sitter-langs-install-grammars))
