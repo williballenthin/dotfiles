@@ -29,6 +29,12 @@ nvim +:TSUpdate +qa
 chsh --shell /home/user/.nix-profile/bin/fish
 ```
 
+After switching a bunch of times, you can garbage collect via:
+
+```
+nix-collect-garbage -d
+```
+
 
 ## flakes
 
