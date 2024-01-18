@@ -308,6 +308,14 @@
   :config
   (evil-collection-init))
 
+(use-package expand-region
+  :general
+  (general-define-key
+    :states '(normal emacs)
+    "M-=" 'er/expand-region
+    ;; "I" is really easy to press, and should encourage using the mechanism
+    "I" 'er/expand-region))
+
 (use-package diff-hl
   :config
   (global-diff-hl-mode))
