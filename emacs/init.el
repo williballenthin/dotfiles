@@ -98,8 +98,8 @@
   (progn
     ;; show open buffers in tabs.
     ;; note, this is different from tab-bar-mode,
-    ;;which puts frame layouts in their own tab
-    (tab-line-mode)
+    ;; which puts frame layouts in their own tab
+    (tab-line-mode 1)
 
     ;; better window handling defaults: use current window.
     ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
@@ -125,11 +125,11 @@
   (progn
     (require-theme 'modus-themes)
     (setq modus-themes-italic-constructs t
-            modus-themes-bold-constructs t)
+          modus-themes-bold-constructs t)
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme 'modus-operandi :no-confirm)
     (when (display-graphic-p)
-        (progn
+      (progn
         ;; this has to come after modus theme loading, for some reason.
         (set-face-attribute 'default nil :family "Iosevka")
         (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
@@ -370,6 +370,9 @@
   :general
   (leader-keys
     "'" '(vterm-toggle :which-key "terminal")))
+
+(use-package multi-vterm
+  :ensure t)
 
 (use-package evil-nerd-commenter
   :general
