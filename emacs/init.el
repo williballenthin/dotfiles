@@ -137,8 +137,7 @@
     ;; mark active window modeline
     ;; via: https://irreal.org/blog/?p=11874
     (set-face-attribute 'mode-line nil
-        ;; using doom-one base4 for bg color
-        :background "#3f444a" :box '(:line-width 1 :color "black"))
+        :background "#bebebe" :box '(:line-width 1 :color "black"))
     ;; relative line numbers in prog mode
     (defun ab/enable-line-numbers ()
         "Enable relative line numbers"
@@ -192,7 +191,8 @@
   (which-key-mode))
 
 ;; for counsel-M-x
-(use-package counsel)
+(use-package counsel
+  :init (counsel-mode))
 
 ;; for remembering recently used commands
 (use-package smex)
@@ -285,52 +285,7 @@
   (setq persp-state-default-file "~/.local/state/emacs/perspective.el")
   (add-hook 'kill-emacs-hook #'persp-state-save)
   ;; restore perspective upon reload
-  (persp-state-restore persp-state-default-file)
-  )
-
-;; removed tabspaces: don't seem to open many workspaces in parallel
-;; and i dont initially grok how projectile/desktop/tabspaces interact.
-;; maybe try again later.
-;;
-;; tabspaces to group tab-local buffers into workspaces,
-;; integrated with project.el/projectile.
-;; https://github.com/mclear-tools/tabspaces
-;;
-;; workspaces are resumed upon reload, assuming to save
-;; the session periodically..
-;;
-;; use evil keybindings:
-;;   <leader> at  - "tab"
-;;   o            - "open" project
-;;   s            - "save"
-;;   d            - "close"
-;;   l            - list, but use H/L or atj/atk for this
-;; (use-package tabspaces
-;;   :hook
-;;   (after-init . tabspaces-mode)
-
-;;   :commands (tabspaces-switch-or-create-workspace
-;;              tabspaces-open-or-create-project-and-workspace)
-
-;;   :custom
-;;   (tabspaces-use-filtered-buffers-as-default t)
-;;   (tabspaces-default-tab "Default")
-;;   (tabspaces-remove-to-default t)
-;;   (tabspaces-include-buffers '("*scratch*"))
-;;   (tabspaces-initialize-project-with-todo t)
-;;   (tabspaces-todo-file-name "project-todo.org")
-;;   ;; sessions
-;;   (tabspaces-session t)
-;;   (tabspaces-session-auto-restore t)
-
-;;   :general
-;;   (leader-keys
-;;     "at" '(:ignore t :which-key "tabs (workspace)")
-;;     "ato" 'tabspaces-open-or-create-project-and-workspace
-;;     "atl" 'tabspaces-switch-or-create-workspace
-;;     "ats" 'tabspaces-save-session
-;;     "atd" 'tabspaces-close-workspace
-;;     ))
+  (persp-state-restore persp-state-default-file))
 
 (use-package ivy
   :init
@@ -402,10 +357,13 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :init
+  (doom-modeline-mode 1)
+  (setq doom-modeline-icon (display-graphic-p)))
 
-;; setup: M-x nerd-icons-install-fonts
-(use-package nerd-icons)
+(when (display-graphic-p)
+  ;; setup: M-x nerd-icons-install-fonts
+  (use-package nerd-icons))
 
 (use-package symbol-overlay)
 
