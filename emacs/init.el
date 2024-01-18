@@ -99,42 +99,42 @@
     :background "#3f444a" :box '(:line-width 1 :color "black"))
   ;; tab bar for window management
   ;; hide the tab bar when it has only one tab, and show it again when more tabs are created.
-  (tab-bar-mode)
-  (setq tab-bar-show 1)
+  (progn
+    (tab-bar-mode)
+    (setq tab-bar-show 1))
   ;; don't create backup files
   (setq make-backup-files nil)
-
-  ;; tell display-buffer to reuse existing windows as much as possible,
-  ;; including in other frames.
-  ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
-  (setq display-buffer-base-action
-    '((display-buffer-reuse-window display-buffer-same-window)
-      (reusable-frames . t)))
-  ;; prevent splits by telling display-buffer to switch to
-  ;; the target buffer in the current window.
-  ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
-  (setq even-window-sizes nil)
-
+  ;; better window handling defaults: use current window.
+  (progn
+    ;; tell display-buffer to reuse existing windows as much as possible,
+    ;; including in other frames.
+    ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+    (setq display-buffer-base-action
+        '((display-buffer-reuse-window display-buffer-same-window)
+          (reusable-frames . t)))
+    ;; prevent splits by telling display-buffer to switch to
+    ;; the target buffer in the current window.
+    ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+    (setq even-window-sizes nil))
   ;; recent files
-  (recentf-mode 1)
-  (setq recentf-max-menu-items 25)
-  (setq recentf-max-saved-items 25)
-
-  ;; don't confirm killing vterm subprocess on exit/restart
-  (setq confirm-kill-processes nil)
-
+  (progn
+    (recentf-mode 1)
+    (setq recentf-max-menu-items 25)
+    (setq recentf-max-saved-items 25))
   ;; theming
-  (require-theme 'modus-themes)
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs t)
-  (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'modus-operandi :no-confirm)
+  (progn
+    (require-theme 'modus-themes)
+    (setq modus-themes-italic-constructs t
+            modus-themes-bold-constructs t)
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme 'modus-operandi :no-confirm)
 
-  ;; this has to come after modus theme loading, for some reason.
-  (set-face-attribute 'default nil :family "Iosevka")
-  (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-  (set-face-attribute 'org-modern-symbol nil :family "Iosevka")
-
+    (when (display-graphic-p)
+        (progn
+        ;; this has to come after modus theme loading, for some reason.
+        (set-face-attribute 'default nil :family "Iosevka")
+        (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
+        (set-face-attribute 'org-modern-symbol nil :family "Iosevka"))))
   ;; org-modern
   (setq
     ;; Edit settings
@@ -158,7 +158,8 @@
     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
     org-agenda-current-time-string
     "◀── now ─────────────────────────────────────────────────")
-
+  ;; ssh is faster than default scp for small files
+  (setq tramp-default-method "ssh")
 
   :bind
   (("M-x" . counsel-M-x)))
@@ -328,7 +329,13 @@
   :config
   (global-diff-hl-mode))
 
-(use-package vterm)
+(use-package vterm
+  :init
+  ;; we're using a light theme globally in emacs
+  ;; so bat should use a compatible theme for its text output.
+  (setq vterm-environment '("BAT_THEME=Coldark-Cold"))
+  ;; don't confirm killing vterm subprocess on exit/restart
+  (setq confirm-kill-processes nil))
 
 (use-package vterm-toggle
   :general
