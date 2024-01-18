@@ -204,13 +204,8 @@
 
   (general-define-key
     :states '(normal emacs)
-    ";" 'counsel-switch-buffer
-
     "J" 'other-window
-    "K" '(lambda () (interactive) (other-window -1))
-
-    "L" 'tab-bar-switch-to-next-tab
-    "H" 'tab-bar-switch-to-prev-tab)
+    "K" '(lambda () (interactive) (other-window -1)))
 
   (general-create-definer leader-keys
     :states '(normal insert visual emacs)
@@ -226,8 +221,8 @@
     ;; Buffer
     "b" '(:ignore t :which-key "buffer")
     "bd"  'kill-current-buffer
-    "bl" '(counsel-switch-buffer :which-key "list buffers")
-     "f" '(:ignore t :which-key "file system")
+    "bl" '(persp-counsel-switch-buffer :which-key "list buffers")
+    "f"  '(:ignore t :which-key "file system")
     "ff" 'find-file
     "fs" 'dirvish
     "fq" 'dirvish-quit
@@ -237,19 +232,10 @@
     "a-" 'split-window-below
     "a|" 'split-window-right
 
-    "ag" 'switch-to-buffer-other-tab
-
     "aj" '((lambda () (interactive) (other-window 1)) :which-key "next window")
     "ak" '((lambda () (interactive) (other-window -1)) :which-key "prev window")
-
-    "al" 'tab-bar-switch-to-next-tab
-    "ah" 'tab-bar-switch-to-prev-tab
-
-    "adb" 'kill-current-buffer
-    "adw" 'delete-window
-
-    "atj" 'tab-bar-switch-to-next-tab
-    "atk" 'tab-bar-switch-to-prev-tab
+    "awd" 'delete-window
+    "abd" 'kill-buffer
   ))
  
 (use-package projectile
@@ -268,6 +254,44 @@
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy))
 
+;; use evil keybindings:
+;;   <leader> ap  - "perspective"
+;;   o            - "open" perspective
+;;   s            - "save"
+;;   d            - "close"
+;;   l            - list, but use H/L or atj/atk for this
+(use-package perspective
+  :bind
+  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+  :init
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
+  :init
+  (persp-mode)
+  (general-define-key
+    :states '(normal emacs)
+    ";" 'persp-counsel-switch-buffer
+
+    "L" 'persp-next
+    "H" 'persp-prev)
+
+  (leader-keys
+    "bl" 'persp-counsel-switch-buffer
+    "apo" 'persp-switch  ; switch or open
+    "aps" 'persp-state-save
+    "apd" 'persp-kill
+    "apn" 'persp-rename
+    "apl" 'persp-counsel-switch-buffer)
+  (setq persp-state-default-file "~/.local/state/emacs/perspective.el")
+  (add-hook 'kill-emacs-hook #'persp-state-save)
+  ;; restore perspective upon reload
+  (persp-state-restore persp-state-default-file)
+  )
+
+;; removed tabspaces: don't seem to open many workspaces in parallel
+;; and i dont initially grok how projectile/desktop/tabspaces interact.
+;; maybe try again later.
+;;
 ;; tabspaces to group tab-local buffers into workspaces,
 ;; integrated with project.el/projectile.
 ;; https://github.com/mclear-tools/tabspaces
@@ -281,32 +305,32 @@
 ;;   s            - "save"
 ;;   d            - "close"
 ;;   l            - list, but use H/L or atj/atk for this
-(use-package tabspaces
-  :hook
-  (after-init . tabspaces-mode)
+;; (use-package tabspaces
+;;   :hook
+;;   (after-init . tabspaces-mode)
 
-  :commands (tabspaces-switch-or-create-workspace
-             tabspaces-open-or-create-project-and-workspace)
+;;   :commands (tabspaces-switch-or-create-workspace
+;;              tabspaces-open-or-create-project-and-workspace)
 
-  :custom
-  (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "Default")
-  (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*"))
-  (tabspaces-initialize-project-with-todo t)
-  (tabspaces-todo-file-name "project-todo.org")
-  ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t)
+;;   :custom
+;;   (tabspaces-use-filtered-buffers-as-default t)
+;;   (tabspaces-default-tab "Default")
+;;   (tabspaces-remove-to-default t)
+;;   (tabspaces-include-buffers '("*scratch*"))
+;;   (tabspaces-initialize-project-with-todo t)
+;;   (tabspaces-todo-file-name "project-todo.org")
+;;   ;; sessions
+;;   (tabspaces-session t)
+;;   (tabspaces-session-auto-restore t)
 
-  :general
-  (leader-keys
-    "at" '(:ignore t :which-key "tabs (workspace)")
-    "ato" 'tabspaces-open-or-create-project-and-workspace
-    "atl" 'tabspaces-switch-or-create-workspace
-    "ats" 'tabspaces-save-session
-    "atd" 'tabspaces-close-workspace
-    ))
+;;   :general
+;;   (leader-keys
+;;     "at" '(:ignore t :which-key "tabs (workspace)")
+;;     "ato" 'tabspaces-open-or-create-project-and-workspace
+;;     "atl" 'tabspaces-switch-or-create-workspace
+;;     "ats" 'tabspaces-save-session
+;;     "atd" 'tabspaces-close-workspace
+;;     ))
 
 (use-package ivy
   :init
@@ -361,8 +385,8 @@
         '(vc-state subtree-state collapse git-msg file-time file-size))
     (setq dirvish-attributes
           '(vc-state subtree-state collapse git-msg file-time file-size)))
-  :config
   (dirvish-override-dired-mode)
+  :config
 
   (leader-keys
     "f" '(:ignore t :which-key "file system")
