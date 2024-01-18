@@ -39,88 +39,88 @@
 ;; local configuration
 (use-package emacs
   :init
+  ;; ---------------------------------------------------------------------
+  ;; startup
   ;; remove default scratch message/help text
   (setq initial-scratch-message nil)
   (defun display-startup-echo-area-message ()
     (message ""))
-  ;; enable y/n instead of only yes/no
-  (defalias 'yes-or-no-p 'y-or-n-p)
-  ;; make everything utf-8
-  (set-charset-priority 'unicode)
-  (setq locale-coding-system 'utf-8
-        coding-system-for-read 'utf-8
-        coding-system-for-write 'utf-8)
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  (set-selection-coding-system 'utf-8)
-  (prefer-coding-system 'utf-8)
-  (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-  ;; use spaces by default
-  (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 2)
-  ;; correct keybindings on macOS
-  (when (eq system-type 'darwin)
-    (setq mac-command-modifier 'super)
-    (setq mac-option-modifier 'meta)
-    (setq mac-control-modifier 'control))
-  ;; relative line numbers in prog mode
-  (defun ab/enable-line-numbers ()
-    "Enable relative line numbers"
-    (interactive)
-    (display-line-numbers-mode)
-    (setq display-line-numbers 'relative))
-  (add-hook 'prog-mode-hook #'ab/enable-line-numbers)
-  ;; clipboard on wayland
-  (when (display-graphic-p)
-    (progn
-        (setq wl-copy-process nil)
-        (defun wl-copy (text)
-            (setq wl-copy-process (make-process :name "wl-copy"
-                                                :buffer nil
-                                                :command '("wl-copy" "-f" "-n")
-                                                :connection-type 'pipe))
-            (process-send-string wl-copy-process text)
-            (process-send-eof wl-copy-process))
-        (defun wl-paste ()
-            (if (and wl-copy-process (process-live-p wl-copy-process))
-                nil ;; should return nil if we're the current paste owner
-                (shell-command-to-string "wl-paste -n | tr -d \\r")))
-        (setq interprogram-cut-function 'wl-copy)
-        (setq interprogram-paste-function 'wl-paste)))
-  ;; escape should exit menus
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-  ;; enable the mouse under the terminal
-  (when (not (display-graphic-p))
-    (xterm-mouse-mode))
-  ;; mark active window modeline
-  ;; via: https://irreal.org/blog/?p=11874
-  (set-face-attribute 'mode-line nil
-    ;; using doom-one base4 for bg color
-    :background "#3f444a" :box '(:line-width 1 :color "black"))
-  ;; tab bar for window management
-  ;; hide the tab bar when it has only one tab, and show it again when more tabs are created.
+  ;; ---------------------------------------------------------------------
+  ;; content
   (progn
-    (tab-bar-mode)
-    (setq tab-bar-show 1))
-  ;; don't create backup files
-  (setq make-backup-files nil)
-  ;; better window handling defaults: use current window.
+    ;; make everything utf-8
+    (set-charset-priority 'unicode)
+    (setq locale-coding-system 'utf-8
+            coding-system-for-read 'utf-8
+            coding-system-for-write 'utf-8)
+    (set-terminal-coding-system 'utf-8)
+    (set-keyboard-coding-system 'utf-8)
+    (set-selection-coding-system 'utf-8)
+    (prefer-coding-system 'utf-8)
+    (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+    ;; use spaces by default
+    (setq-default indent-tabs-mode nil)
+    (setq-default tab-width 2))
+  ;; ---------------------------------------------------------------------
+  ;; input (keyboard and  mice)
   (progn
-    ;; tell display-buffer to reuse existing windows as much as possible,
-    ;; including in other frames.
+    ;; correct keybindings on macOS
+    (when (eq system-type 'darwin)
+        (setq mac-command-modifier 'super)
+        (setq mac-option-modifier 'meta)
+        (setq mac-control-modifier 'control))
+    ;; clipboard on wayland
+    (when (display-graphic-p)
+        (progn
+            (setq wl-copy-process nil)
+            (defun wl-copy (text)
+                (setq wl-copy-process (make-process :name "wl-copy"
+                                                    :buffer nil
+                                                    :command '("wl-copy" "-f" "-n")
+                                                    :connection-type 'pipe))
+                (process-send-string wl-copy-process text)
+                (process-send-eof wl-copy-process))
+            (defun wl-paste ()
+                (if (and wl-copy-process (process-live-p wl-copy-process))
+                    nil ;; should return nil if we're the current paste owner
+                    (shell-command-to-string "wl-paste -n | tr -d \\r")))
+            (setq interprogram-cut-function 'wl-copy)
+            (setq interprogram-paste-function 'wl-paste)))
+    ;; escape should exit menus
+    (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+    ;; enable y/n instead of only yes/no
+    (defalias 'yes-or-no-p 'y-or-n-p)
+    ;; enable the mouse under the terminal
+    (when (not (display-graphic-p))
+        (xterm-mouse-mode)))
+  ;; ---------------------------------------------------------------------
+  ;; window management
+  (progn
+    ;; show open buffers in tabs.
+    ;; note, this is different from tab-bar-mode,
+    ;;which puts frame layouts in their own tab
+    (tab-line-mode)
+
+    ;; better window handling defaults: use current window.
     ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+    ;;
+    ;; tell display-buffer to reuse existing windows as much as possible, including in other frames.
     (setq display-buffer-base-action
         '((display-buffer-reuse-window display-buffer-same-window)
           (reusable-frames . t)))
-    ;; prevent splits by telling display-buffer to switch to
-    ;; the target buffer in the current window.
-    ;; via: https://github.com/nex3/perspective-el/blob/c8c3383/README.md#some-musings-on-emacs-window-layouts
+    ;; prevent splits by telling display-buffer to switch to the target buffer in the current window.
     (setq even-window-sizes nil))
-  ;; recent files
+  ;; ---------------------------------------------------------------------
+  ;; file handling
   (progn
+    ;; don't create backup files
+    (setq make-backup-files nil)
+    ;; remember recent files for convenience.
+    ;; see also: keybinding: <leader>fr
     (recentf-mode 1)
     (setq recentf-max-menu-items 25)
     (setq recentf-max-saved-items 25))
+  ;; ---------------------------------------------------------------------
   ;; theming
   (progn
     (require-theme 'modus-themes)
@@ -128,36 +128,47 @@
             modus-themes-bold-constructs t)
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme 'modus-operandi :no-confirm)
-
     (when (display-graphic-p)
         (progn
         ;; this has to come after modus theme loading, for some reason.
         (set-face-attribute 'default nil :family "Iosevka")
         (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-        (set-face-attribute 'org-modern-symbol nil :family "Iosevka"))))
-  ;; org-modern
-  (setq
-    ;; Edit settings
-    org-auto-align-tags nil
-    org-tags-column 0
-    org-catch-invisible-edits 'show-and-error
-    org-special-ctrl-a/e t
-    org-insert-heading-respect-content t
+        (set-face-attribute 'org-modern-symbol nil :family "Iosevka")))
+    ;; mark active window modeline
+    ;; via: https://irreal.org/blog/?p=11874
+    (set-face-attribute 'mode-line nil
+        ;; using doom-one base4 for bg color
+        :background "#3f444a" :box '(:line-width 1 :color "black"))
+    ;; relative line numbers in prog mode
+    (defun ab/enable-line-numbers ()
+        "Enable relative line numbers"
+        (interactive)
+        (display-line-numbers-mode)
+        (setq display-line-numbers 'relative))
+    (add-hook 'prog-mode-hook #'ab/enable-line-numbers)
+    ;; org-modern
+    (setq
+        ;; Edit settings
+        org-auto-align-tags nil
+        org-tags-column 0
+        org-catch-invisible-edits 'show-and-error
+        org-special-ctrl-a/e t
+        org-insert-heading-respect-content t
 
-    ;; Org styling, hide markup etc.
-    org-hide-emphasis-markers t
-    org-pretty-entities t
-    org-ellipsis "…"
+        ;; Org styling, hide markup etc.
+        org-hide-emphasis-markers t
+        org-pretty-entities t
+        org-ellipsis "…"
 
-    ;; Agenda styling
-    org-agenda-tags-column 0
-    org-agenda-block-separator ?─
-    org-agenda-time-grid
-    '((daily today require-timed)
-    (800 1000 1200 1400 1600 1800 2000)
-    " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
-    org-agenda-current-time-string
-    "◀── now ─────────────────────────────────────────────────")
+        ;; Agenda styling
+        org-agenda-tags-column 0
+        org-agenda-block-separator ?─
+        org-agenda-time-grid
+        '((daily today require-timed)
+        (800 1000 1200 1400 1600 1800 2000)
+        " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+        org-agenda-current-time-string
+        "◀── now ─────────────────────────────────────────────────"))
   ;; ssh is faster than default scp for small files
   (setq tramp-default-method "ssh")
 
@@ -180,7 +191,7 @@
   :config
   (which-key-mode))
 
-;; for consel-M-x
+;; for counsel-M-x
 (use-package counsel)
 
 ;; for remembering recently used commands
@@ -214,19 +225,15 @@
 
     ;; Buffer
     "b" '(:ignore t :which-key "buffer")
-    ;; Don't show an error because SPC b ESC is undefined, just abort
-    "b <escape>" '(keyboard-escape-quit :which-key t)
     "bd"  'kill-current-buffer
     "bl" '(counsel-switch-buffer :which-key "list buffers")
      "f" '(:ignore t :which-key "file system")
-    "f <escape>" '(keyboard-escape-quit :which-key t)
     "ff" 'find-file
     "fs" 'dirvish
     "fq" 'dirvish-quit
     "fr" 'counsel-recentf
     ;; buffer/window/tab management
     "a" '(:ignore t :which-key "window")
-    "a <escape>" '(keyboard-escape-quit :which-key t)
     "a-" 'split-window-below
     "a|" 'split-window-right
 
@@ -299,7 +306,6 @@
     "atl" 'tabspaces-switch-or-create-workspace
     "ats" 'tabspaces-save-session
     "atd" 'tabspaces-close-workspace
-    "at<escape>" '(keyboard-escape-quit :which-key t)
     ))
 
 (use-package ivy
@@ -313,7 +319,6 @@
   :general
   (leader-keys
     "g" '(:ignore t :which-key "git")
-    "g <escape>" '(keyboard-escape-quit :which-key t)
     "g g" '(magit-status :which-key "status")
     "g l" '(magit-log :which-key "log"))
   (general-nmap
@@ -344,7 +349,7 @@
 
 (use-package evil-nerd-commenter
   :general
-  (general-nvmap
+  (leader-keys
     "gc" 'evilnc-comment-operator))
 
 (use-package dirvish
@@ -361,7 +366,6 @@
 
   (leader-keys
     "f" '(:ignore t :which-key "file system")
-    "f <escape>" '(keyboard-escape-quit :which-key t)
     "fd" 'dirvish-fd
   ))
 
