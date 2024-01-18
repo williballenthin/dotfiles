@@ -57,6 +57,8 @@ in
     pkgs.wl-clipboard
     # for emacs->pyright LSP
     pkgs.pyright
+    # for emacs->ts-lsp
+    pkgs.nodejs
     pkgs.watch
     pkgs.ripgrep
     pkgs.fd
