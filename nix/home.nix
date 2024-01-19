@@ -58,7 +58,7 @@ in
     # for emacs->pyright LSP
     pkgs.pyright
     # for emacs->ts-lsp
-    pkgs.nodejs
+    pkgs.nodePackages.typescript-language-server
     pkgs.watch
     pkgs.ripgrep
     pkgs.fd

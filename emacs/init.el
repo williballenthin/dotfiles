@@ -204,7 +204,8 @@
   (general-define-key
     :states '(normal emacs)
     "J" 'other-window
-    "K" '(lambda () (interactive) (other-window -1)))
+    "K" '(lambda () (interactive) (other-window -1))
+    "g b" 'global-pop-mark)
 
   (general-create-definer leader-keys
     :states '(normal insert visual emacs)
@@ -408,6 +409,23 @@
 ;;
 ;;   (use-package lsp-ui :commands lsp-ui-mode)
 ;;   (use-package lsp-ivy :commands lsp-ivy-workspace-symbol))
+(progn
+  ;; bindings:
+  ;;  lr   eglot-rename
+  ;;  lgd  xref-find-definitions
+  ;;  lgr  xref-find-references
+  ;;
+  ;; remember, these push a mark, so to go back, use:
+  ;;  g b pop-global-mark
+  (use-package eglot
+    :ensure t
+    :config
+    (leader-keys
+      "l" '(:ignore t :which-key "language")
+      "lr" 'eglot-rename
+      "lgd" 'xref-find-definitions
+      "lgr" 'xref-find-references
+      "lgb" 'pop-global-mark)))
 
 ;;; ----------------------------------------------------------
 ;;; tree-sitter
@@ -415,15 +433,6 @@
 ;;; confirm support by ensuring variable `system-configuration-features`
 ;;; contains "TREE_SITTER".
 (progn
-  ;; (use-package tree-sitter
-  ;;   :ensure t
-  ;;   :config
-  ;;   ;; activate tree-sitter on any buffer containing code for which it has a parser available
-  ;;   (global-tree-sitter-mode)
-  ;;   ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
-  ;;   ;; by switching on and off
-  ;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
   ;; via: https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
   (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -457,6 +466,14 @@
       (js-json-mode . json-ts-mode)
       (typescript-mode . typescript-ts-mode)
       (css-mode . css-ts-mode)))
+
+
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+  ;; via: https://discourse.nixos.org/t/packages-required-to-get-emacs-typescript-ts-mode-to-work/31225/11
+  (use-package typescript-ts-mode
+   :mode (("\\.ts\\'" . typescript-ts-mode)
+          ("\\.tsx\\'" . tsx-ts-mode)))
 
   ;; check which mode you're in via: eval-expression major-mode (M-: major mode)
 
