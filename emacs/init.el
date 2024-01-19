@@ -60,7 +60,7 @@
     (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
     ;; use spaces by default
     (setq-default indent-tabs-mode nil)
-    (setq-default tab-width 2))
+    (setq-default tab-width 4))
   ;; ---------------------------------------------------------------------
   ;; input (keyboard and  mice)
   (progn
