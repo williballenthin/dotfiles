@@ -386,37 +386,79 @@
   (company-minimum-prefix-length 3)
   (company-idle-delay 0.1))
 
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda () (require 'lsp-pyright))))
+;;; ----------------------------------------------------------
+;;; LSP
+;; (progn
+;;   (use-package lsp-pyright
+;;    :ensure t
+;;    :hook (python-mode . (lambda () (require 'lsp-pyright))))
+;;
+;;   (use-package lsp-mode
+;;     :after
+;;     lsp-pyright
+;;     :config
+;;     (general-def 'normal lsp-mode :definer 'minor-mode
+;;         "SPC l" lsp-command-map)
+;;     :hook ((prog-mode . lsp)
+;;             (lsp-mode . lsp-enable-which-key-integration))
+;;     :commands lsp
+;;     :custom
+;;     (help-at-pt-timer-delay 0.9)
+;;     (help-at-pt-display-when-idle '(flymake-overlay)))
+;;
+;;   (use-package lsp-ui :commands lsp-ui-mode)
+;;   (use-package lsp-ivy :commands lsp-ivy-workspace-symbol))
 
-(use-package lsp-mode
-  :after
-  lsp-pyright
-  :config
-  (general-def 'normal lsp-mode :definer 'minor-mode
-      "SPC l" lsp-command-map)
-  :hook ((prog-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp
-  :custom
-  (help-at-pt-timer-delay 0.9)
-  (help-at-pt-display-when-idle '(flymake-overlay)))
+;;; ----------------------------------------------------------
+;;; tree-sitter
+;;;
+;;; confirm support by ensuring variable `system-configuration-features`
+;;; contains "TREE_SITTER".
+(progn
+  ;; (use-package tree-sitter
+  ;;   :ensure t
+  ;;   :config
+  ;;   ;; activate tree-sitter on any buffer containing code for which it has a parser available
+  ;;   (global-tree-sitter-mode)
+  ;;   ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
+  ;;   ;; by switching on and off
+  ;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+  ;; via: https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
+  (setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
-(use-package tree-sitter
-  :ensure t
-  :config
-  ;; activate tree-sitter on any buffer containing code for which it has a parser available
-  (global-tree-sitter-mode)
-  ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
-  ;; by switching on and off
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+  ;; install all via:
+  ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
-(use-package tree-sitter-langs
-  :ensure t
-  :after tree-sitter;
-  :config
-  (tree-sitter-langs-install-grammars))
+  ;; remap each major mode to the tree-sitter one.
+  ;; this is a hack!
+  ;; see: https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
+  (setq major-mode-remap-alist
+    '((yaml-mode . yaml-ts-mode)
+      (bash-mode . bash-ts-mode)
+      (python-mode . python-ts-mode)
+      (js2-mode . js-ts-mode)
+      (json-mode . json-ts-mode)
+      (js-json-mode . json-ts-mode)
+      (typescript-mode . typescript-ts-mode)
+      (css-mode . css-ts-mode)))
+
+  ;; check which mode you're in via: eval-expression major-mode (M-: major mode)
+
+  ;; note: remember to use hooks like: python-ts-mode-hook, not python-mode-hook.
+  )
