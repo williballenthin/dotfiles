@@ -1,3 +1,5 @@
+;; search for "setup" for initial manual setup steps.
+;;
 ;; some configuration derived from:
 ;; https://arne.me/articles/emacs-from-scratch-part-one-foundations
 
@@ -130,6 +132,7 @@
     (load-theme 'modus-operandi :no-confirm)
     (when (display-graphic-p)
       (progn
+        ;; setup: install iosevka on the host
         ;; this has to come after modus theme loading, for some reason.
         (set-face-attribute 'default nil :family "Iosevka")
         (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")))
@@ -144,6 +147,7 @@
         (display-line-numbers-mode)
         (setq display-line-numbers 'relative))
     (add-hook 'prog-mode-hook #'ab/enable-line-numbers)
+    (hl-line-mode 1)
     ;; org-modern
     (setq
         ;; Edit settings
@@ -451,6 +455,7 @@
      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
+  ;; setup:
   ;; install all via:
   ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
