@@ -1,6 +1,11 @@
 [[language]]
 name = "python"
-language-servers = ["pylsp"]
+language-servers = ["pylsp", "ruff-lsp"]
+formatter = { command = "black", args = ["--quiet", "-"] }
+auto-format = false
+
+[language-server.ruff-lsp]
+command = "ruff-lsp"
 
 [language-server.pylsp.config.pylsp]
 plugins.pyls_mypy.enabled = true

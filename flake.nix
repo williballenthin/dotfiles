@@ -143,6 +143,7 @@
                             pkgs.python311Packages.python-lsp-server
                             pkgs.python311Packages.pylsp-mypy
                             pkgs.python311Packages.python-lsp-ruff
+                            pkgs.python311Packages.black
 
                             #############################################
                             # rust
