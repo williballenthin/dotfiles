@@ -170,28 +170,6 @@
                         home.file.".config/helix/languages.toml".source = ./.config/helix/languages.toml;
                         home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
                         home.file.".config/fish/functions/fzf.fish".source = ./.config/fish/functions/fzf.fish;
-
-                        # i think this file is no longer used by fisher,
-                        # but it contains the list of plugins i'd like to use.
-                        # you may have to do `fisher install foo` for each line in the file.
-                        home.file.".config/fish/fish_plugins".source = ./.config/fish/fish_plugins;
-
-                        home.file.".config/fish/completions/fisher.fish".source = pkgs.fetchFromGitHub {
-                          owner = "jorgebucaran";
-                          repo = "fisher";
-                          # 4.4.3
-                          rev = "36810b39401536650d7a1018c8f3832f51741950";
-                          #hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
-                          hash = "sha256-q9Yi6ZlHNFnPN05RpO+u4B5wNR1O3JGIn2AJ3AEl4xs=";
-                        } + "/completions/fisher.fish";
-                        home.file.".config/fish/functions/fisher.fish".source = pkgs.fetchFromGitHub {
-                          owner = "jorgebucaran";
-                          repo = "fisher";
-                          # 4.4.3
-                          rev = "36810b39401536650d7a1018c8f3832f51741950";
-                          #hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
-                          hash = "sha256-q9Yi6ZlHNFnPN05RpO+u4B5wNR1O3JGIn2AJ3AEl4xs=";
-                        } + "/functions/fisher.fish";
                     })
                 ];
             };
