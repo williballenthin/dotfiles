@@ -89,6 +89,11 @@ in
     pkgs.bacon
     # broken right now
     # pkgs.rustracer
+
+    # install jj via: cargo install jj-cli@0.15.1 --locked
+    # which requires system packages:
+    #   sudo apt-get install libssl-dev openssl pkg-config build-essential
+    # nix 23.11 has jj@0.13.0, unstable has jj@0.14.0
   ]
   ++ [
     # for lancelot dev in vscode remote

@@ -1,6 +1,8 @@
-source ~/.config/fish/local.fish
+if test -f ~/.config/fish/local.fish
+    source ~/.config/fish/local.fish
+end
 
-set -gx EDITOR nvim
+set -gx EDITOR hx
 
 direnv hook fish | source
 # disable direnv logging
@@ -17,7 +19,8 @@ if status --is-interactive
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
     abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
-    abbr --add --global em nohup emacs --user="" --maximized .  > /dev/null 2>&1 &
+    abbr --add --global em nohup emacs --user="" --maximized . >/dev/null 2>&1 &
+    atuin init fish | source
 end
 
 # fzf.fish config
