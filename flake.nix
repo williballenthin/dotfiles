@@ -18,10 +18,9 @@
         flake-utils.url = "github:numtide/flake-utils";
         helix.url = "github:helix-editor/helix/24.03";
         jj.url = "github:martinvonz/jj";
-        atuin.url = "github:atuinsh/atuin";
     };
 
-    outputs = {nixpkgs, home-manager, flake-utils, helix, jj, atuin, ...}:
+    outputs = {nixpkgs, home-manager, flake-utils, helix, jj, ...}:
         let 
             # TODO: make this configurable for m1
             system = "x86_64-linux";
@@ -52,7 +51,6 @@
                         _module.args = {
                             inherit helix;
                             inherit jj;
-                            inherit atuin;
                         };
                     })
 
@@ -112,10 +110,7 @@
                             pkgs.tig
                             pkgs.tmux
                             pkgs.visidata
-                            # include late breaking patch for fish integration
-                            # prefer: pkgs.atuin
                             pkgs.atuin
-                            # atuin.packages.${pkgs.system}.atuin
 
                             #############################################
                             # development
