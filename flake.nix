@@ -17,7 +17,7 @@
         };
         flake-utils.url = "github:numtide/flake-utils";
         helix.url = "github:helix-editor/helix/24.03";
-        jj.url = "github:martinvonz/jj";
+        jj.url = "github:martinvonz/jj/v0.16.0";
     };
 
     outputs = {nixpkgs, home-manager, flake-utils, helix, jj, ...}:
@@ -154,8 +154,6 @@
                             pkgs.bacon
                         ];
 
-                        # fast, persistent nix integration with direnv
-                        # https://github.com/nix-community/nix-direnv
                         programs.direnv.enable = true;
                         programs.direnv.nix-direnv.enable = true;
 
