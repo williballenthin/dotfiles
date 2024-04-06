@@ -21,6 +21,30 @@ if status --is-interactive
     abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
     abbr --add --global em nohup emacs --user="" --maximized . >/dev/null 2>&1 &
     atuin init fish | source
+
+    function ,init-python-project
+        if test -d ".env"
+            echo ".env already exists" >&2
+            return
+        end
+
+        if test -d ".envrc"
+            echo ".envrc already exists" >&2
+            return
+        end
+
+        cp -r ~/.dotfiles/nix/profiles/python/ ".env"
+        pushd ".env"
+        git init .
+        git add *
+        popd
+        echo "created .env" >>&2
+
+        echo "watch_file .env/devshell.toml" >>".envrc"
+        echo "use flake .env" >>".envrc"
+        echo "layout python" >>".envrc"
+        echo "created .envrc" >>&2
+    end
 end
 
 # fzf.fish config
