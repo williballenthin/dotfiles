@@ -3,6 +3,7 @@ if test -f ~/.config/fish/local.fish
 end
 
 set -gx EDITOR hx
+set -gx COLORTERM truecolor # for hx color detection -> themes
 
 direnv hook fish | source
 # disable direnv logging
