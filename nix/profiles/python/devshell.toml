@@ -5,17 +5,20 @@ name = "profile"
 command = "echo 'python'"
 help = "show profile (python)"
 
+[[commands]]
+name = "pc"
+command = "pre-commit run --all-files --hook-stage manual"
+help = "pre-commit (manual)"
+
 [[env]]
-# temporary fix
-# see https://github.com/NixOS/nixpkgs/issues/194929
-# see https://github.com/NixOS/nixpkgs/pull/192943
-name = "NIX_CC"
-value = "/garbage"
+name = "KEY"
+value = "value"
 
 [devshell]
 packages = [
   "python311",
   "stdenv.cc.cc.lib",
+  "uv",
 ]
 
 # via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
