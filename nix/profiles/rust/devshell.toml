@@ -20,6 +20,7 @@ packages = [
   # rust-analyzer installed by rustup
   "bacon",
   "mold",
+  "pre-commit",
   "stdenv.cc.cc.lib",
   "cmake",
   "gnumake",

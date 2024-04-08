@@ -15,6 +15,7 @@ packages = [
   "python311",
   "stdenv.cc.cc.lib",
   "uv",
+  "pre-commit",
   # LSP for helix
   "nodePackages.pyright",
   "python311Packages.python-lsp-server",
