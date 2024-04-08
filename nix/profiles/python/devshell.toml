@@ -10,7 +10,7 @@ name = "pc"
 command = "pre-commit run --all-files --hook-stage manual"
 help = "pre-commit (manual)"
 
-edevshell]
+[devshell]
 packages = [
   "python311",
   "stdenv.cc.cc.lib",

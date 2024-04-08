@@ -2,7 +2,7 @@
   description = "virtual environments";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     devshell = {
       url = "github:numtide/devshell";
     };
