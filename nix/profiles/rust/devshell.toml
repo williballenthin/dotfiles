@@ -9,6 +9,11 @@ help = "show profile (rust)"
 name = "CARGO_PROFILE_DEV_CODEGEN_BACKEND"
 value = "cranelift"
 
+[[commands]]
+name = "pc"
+command = "pre-commit run --all-files --hook-stage manual"
+help = "pre-commit (manual)"
+
 [devshell]
 packages = [
   # rust/cargo installed by rustup
