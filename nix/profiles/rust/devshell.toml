@@ -5,28 +5,13 @@ name = "profile"
 command = "echo 'rust'"
 help = "show profile (rust)"
 
-[[env]]
-# temporary fix
-# see https://github.com/NixOS/nixpkgs/issues/194929
-# see https://github.com/NixOS/nixpkgs/pull/192943
-name = "NIX_CC"
-value = "/garbage"
-
 [devshell]
 packages = [
-  "python311",
+  # rust/cargo installed by rustup
+  # rust-analyzer installed by rustup
+  "bacon",
   "stdenv.cc.cc.lib",
+  "cmake",
+  "gnumake",
+  "pkg-config",
 ]
-
-# via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
-[[env]]
-name = "CPPFLAGS"
-eval = "-I${DEVSHELL_DIR}/include"
-
-[[env]]
-name = "LDFLAGS"
-eval = "-L${DEVSHELL_DIR}/lib"
-
-[[env]]
-name = "LD_LIBRARY_PATH"
-eval = "${DEVSHELL_DIR}/lib:${LD_LIBRARY_PATH}"

@@ -10,15 +10,17 @@ name = "pc"
 command = "pre-commit run --all-files --hook-stage manual"
 help = "pre-commit (manual)"
 
-[[env]]
-name = "KEY"
-value = "value"
-
-[devshell]
+edevshell]
 packages = [
   "python311",
   "stdenv.cc.cc.lib",
   "uv",
+  # LSP for helix
+  "nodePackages.pyright",
+  "python311Packages.python-lsp-server",
+  "python311Packages.pylsp-mypy",
+  "python311Packages.python-lsp-ruff",
+  "python311Packages.black",
 ]
 
 # via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
