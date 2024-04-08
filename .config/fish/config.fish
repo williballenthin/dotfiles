@@ -41,9 +41,51 @@ if status --is-interactive
         popd
         echo "created .env" >>&2
 
-        echo "watch_file .env/devshell.toml" >>".envrc"
-        echo "use flake .env" >>".envrc"
-        echo "layout python" >>".envrc"
+        cp ".env/example-.envrc" ".envrc"
+        echo "created .envrc" >>&2
+    end
+
+    function ,init-rust-project
+        if test -d ".env"
+            echo ".env already exists" >&2
+            return
+        end
+
+        if test -d ".envrc"
+            echo ".envrc already exists" >&2
+            return
+        end
+
+        cp -r ~/.dotfiles/nix/profiles/rust/ ".env"
+        pushd ".env"
+        git init .
+        git add *
+        popd
+        echo "created .env" >>&2
+
+        cp ".env/example-.envrc" ".envrc"
+        echo "created .envrc" >>&2
+    end
+
+    function ,init-go-project
+        if test -d ".env"
+            echo ".env already exists" >&2
+            return
+        end
+
+        if test -d ".envrc"
+            echo ".envrc already exists" >&2
+            return
+        end
+
+        cp -r ~/.dotfiles/nix/profiles/go/ ".env"
+        pushd ".env"
+        git init .
+        git add *
+        popd
+        echo "created .env" >>&2
+
+        cp ".env/example-.envrc" ".envrc"
         echo "created .envrc" >>&2
     end
 end
