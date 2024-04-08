@@ -10,17 +10,16 @@
 
     inputs = {
         # nixpkgs.url = "github:nixos/nixpkgs/23.05";
+        # have to track nixos-unstable since this is what home-manager dev's against
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         flake-utils.url = "github:numtide/flake-utils";
-        helix.url = "github:helix-editor/helix/24.03";
-        jj.url = "github:martinvonz/jj/v0.16.0";
     };
 
-    outputs = {nixpkgs, home-manager, flake-utils, helix, jj, ...}:
+    outputs = {nixpkgs, home-manager, flake-utils, ...}:
         let 
             # TODO: make this configurable for m1
             system = "x86_64-linux";
@@ -49,15 +48,14 @@
                     # https://discourse.nixos.org/t/flakes-impure-error-installing-package-from-local-file-system/22185/9
                     ({...}: {
                         _module.args = {
-                            inherit helix;
-                            inherit jj;
+                            # inherit foo
                         };
                     })
 
                     # Here's an inline module, receiving the normal set,
                     # as well as the extra flake inputs provided via
                     # _module.args above.
-                    ({pkgs, helix, ...}: {
+                    ({pkgs, ...}: {
                         # home.username = "user";
                         # home.homeDirectory = "/home/user";
                         #
@@ -78,6 +76,7 @@
                             # shell and PS1
                             pkgs.fish
                             pkgs.starship
+                            pkgs.atuin
 
                             #############################################
                             # basic utilities
@@ -104,54 +103,32 @@
                             pkgs.gron
                             pkgs.hexyl
                             pkgs.jless
+                            pkgs.jujutsu
                             pkgs.jq
                             pkgs.ranger
                             pkgs.ripgrep
                             pkgs.tig
                             pkgs.tmux
                             pkgs.visidata
-                            pkgs.atuin
 
                             #############################################
                             # development
-                            pkgs.hyperfine
-                            pkgs.cmake
-                            pkgs.gnumake
-                            pkgs.iosevka
-                            pkgs.pkg-config
-                            # rapid, ongoing development
-                            jj.packages.${pkgs.system}.jujutsu
 
-                            #############################################
+                            #--------------------------------------------
                             # editors
-                            pkgs.neovim
-                            pkgs.emacs29
-                            # rapid, ongoing development
-                            helix.packages.${pkgs.system}.helix
+                            pkgs.helix
 
                             #--------------------------------------------
-                            # editors->emacs
-                            # for building emacs->vterm
-                            pkgs.libtool
-                            # for emacs->clipboard
-                            pkgs.wl-clipboard
-
-                            #--------------------------------------------
-                            # editors->LSP
-                            pkgs.nodePackages.typescript-language-server
-                            pkgs.nodePackages.pyright
-                            pkgs.python311Packages.python-lsp-server
-                            pkgs.python311Packages.pylsp-mypy
-                            pkgs.python311Packages.python-lsp-ruff
-                            pkgs.python311Packages.black
-
-                            #############################################
                             # rust
                             #
                             # let rust manage itself,
                             # since we'll want to use vs code tools, etc.
+                            #
+                            #   rustup install stable
+                            #   rustup install nightly
+                            #   rustup component add rust-analyzer
+                            #   rustup component add rustc-codegen-cranelift-preview --toolchain nightly
                             pkgs.rustup
-                            pkgs.bacon
                         ];
 
                         programs.direnv.enable = true;
