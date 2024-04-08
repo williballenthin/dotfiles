@@ -5,6 +5,10 @@ name = "profile"
 command = "echo 'rust'"
 help = "show profile (rust)"
 
+[[env]]
+name = "CARGO_PROFILE_DEV_CODEGEN_BACKEND"
+value = "cranelift"
+
 [devshell]
 packages = [
   # rust/cargo installed by rustup
