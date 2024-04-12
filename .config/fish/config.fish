@@ -22,6 +22,7 @@ if status --is-interactive
     abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
     abbr --add --global em nohup emacs --user="" --maximized . >/dev/null 2>&1 &
     atuin init fish | source
+    zoxide init fish | source
 
     function ,init-python-project
         if test -d ".env"

@@ -110,6 +110,7 @@
                             pkgs.tig
                             pkgs.tmux
                             pkgs.visidata
+                            pkgs.zoxide
 
                             #############################################
                             # development
