@@ -1,1 +1,4 @@
 theme = "github_light"
+
+[editor.lsp]
+display-inlay-hints = true
