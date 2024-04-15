@@ -8,4 +8,8 @@ help = "show profile (go)"
 [devshell]
 packages = [
   "go",
+  # for hx lsp
+  "gopls",
+  "delve",
+  "gotools",
 ]
