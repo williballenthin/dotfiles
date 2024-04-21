@@ -49,9 +49,16 @@ display-messages = true
 "A-/" = "repeat_last_motion"
 
 # keep in sync with section in `[keys.select]`
-"A-x" = "extend_to_line_bounds"
-"X" = ["extend_line_up", "extend_to_line_bounds"]
+"A-x" = ["extend_line_up", "extend_to_line_bounds"]
+# move `shink_to_line_bounds` to shift-x,
+# making space for A-x to shrink a region selected by `x`,
+# which is a common mistake, to overselect.
+#
+# remember, `shrink_to_line_bounds` is useful to 
+# make a selection start/end exactly on line bounds,
+# such as the lines between two markers, like "(...)"
+"X" = "shrink_to_line_bounds"
 
 [keys.select]
-"A-x" = "extend_to_line_bounds"
-"X" = ["extend_line_up", "extend_to_line_bounds"]
+"A-x" = ["extend_line_up", "extend_to_line_bounds"]
+"X" = "shrink_to_line_bounds"
