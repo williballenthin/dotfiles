@@ -1,4 +1,57 @@
 theme = "github_light"
 
+# many items below inspired by:
+# https://theari.dev/blog/enhanced-helix-config/
+
+[editor]
+# Show currently open buffers, only when more than one exists.
+bufferline = "multiple"
+
+# Highlight all lines with a cursor
+cursorline = true
+
+# Show a ruler at column 120
+rulers = [120]
+
+# Force the theme to show colors
+true-color = true
+
+# show border everywhere, esp for LSP/completions
+# otherwise the popup text is hard to differentiate from buffer text.
+popup-border = "all"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
 [editor.lsp]
 display-inlay-hints = true
+
+# Disable automatically popups of signature parameter help
+auto-signature-help = false
+
+# Show LSP messages in the status line
+display-messages = true
+
+[keys.normal]
+# easy buffer switching
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+# move `repeat_last_motion` from A-. to A-/
+"A-/" = "repeat_last_motion"
+
+# keep in sync with section in `[keys.select]`
+"A-x" = "extend_to_line_bounds"
+"X" = ["extend_line_up", "extend_to_line_bounds"]
+
+[keys.select]
+"A-x" = "extend_to_line_bounds"
+"X" = ["extend_line_up", "extend_to_line_bounds"]
