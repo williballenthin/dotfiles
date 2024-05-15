@@ -7,7 +7,8 @@ This is a nix flake that uses Home Manager to track things.
 To install (after setting up nix with flakes):
 
 ```sh
-$ nix run . -- switch --flake .#"williballenthin" --impure
+$ nix run . -- switch --flake .#user@m1 --impure  # and/or
+$ home-manager switch --flake .#user@m1 --impure
 ```
 
 Then restart the shell.
