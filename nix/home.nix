@@ -87,6 +87,7 @@ in
     pkgs.pkg-config
   ]
   ++ lib.optionals stdenv.isDarwin [
+    pkgs.docker-compose
   ]
   ++ lib.optionals stdenv.isLinux [
     pkgs.nethogs
