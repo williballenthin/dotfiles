@@ -10,15 +10,16 @@ set -gx DIRENV_LOG_FORMAT ""
 starship init fish | source
 
 if status --is-interactive
-    abbr --add --global ll exa --long --git
-    abbr --add --global lt exa --tree --level=2 --long --git
+    abbr --add --global ll eza --long --git
+    abbr --add --global lt eza --tree --level=2 --long --git
     abbr --add --global gs tig status
     abbr --add --global cat bat
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
     abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
+    abbr --add --global em nohup emacs --user="" --maximized .  > /dev/null 2>&1 &
 end
 
 # fzf.fish config
-set fzf_preview_dir_cmd exa --all --color=always
+set fzf_preview_dir_cmd eza --all --color=always
 set fzf_fd_opts --hidden --exclude=.git

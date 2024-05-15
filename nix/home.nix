@@ -7,14 +7,15 @@
 { config, lib, ... }:
 
 let
-  pkgs2305 = import <nixos-23.05> { };
+  pkgs2311 = import <nixos-23.11> { };
   # you can reference these below if needing to use an old version, pinned version, etc.
   #pkgsUnstable = import <nixpkgs-unstable> {};
+  #pkgs2305 = import <nixos-23.05> { };
   #pkgs2211 = import <nixos-22.11> { };
   #pkgs2111 = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz) { inherit config; };
 
   # update here for dist-upgrade
-  pkgs = pkgs2305;
+  pkgs = pkgs2311;
   inherit (pkgs) stdenv;
   inherit (lib) mkIf;
 in                                         
@@ -36,9 +37,12 @@ in
   programs.home-manager.enable = true;
 
   home.packages = [
+    # expect underlying system to provide:
+    #   - ssh
+    #   - git
+    # which is reasonable, since these dotfiles come from a github repo.
+
     pkgs.tmux
-    pkgs.openssh
-    pkgs.git
     pkgs.unzip
     pkgs.git-lfs
     pkgs.zstd
@@ -46,7 +50,15 @@ in
     pkgs.jq
     pkgs.gnupg
     pkgs.neovim
-    pkgs.emacs
+    pkgs.emacs29
+    # for building emacs->vterm
+    pkgs.libtool
+    # for emacs->clipboard
+    pkgs.wl-clipboard
+    # for emacs->pyright LSP
+    pkgs.pyright
+    # for emacs->ts-lsp
+    pkgs.nodePackages.typescript-language-server
     pkgs.watch
     pkgs.ripgrep
     pkgs.fd
@@ -58,7 +70,7 @@ in
     pkgs.tig
     pkgs.gitui
     pkgs.bat
-    pkgs.exa
+    pkgs.eza
     pkgs.hexyl
     pkgs.ent
     pkgs.gron
@@ -77,14 +89,13 @@ in
     pkgs.bacon
     # broken right now
     # pkgs.rustracer
-    # for spacemacs
-    pkgs.source-code-pro
   ]
   ++ [
     # for lancelot dev in vscode remote
     pkgs.gnumake
     pkgs.cmake
     pkgs.pkg-config
+    pkgs.iosevka
   ]
   ++ lib.optionals stdenv.isDarwin [
     pkgs.docker-compose
@@ -120,26 +131,8 @@ in
 
   xdg.configFile."nvim/init.vim".source = ../.config/nvim/init.vim;
 
-# spacemacs expects to be able to write to its files,
-# so having nix own the files from the repo doesn't work (today).
-# so just checkout the directory manually:
-#
-#     git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
-#
-# otherwise, we'd use this:
-#
-#  home.file.".emacs.d" = {
-#    # don't make the directory read only so that impure melpa can still happen for now.
-#    # see: https://discourse.nixos.org/t/home-manager-spacemacs/8033/2
-#    recursive = true;
-#    source = pkgs.fetchFromGitHub {
-#      owner = "syl20bnr";
-#      repo = "spacemacs";
-#      rev = "5c0650282fe09f852ecd4109bf2a6bc9cb5a950b";
-#      sha256 = "sha256-xKSjb88YL5fByieMnaLscLRVfyV22fdzxRyHSNj3J9g=";
-#    };
-#  };
-  home.file.".spacemacs".source = ../emacs/.spacemacs;
+  home.file.".emacs.d/early-init.el".source = ../emacs/early-init.el;
+  home.file.".emacs.d/init.el".source = ../emacs/init.el;
 
   home.file.".gitconfig".source = ../git/.gitconfig;
   home.file.".tmux.conf".source = ../tmux/.tmux.conf;
@@ -157,14 +150,16 @@ in
     repo = "fisher";
     # 4.4.3
     rev = "36810b39401536650d7a1018c8f3832f51741950";
-    hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    #hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    hash = "sha256-q9Yi6ZlHNFnPN05RpO+u4B5wNR1O3JGIn2AJ3AEl4xs=";
   } + "/completions/fisher.fish";
   home.file.".config/fish/functions/fisher.fish".source = pkgs.fetchFromGitHub {
     owner = "jorgebucaran";
     repo = "fisher";
     # 4.4.3
     rev = "36810b39401536650d7a1018c8f3832f51741950";
-    hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    #hash = "sha256-TR01V4Ol7zAj+3hvBj23PGSNjH+EHTcOQSKtA5uneGE=";
+    hash = "sha256-q9Yi6ZlHNFnPN05RpO+u4B5wNR1O3JGIn2AJ3AEl4xs=";
   } + "/functions/fisher.fish";
 
   # fast, persistent nix integration with direnv
