@@ -6,24 +6,16 @@ are installed, use the following steps.
 Alternatively, check out the Dockerfile for an example.
 
 ```
-nix-channel --add https://nixos.org/channels/nixos-23.11 nixos-23.11
-nix-channel --add https://nixos.org/channels/nixos-23.05 nixos-23.05
-nix-channel --add https://nixos.org/channels/nixos-22.11 nixos-22.11
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+# via: https://nix-community.github.io/home-manager/#sec-install-standalone
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 
 git clone git@github.com:williballenthin/dotfiles.git /home/user/.dotfiles
+cd /home/user/.dotfiles
 
-# replace home.nix with the one in this repo
-rm ~/.config/home-manager/home.nix
-ln -s /home/user/.dotfiles/nix/home.nix ~/.config/home-manager/home.nix
-
-# deploy the changes
-home-manager switch
-
-# initial setup of neovim plugins
-nvim +:PlugInstall +qa
-nvim +:TSUpdate +qa
+home-manager switch --flake .#user@sb2 --impure
 
 # set default shell to fish
 chsh --shell /home/user/.nix-profile/bin/fish
