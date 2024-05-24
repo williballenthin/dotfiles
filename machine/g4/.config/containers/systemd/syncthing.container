@@ -10,7 +10,7 @@ UIDMap=1001:1001:64536
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=Etc/UTC
-Volume=/obj/docker/volume/syncthing:/var/syncthing
+Volume=/db/containers/syncthing:/var/syncthing
 
 [Service]
 Restart=always
