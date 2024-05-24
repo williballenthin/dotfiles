@@ -1,0 +1,16 @@
+[Container]
+Image=docker.io/deluan/navidrome:0.52.5
+AutoUpdate=registry
+PublishPort=4533:4533
+UIDMap=1000:0:1
+UIDMap=0:1:1000
+UIDMap=1001:1001:64536
+Environment=ND_LOGLEVEL=info
+Volume=/db/music:/music:Z
+Volume=/db/containers/navidrome/data:/data:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
