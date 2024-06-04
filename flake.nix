@@ -91,6 +91,7 @@
                   pkgs.jless
                   pkgs.jujutsu
                   pkgs.jq
+                  pkgs.mosh
                   pkgs.ranger
                   pkgs.ripgrep
                   pkgs.tig
