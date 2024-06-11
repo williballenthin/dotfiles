@@ -2,6 +2,14 @@
   description = "virtual environments";
 
   inputs = {
+
+    nixpkgs = {
+      type = "github";
+      owner = "nixos";
+      repo = "nixpkgs";
+      # nixos-24.05
+      ref = "63dacb46bf939521bdc93981b4cbb7ecb58427a0";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     devshell = {
       url = "github:numtide/devshell";
