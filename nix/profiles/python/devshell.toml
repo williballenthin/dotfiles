@@ -12,7 +12,7 @@ help = "pre-commit (manual)"
 
 [devshell]
 packages = [
-  "python311",
+  "python312",
   "stdenv.cc.cc.lib",
   "uv",
   "pre-commit",
