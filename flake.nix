@@ -22,7 +22,7 @@
   outputs = { nixpkgs, home-manager, flake-utils, ... } @ inputs:
     let
       # mkHomeConfig via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
-      mkHomeConfig = system: home-manager.lib.homeManagerConfiguration {
+      mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
         };
@@ -62,7 +62,6 @@
                   # shell and PS1
                   pkgs.fish
                   pkgs.starship
-                  pkgs.atuin
 
                   #############################################
                   # basic utilities
@@ -135,8 +134,27 @@
         ];
       };
     in {
-      homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin";
-      homeConfigurations."user@sb2" = mkHomeConfig "x86_64-linux";
-      homeConfigurations."user@g4" = mkHomeConfig "x86_64-linux";
+      homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.atuin
+            ];
+        })
+      ];
+      homeConfigurations."user@sb2" = mkHomeConfig "x86_64-linux" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.atuin
+            ];
+        })
+      ];
+      homeConfigurations."user@g4" = mkHomeConfig "x86_64-linux" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.atuin
+            ];
+        })
+      ];
+      homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [];
     };
 }
