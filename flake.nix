@@ -155,6 +155,12 @@
             ];
         })
       ];
-      homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [];
+      homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.google-cloud-sdk
+            ];
+        })
+      ];
     };
 }
