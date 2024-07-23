@@ -131,7 +131,7 @@
               home.file.".config/atuin/config.toml".source = ./.config/atuin/config.toml;
               home.file.".config/bat/config".source = ./.config/bat/config;
           })
-        ];
+        ] ++ localModules;
       };
     in {
       homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin" [
