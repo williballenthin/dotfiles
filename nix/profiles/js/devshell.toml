@@ -1,0 +1,33 @@
+# https://numtide.github.io/devshell
+
+[[commands]]
+name = "profile"
+command = "echo 'javascript'"
+help = "show profile (javascript)"
+
+[[commands]]
+name = "pc"
+command = "pre-commit run --all-files --hook-stage manual"
+help = "pre-commit (manual)"
+
+[devshell]
+packages = [
+  "nodejs",
+  "stdenv.cc.cc.lib",
+  "pre-commit",
+  # LSP for helix
+  "typescript-language-server"
+]
+
+# via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
+[[env]]
+name = "CPPFLAGS"
+eval = "-I${DEVSHELL_DIR}/include"
+
+[[env]]
+name = "LDFLAGS"
+eval = "-L${DEVSHELL_DIR}/lib"
+
+[[env]]
+name = "LD_LIBRARY_PATH"
+eval = "${DEVSHELL_DIR}/lib:${LD_LIBRARY_PATH}"
