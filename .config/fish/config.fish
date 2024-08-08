@@ -102,7 +102,7 @@ if status --is-interactive
             return
         end
 
-        cp -r ~/.dotfiles/nix/profiles/javascript/ ".env"
+        cp -r ~/.dotfiles/nix/profiles/js/ ".env"
         pushd ".env"
         git init .
         git add *

@@ -16,7 +16,7 @@ packages = [
   "stdenv.cc.cc.lib",
   "pre-commit",
   # LSP for helix
-  "typescript-language-server"
+  "nodePackages.typescript-language-server",
 ]
 
 # via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
