@@ -19,9 +19,10 @@ if status --is-interactive
     abbr --add --global cat bat
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
-    abbr --add --global ec emacsclient -nw --create-frame --alternate-editor=nvim
-    abbr --add --global em nohup emacs --user="" --maximized . >/dev/null 2>&1 &
-    atuin init fish | source
+
+    if type -q atuin
+        atuin init fish | source
+    end
     zoxide init fish | source
 
     function ,init-python-project
