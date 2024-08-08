@@ -85,6 +85,7 @@
                   pkgs.eza
                   pkgs.fd
                   pkgs.fzf
+                  pkgs.gh
                   pkgs.gitui
                   pkgs.gron
                   pkgs.hexyl
@@ -138,5 +139,6 @@
       homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin";
       homeConfigurations."user@sb2" = mkHomeConfig "x86_64-linux";
       homeConfigurations."user@g4" = mkHomeConfig "x86_64-linux";
+      homeConfigurations."user@default" = mkHomeConfig "x86_64-linux";
     };
 }
