@@ -1,21 +1,21 @@
 # The first time you start this container you must log in.
 # Fetch the login URL via:
 #
-#     journalctl --user -xeu tsnsrv-navidrome.service
+#     journalctl --user -xeu tsnsrv-metube.service
 #
-# The machine key (secret) is stored in the volume tsnsrv-navidrome,
+# The machine key (secret) is stored in the volume tsnsrv-metube,
 # which will be created automatically.
 
 [Container]
 Image=ghcr.io/boinkor-net/tsnsrv:latest
 AutoUpdate=registry
 User=1000:1000
-Volume=tsnsrv-navidrome:/.config
-Exec=-name=navidrome http://host.containers.internal:4533
+Volume=tsnsrv-metube:/.config
+Exec=-name=metube http://host.containers.internal:8081
 
 [Unit]
-Wants=navidrome.service
-After=navidrome.service
+Wants=metube.service
+After=metube.service
 
 [Service]
 Restart=always
