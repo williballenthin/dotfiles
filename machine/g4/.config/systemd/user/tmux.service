@@ -1,0 +1,11 @@
+[Unit]
+Description=tmux session for user %I
+
+[Service]
+Type=forking
+# WARNING: use %I instead of %u here; %u=root in system services.
+ExecStart=/usr/bin/tmux new-session -s %I -d
+ExecStop=/usr/bin/tmux kill-session -t %I
+
+[Install]
+WantedBy=default.target

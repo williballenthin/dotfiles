@@ -163,6 +163,7 @@
             home.file.".config/containers/systemd/navidrome.container".source = ./machine/g4/.config/containers/systemd/navidrome.container;
             home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
+            home.file.".config/systemd/user/tmux.service".source = ./machine/g4/.config/systemd/user/tmux.service;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
