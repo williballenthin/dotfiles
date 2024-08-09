@@ -1,10 +1,9 @@
 [Container]
 Image=ghcr.io/boinkor-net/tsnsrv:latest
 AutoUpdate=registry
-UIDMap=1000:0:1
-UIDMap=0:1:1000
-UIDMap=1001:1001:64536
 Volume=tsnsrv-navidrome:/.config
+
+[Unit]
 Wants=navidrome.container
 After=navidrome.container
 
@@ -13,5 +12,3 @@ Restart=always
 
 [Install]
 WantedBy=default.target
-
-
