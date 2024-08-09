@@ -163,6 +163,9 @@
             home.file.".config/containers/systemd/navidrome.container".source = ./machine/g4/.config/containers/systemd/navidrome.container;
             home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
+
+            home.file.".config/containers/systemd/tsnsrv-navidrome.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-navidrome.container;
+
             home.file.".config/systemd/user/tmux.service".source = ./machine/g4/.config/systemd/user/tmux.service;
         })
       ];
