@@ -157,6 +157,11 @@
         })
 
         ({pkgs, ...}: {
+            # systemctl --user daemon-reload
+            # systemctl --user start  ...
+            # systemctl --user status ...
+            home.file.".config/containers/systemd/navidrome.container".source = ./machine/g4/.config/containers/systemd/navidrome.container;
+            home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
         })
       ];
