@@ -155,6 +155,10 @@
               pkgs.atuin
             ];
         })
+
+        ({pkgs, ...}: {
+            home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
+        })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
         ({pkgs, ...}: {
