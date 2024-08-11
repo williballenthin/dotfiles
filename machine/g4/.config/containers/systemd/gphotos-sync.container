@@ -1,0 +1,12 @@
+[Container]
+Image=ghcr.io/gilesknap/gphotos-sync:3.2.5
+AutoUpdate=registry
+Volume=gphotos-sync-config:/root/.config/gphotos-sync/
+Volume=/db/photos/google/:/storage
+Exec=/storage
+
+[Service]
+Restart=no
+
+[Install]
+WantedBy=default.target
