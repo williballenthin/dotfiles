@@ -164,13 +164,17 @@
             home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
 
+            # on first run, need to login to Tailscale.
+            # review the service log output (journalctl) for the login link.
+            # subsequently, the machine keys are stored in a volume.
             home.file.".config/containers/systemd/tsnsrv-navidrome.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-navidrome.container;
             home.file.".config/containers/systemd/tsnsrv-metube.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-metube.container;
 
+            # on first run, need to login to Google.
+            # use a standalone podman container to initialize the secrets using its documentation.
+            # subsequently, the machine keys are stored in a volume.
             home.file.".config/containers/systemd/gphotos-sync.container".source = ./machine/g4/.config/containers/systemd/gphotos-sync.container;
             home.file.".config/systemd/user/gphotos-sync.timer".source = ./machine/g4/.config/systemd/user/gphotos-sync.timer;
-            
-            home.file.".config/systemd/user/tmux.service".source = ./machine/g4/.config/systemd/user/tmux.service;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
