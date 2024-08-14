@@ -7,7 +7,7 @@
 # which will be created automatically.
 
 [Container]
-Image=ghcr.io/boinkor-net/tsnsrv:latest
+Image=ghcr.io/boinkor-net/tsnsrv:fa119f7113622364dfef419172ba0107ba536564044d612e5b4ea31060882132
 AutoUpdate=registry
 User=1000:1000
 Volume=tsnsrv-metube:/.config
