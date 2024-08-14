@@ -1,0 +1,14 @@
+[Container]
+Image=docker.io/vaultwarden/server:1.32.0
+AutoUpdate=registry
+PublishPort=80:4080
+UIDMap=1000:0:1
+UIDMap=0:1:1000
+UIDMap=1001:1001:64536
+Volume=/db/containers/vaultwarden:/data:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
