@@ -1,7 +1,7 @@
 [Container]
 Image=docker.io/vaultwarden/server:1.32.0
 AutoUpdate=registry
-PublishPort=80:4080
+PublishPort=4080:80
 UIDMap=1000:0:1
 UIDMap=0:1:1000
 UIDMap=1001:1001:64536
