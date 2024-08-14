@@ -51,3 +51,8 @@
        bold yellow => syntax "#222f14"
     zero-style = syntax
     whitespace-error-style = "#aaaaaa"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
