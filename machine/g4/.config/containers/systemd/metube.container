@@ -1,0 +1,14 @@
+[Container]
+Image=ghcr.io/alexta69/metube
+AutoUpdate=registry
+PublishPort=8081:8081
+UIDMap=1000:0:1
+UIDMap=0:1:1000
+UIDMap=1001:1001:64536
+Volume=/db/music/q:/downloads:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
