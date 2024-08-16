@@ -6,9 +6,9 @@
     signingkey = /Users/user/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/97eaf6acd9a1a2ceae31b33216737a6a.pub
 [core]
     fileMode = false
-    pager = delta
+    # pager = delta
 [interactive]
-    diffFilter = delta --color-only
+    # diffFilter = delta --color-only
 [alias]
     branches = branch -a
     tags = tag
@@ -24,7 +24,7 @@
 [merge]
     conflictstyle = diff3
 [diff]
-    tool = delta
+    # tool = delta
     colorMoved = default
 [difftool]
     prompt = false
