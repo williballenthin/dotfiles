@@ -38,7 +38,7 @@
     navigate = true
     side-by-side = false
     line-numbers = true
-    dark = true
+    light = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
