@@ -79,6 +79,7 @@
                   # extended utilities
                   pkgs.bat
                   pkgs.broot
+                  pkgs.btop
                   pkgs.delta
                   pkgs.dua
                   pkgs.eza
