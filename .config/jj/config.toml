@@ -1,0 +1,7 @@
+[user]
+name = "Willi Ballenthin"
+email = "wballenthin@google.com"
+
+[ui]
+pager = ":builtin"
+diff.tool = ["delta", "--navigate", "$left", "$right"]

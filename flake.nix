@@ -79,11 +79,13 @@
                   # extended utilities
                   pkgs.bat
                   pkgs.broot
+                  pkgs.btop
                   pkgs.delta
                   pkgs.dua
                   pkgs.eza
                   pkgs.fd
                   pkgs.fzf
+                  pkgs.gh
                   pkgs.gitui
                   pkgs.gron
                   pkgs.hexyl
@@ -130,6 +132,7 @@
               home.file.".config/fish/functions/fzf.fish".source = ./.config/fish/functions/fzf.fish;
               home.file.".config/atuin/config.toml".source = ./.config/atuin/config.toml;
               home.file.".config/bat/config".source = ./.config/bat/config;
+              home.file.".config/jj/config.toml".source = ./.config/jj/config.toml;
           })
         ] ++ localModules;
       };
@@ -153,6 +156,29 @@
             home.packages = [
               pkgs.atuin
             ];
+        })
+
+        ({pkgs, ...}: {
+            # systemctl --user daemon-reload
+            # systemctl --user start  ...
+            # systemctl --user status ...
+            home.file.".config/containers/systemd/navidrome.container".source = ./machine/g4/.config/containers/systemd/navidrome.container;
+            home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
+            home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
+            home.file.".config/containers/systemd/vaultwarden.container".source = ./machine/g4/.config/containers/systemd/vaultwarden.container;
+
+            # on first run, need to login to Tailscale.
+            # review the service log output (journalctl) for the login link.
+            # subsequently, the machine keys are stored in a volume.
+            home.file.".config/containers/systemd/tsnsrv-navidrome.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-navidrome.container;
+            home.file.".config/containers/systemd/tsnsrv-metube.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-metube.container;
+            home.file.".config/containers/systemd/tsnsrv-vaultwarden.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-vaultwarden.container;
+
+            # on first run, need to login to Google.
+            # use a standalone podman container to initialize the secrets using its documentation.
+            # subsequently, the machine keys are stored in a volume.
+            home.file.".config/containers/systemd/gphotos-sync.container".source = ./machine/g4/.config/containers/systemd/gphotos-sync.container;
+            home.file.".config/systemd/user/gphotos-sync.timer".source = ./machine/g4/.config/systemd/user/gphotos-sync.timer;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
