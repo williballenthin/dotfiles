@@ -38,6 +38,7 @@ if status --is-interactive
 
         cp -r ~/.dotfiles/nix/profiles/python/ ".env"
         pushd ".env"
+        mv justfile ../.justfile
         git init .
         git add *
         popd
