@@ -5,23 +5,19 @@ name = "profile"
 command = "echo 'python'"
 help = "show profile (python)"
 
-[[commands]]
-name = "pc"
-command = "pre-commit run --all-files --hook-stage manual"
-help = "pre-commit (manual)"
-
 [devshell]
 packages = [
+  "just",
   "python312",
   "stdenv.cc.cc.lib",
   "uv",
   "pre-commit",
   # LSP for helix
   "nodePackages.pyright",
-  "python311Packages.python-lsp-server",
-  "python311Packages.pylsp-mypy",
-  "python311Packages.python-lsp-ruff",
-  "python311Packages.black",
+  "python312Packages.python-lsp-server",
+  "python312Packages.pylsp-mypy",
+  "python312Packages.python-lsp-ruff",
+  "python312Packages.black",
 ]
 
 # via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
