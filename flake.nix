@@ -99,6 +99,7 @@
                   pkgs.tmux
                   pkgs.visidata
                   pkgs.zoxide
+                  pkgs.zellij
 
                   #############################################
                   # development
