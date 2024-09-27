@@ -8,8 +8,8 @@ auto-format = false
 command = "ruff-lsp"
 
 [language-server.pylsp.config.pylsp]
-plugins.pyls_mypy.enabled = true
-plugins.pyls_mypy.live_mode = true
+plugins.pylsp_mypy.enabled = true
+plugins.pylsp_mypy.live_mode = true
 
 [[language]]
 name = "go"
