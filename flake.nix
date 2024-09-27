@@ -92,6 +92,7 @@
                   pkgs.jless
                   pkgs.jujutsu
                   pkgs.jq
+                  pkgs.lazygit
                   pkgs.mosh
                   pkgs.ranger
                   pkgs.ripgrep
