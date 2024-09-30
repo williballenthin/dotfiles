@@ -17,6 +17,7 @@ if status --is-interactive
     abbr --add --global ll eza --long --git
     abbr --add --global lt eza --tree --level=2 --long --git
     abbr --add --global gs tig status
+    abbr --add --global lg lazygit
     abbr --add --global cat bat
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
@@ -39,6 +40,7 @@ if status --is-interactive
 
         cp -r ~/.dotfiles/nix/profiles/python/ ".env"
         pushd ".env"
+        mv justfile ../.justfile
         git init .
         git add *
         popd

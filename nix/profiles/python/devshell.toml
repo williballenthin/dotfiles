@@ -5,13 +5,9 @@ name = "profile"
 command = "echo 'python'"
 help = "show profile (python)"
 
-[[commands]]
-name = "pc"
-command = "pre-commit run --all-files --hook-stage manual"
-help = "pre-commit (manual)"
-
 [devshell]
 packages = [
+  "just",
   "python312",
   "just",
   "stdenv.cc.cc.lib",
