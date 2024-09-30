@@ -96,6 +96,7 @@
                   pkgs.ranger
                   pkgs.ripgrep
                   pkgs.tig
+                  pkgs.timewarrior
                   pkgs.tmux
                   pkgs.visidata
                   pkgs.zoxide
