@@ -5,3 +5,6 @@ email = "wballenthin@google.com"
 [ui]
 pager = ":builtin"
 diff.tool = ["delta", "--navigate", "$left", "$right"]
+
+[templates]
+log = 'builtin_log_comfortable'
