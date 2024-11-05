@@ -30,6 +30,16 @@
         in
         pkgs.devshell.mkShell {
           imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
+          env = [
+            {
+              name = "LD_LIBRARY_PATH";
+              value = "${
+                nixpkgs.lib.makeLibraryPath
+                # extend library path here
+                (with pkgs; [ stdenv.cc.cc openssl ])
+              }:$LD_LIBRARY_PATH";
+            }
+          ];
         };
     });
 }
