@@ -137,6 +137,7 @@
               home.file.".config/bat/config".source = ./.config/bat/config;
               home.file.".config/jj/config.toml".source = ./.config/jj/config.toml;
               home.file.".config/wezterm/wezterm.lua".source = ./.config/wezterm/wezterm.lua;
+              home.file.".config/zellij/config.kdl".source = ./.config/zellij/config.kdl;
           })
         ] ++ localModules;
       };
