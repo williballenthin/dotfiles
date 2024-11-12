@@ -101,7 +101,7 @@
                   pkgs.tmux
                   pkgs.visidata
                   pkgs.zoxide
-                  # pkgs.zellij # await 0.41
+                  pkgs.zellij
 
                   #############################################
                   # development
