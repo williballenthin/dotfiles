@@ -14,7 +14,7 @@ packages = [
   "uv",
   "pre-commit",
   # LSP for helix
-  "nodePackages.pyright",
+  "basedpyright",
   "ruff-lsp",
   "python312Packages.python-lsp-server",
   "python312Packages.pylsp-mypy",
