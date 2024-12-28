@@ -1,6 +1,6 @@
 [[language]]
 name = "python"
-language-servers = ["pylsp", "ruff-lsp"]
+language-servers = ["pylsp", "ruff-lsp", "basedpyright"]
 formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = false
 
