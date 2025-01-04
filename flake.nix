@@ -79,6 +79,7 @@
                   # extended utilities
                   pkgs.bat
                   pkgs.broot
+                  pkgs.btop
                   pkgs.delta
                   pkgs.dua
                   pkgs.eza
@@ -91,13 +92,16 @@
                   pkgs.jless
                   pkgs.jujutsu
                   pkgs.jq
+                  pkgs.lazygit
                   pkgs.mosh
                   pkgs.ranger
                   pkgs.ripgrep
                   pkgs.tig
+                  pkgs.timewarrior
                   pkgs.tmux
                   pkgs.visidata
                   pkgs.zoxide
+                  pkgs.zellij
 
                   #############################################
                   # development
@@ -131,6 +135,9 @@
               home.file.".config/fish/functions/fzf.fish".source = ./.config/fish/functions/fzf.fish;
               home.file.".config/atuin/config.toml".source = ./.config/atuin/config.toml;
               home.file.".config/bat/config".source = ./.config/bat/config;
+              home.file.".config/jj/config.toml".source = ./.config/jj/config.toml;
+              home.file.".config/wezterm/wezterm.lua".source = ./.config/wezterm/wezterm.lua;
+              home.file.".config/zellij/config.kdl".source = ./.config/zellij/config.kdl;
           })
         ] ++ localModules;
       };

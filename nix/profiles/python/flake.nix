@@ -7,8 +7,8 @@
       type = "github";
       owner = "nixos";
       repo = "nixpkgs";
-      # nixos-24.05
-      ref = "63dacb46bf939521bdc93981b4cbb7ecb58427a0";
+      # nixos-24.11
+      ref = "314e12ba369ccdb9b352a4db26ff419f7c49fa84";
     };
     devshell = {
       url = "github:numtide/devshell";
@@ -30,6 +30,16 @@
         in
         pkgs.devshell.mkShell {
           imports = [ (pkgs.devshell.importTOML ./devshell.toml) ];
+          env = [
+            {
+              name = "LD_LIBRARY_PATH";
+              value = "${
+                nixpkgs.lib.makeLibraryPath
+                # extend library path here
+                (with pkgs; [ stdenv.cc.cc openssl ])
+              }:$LD_LIBRARY_PATH";
+            }
+          ];
         };
     });
 }

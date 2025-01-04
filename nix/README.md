@@ -6,11 +6,16 @@ are installed, use the following steps.
 Alternatively, check out the Dockerfile for an example.
 
 ```
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+sh <(curl --proto '=https' --tlsv1.2 -sSf -L https://nixos.org/nix/install) --no-daemon
+
+# enable flakes
+mkdir ~/.config/nix
+echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 
 # via: https://nix-community.github.io/home-manager/#sec-install-standalone
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
+nix-shell '<home-manager>' -A install
 
 git clone git@github.com:williballenthin/dotfiles.git /home/user/.dotfiles
 cd /home/user/.dotfiles
