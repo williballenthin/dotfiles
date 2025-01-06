@@ -40,7 +40,12 @@ if status --is-interactive
 
         cp -r ~/.dotfiles/nix/profiles/python/ ".env"
         pushd ".env"
-        mv justfile ../.justfile
+        if ! test -f ../.justfile && ! test -f ../justfile
+            mv justfile ../.justfile
+        end
+        if ! test -f ../pyproject.toml
+            mv pyproject.toml ../pyproject.toml
+        end
         git init .
         git add *
         popd
