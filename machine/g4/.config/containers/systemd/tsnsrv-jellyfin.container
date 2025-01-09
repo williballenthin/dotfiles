@@ -1,0 +1,24 @@
+# The first time you start this container you must log in.
+# Fetch the login URL via:
+#
+#     journalctl --user -xeu tsnsrv-jellyfin.service
+#
+# The machine key (secret) is stored in the volume tsnsrv-metube,
+# which will be created automatically.
+
+[Container]
+Image=ghcr.io/boinkor-net/tsnsrv@sha256:fa119f7113622364dfef419172ba0107ba536564044d612e5b4ea31060882132
+AutoUpdate=registry
+User=1000:1000
+Volume=tsnsrv-jellyfin:/.config
+Exec=-name=jellyfin http://host.containers.internal:8086
+
+[Unit]
+Wants=jellyfin.service
+After=jellyfin.service
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

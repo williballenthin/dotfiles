@@ -181,6 +181,7 @@
             home.file.".config/containers/systemd/tsnsrv-metube.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-metube.container;
             home.file.".config/containers/systemd/tsnsrv-vaultwarden.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-vaultwarden.container;
             home.file.".config/containers/systemd/tsnsrv-uptime-kuma.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-uptime-kuma.container;
+            home.file.".config/containers/systemd/tsnsrv-jellyfin.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-jellyfin.container;
 
             # on first run, need to login to Google.
             # use a standalone podman container to initialize the secrets using its documentation.
