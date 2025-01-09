@@ -1,0 +1,16 @@
+[Container]
+Image=ghcr.io/jellyfin/jellyfin:latest
+AutoUpdate=registry
+PublishPort=8096:8096
+UIDMap=1000:0:1
+UIDMap=0:1:1000
+UIDMap=1001:1001:64536
+Volume=/db/containers/jellyfin/config:/config
+Volume=/db/containers/jellyfin/cache:/cache
+Mount=type=bind,source=/db/media,destination=/media,ro=true,relabel=private
+
+[Service]
+Restart=no
+
+[Install]
+WantedBy=default.target

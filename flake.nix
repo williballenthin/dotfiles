@@ -172,6 +172,7 @@
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
             home.file.".config/containers/systemd/vaultwarden.container".source = ./machine/g4/.config/containers/systemd/vaultwarden.container;
             home.file.".config/containers/systemd/uptime-kuma.container".source = ./machine/g4/.config/containers/systemd/uptime-kuma.container;
+            home.file.".config/containers/systemd/jellyfin.container".source = ./machine/g4/.config/containers/systemd/jellyfin.container;
 
             # on first run, need to login to Tailscale.
             # review the service log output (journalctl) for the login link.
