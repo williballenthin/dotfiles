@@ -1,0 +1,15 @@
+[Container]
+Image=ghcr.io/kieraneglin/pinchflat:latest
+AutoUpdate=registry
+PublishPort=8945:8945
+UIDMap=1000:0:1
+UIDMap=0:1:1000
+UIDMap=1001:1001:64536
+Volume=/db/containers/pinchflat:/config
+Volume=/db/media:/downloads
+
+[Service]
+Restart=no
+
+[Install]
+WantedBy=default.target
