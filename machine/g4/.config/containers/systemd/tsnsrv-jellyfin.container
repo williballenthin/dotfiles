@@ -11,7 +11,7 @@ Image=ghcr.io/boinkor-net/tsnsrv@sha256:fa119f7113622364dfef419172ba0107ba536564
 AutoUpdate=registry
 User=1000:1000
 Volume=tsnsrv-jellyfin:/.config
-Exec=-name=jellyfin http://host.containers.internal:8086
+Exec=-name=jellyfin http://host.containers.internal:8096
 
 [Unit]
 Wants=jellyfin.service
