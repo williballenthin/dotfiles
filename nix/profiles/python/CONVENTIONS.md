@@ -1,0 +1,4 @@
+- use black formatting
+- prefer to provide type hints
+- use logging/stderr for status messages and print/stdout for program output
+- you can use the following libraries frequently: tqdm, rich, humanize

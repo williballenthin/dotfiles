@@ -1,3 +1,7 @@
 [tool.pyright]
 reportUnusedCallResult = false
+reportUnknownVariableType = false
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
 reportAny = false
