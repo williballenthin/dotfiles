@@ -96,6 +96,7 @@
                   pkgs.mosh
                   pkgs.ranger
                   pkgs.ripgrep
+                  pkgs.television
                   pkgs.tig
                   pkgs.timewarrior
                   pkgs.tmux
