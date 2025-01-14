@@ -21,7 +21,7 @@ true-color = true
 popup-border = "all"
 
 # for inline diagnostics
-end-of-line-diagnostics = "hint"
+end-of-line-diagnostics = "error"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -45,7 +45,7 @@ auto-signature-help = false
 display-messages = true
 
 [editor.inline-diagnostics]
-cursor-line = "error"
+cursor-line = "hint"
 
 [keys.normal]
 # easy buffer switching
