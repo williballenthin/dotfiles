@@ -20,6 +20,9 @@ true-color = true
 # otherwise the popup text is hard to differentiate from buffer text.
 popup-border = "all"
 
+# for inline diagnostics
+end-of-line-diagnostics = "hint"
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -40,6 +43,9 @@ auto-signature-help = false
 
 # Show LSP messages in the status line
 display-messages = true
+
+[editor.inline-diagnostics]
+cursor-line = "error"
 
 [keys.normal]
 # easy buffer switching
