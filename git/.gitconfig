@@ -7,6 +7,7 @@
 [core]
     fileMode = false
     pager = delta
+    excludesFile = ~/.gitignore
 [interactive]
     diffFilter = delta --color-only
 [alias]
