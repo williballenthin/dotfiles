@@ -17,9 +17,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         flake-utils.url = "github:numtide/flake-utils";
+        isd.url = "github:isd-project/isd";
     };
 
-  outputs = { nixpkgs, home-manager, flake-utils, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, flake-utils, isd, ... } @ inputs:
     let
       # mkHomeConfig via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
@@ -35,6 +36,7 @@
           ({...}: {
               _module.args = {
                   # inherit foo
+                  inherit isd;
               };
           })
 
@@ -103,6 +105,7 @@
                   pkgs.visidata
                   pkgs.zoxide
                   pkgs.zellij
+                  isd.packages.${pkgs.system}.isd
 
                   #############################################
                   # development
@@ -110,7 +113,6 @@
                   #--------------------------------------------
                   # editors
                   pkgs.helix
-                  pkgs.aider-chat
 
                   #--------------------------------------------
                   # rust
