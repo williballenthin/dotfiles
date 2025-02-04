@@ -35,8 +35,11 @@
           # https://discourse.nixos.org/t/flakes-impure-error-installing-package-from-local-file-system/22185/9
           ({...}: {
               _module.args = {
-                  # inherit foo
-                  inherit isd;
+                  # inherit foo;
+                  #
+                  # then use below in pkgs block, like:
+                  #
+                  #     foo.packages.${pkgs.system}.foo
               };
           })
 
@@ -105,7 +108,6 @@
                   pkgs.visidata
                   pkgs.zoxide
                   pkgs.zellij
-                  isd.packages.${pkgs.system}.isd
 
                   #############################################
                   # development
@@ -164,9 +166,21 @@
         })
       ];
       homeConfigurations."user@g4" = mkHomeConfig "x86_64-linux" [
+        # Flake forwarding module.
+        #
+        # Expose flake inputs to our inline module below
+        # https://discourse.nixos.org/t/flakes-impure-error-installing-package-from-local-file-system/22185/9
+        ({...}: {
+            _module.args = {
+                inherit isd;
+            };
+        })
+
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
+              # systemd tui, tracked by flake during active dev
+              isd.packages.${pkgs.system}.isd
             ];
         })
 
