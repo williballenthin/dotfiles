@@ -1,0 +1,14 @@
+[Container]
+Image=ghcr.io/archivebox/archivebox:latest
+AutoUpdate=registry
+PublishPort=8001:8000
+UIDMap=1000:0:1
+UIDMap=0:1:1000
+UIDMap=1001:1001:64536
+Volume=/db/archive/archivebox/data/:/data
+
+[Service]
+Restart=no
+
+[Install]
+WantedBy=default.target

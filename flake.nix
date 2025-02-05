@@ -195,6 +195,7 @@
             home.file.".config/containers/systemd/uptime-kuma.container".source = ./machine/g4/.config/containers/systemd/uptime-kuma.container;
             home.file.".config/containers/systemd/jellyfin.container".source = ./machine/g4/.config/containers/systemd/jellyfin.container;
             home.file.".config/containers/systemd/pinchflat.container".source = ./machine/g4/.config/containers/systemd/pinchflat.container;
+            home.file.".config/containers/systemd/archivebox.container".source = ./machine/g4/.config/containers/systemd/archivebox.container;
 
             # on first run, need to login to Tailscale.
             # review the service log output (journalctl) for the login link.
@@ -205,6 +206,7 @@
             home.file.".config/containers/systemd/tsnsrv-uptime-kuma.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-uptime-kuma.container;
             home.file.".config/containers/systemd/tsnsrv-jellyfin.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-jellyfin.container;
             home.file.".config/containers/systemd/tsnsrv-pinchflat.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-pinchflat.container;
+            home.file.".config/containers/systemd/tsnsrv-archivebox.container".source = ./machine/g4/.config/containers/systemd/tsnsrv-archivebox.container;
 
             # on first run, need to login to Google.
             # use a standalone podman container to initialize the secrets using its documentation.
