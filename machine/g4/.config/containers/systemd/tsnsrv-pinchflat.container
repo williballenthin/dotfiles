@@ -3,7 +3,7 @@
 #
 #     journalctl --user -xeu tsnsrv-pinchflat.service
 #
-# The machine key (secret) is stored in the volume tsnsrv-metube,
+# The machine key (secret) is stored in the volume tsnsrv-pinchflat,
 # which will be created automatically.
 
 [Container]
