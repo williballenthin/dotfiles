@@ -144,6 +144,8 @@ in
   home.file.".config/starship.toml".source = ../.config/starship.toml;
   home.file.".config/fish/config.fish".source = ../.config/fish/config.fish;
   home.file.".config/fish/functions/fzf.fish".source = ../.config/fish/functions/fzf.fish;
+  home.file.".config/fish/functions/tv.fish".source = ../.config/fish/functions/tv.fish;
+  home.file.".config/fish/functions/fish_ssh_agent.fish".source = ../.config/fish/functions/fish_ssh_agent.fish;
 
   # i think this file is no longer used by fisher,
   # but it contains the list of plugins i'd like to use.
