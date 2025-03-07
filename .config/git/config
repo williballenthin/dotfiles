@@ -1,45 +1,83 @@
+# many options from:
+#   - https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
 [init]
     defaultBranch = main
 [user]
     email = willi.ballenthin@gmail.com
     name = Willi Ballenthin
-    signingkey = /Users/user/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/97eaf6acd9a1a2ceae31b33216737a6a.pub
+[column]
+    # use multiple columns if there's available space
+    ui = auto
+[branch]
+    # show branches ordered by date, not name
+    sort = -committerdate
+[tag]
+    # show tags ordered by version name, like v1.0.0
+    sort = version:refname
 [core]
+    # ignore the executable bit of st_mode lstat() results on files in your working tree
     fileMode = false
+    excludesFile = ~/.config/git/.gitignore
     pager = delta
-    excludesFile = ~/.gitignore
 [interactive]
     diffFilter = delta --color-only
-[alias]
-    branches = branch -a
-    tags = tag
-    stashes = stash list
-    unstage = reset -q HEAD --
-    discard = checkout --
-    uncommit = reset --mixed HEAD~
-    amend = commit --amend
-    graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
-    precommit = diff --cached --diff-algorithm=minimal -w
-    showtool = "!f() { git difftool $1^ $1; }; f"
-    added = difftool --cached
-[merge]
-    conflictstyle = diff3
 [diff]
-    tool = delta
-    colorMoved = default
+    # much smarter than default of "meyers"
+    algorithm = histogram
+    # show moved lines with their own color
+    colorMoved = plain
+    # detect file renames
+    renames = true
+    # replace the a/ and b/ in diff header output with where the diff is coming from,
+    # i/ (index), w/ (working directory) or c/ commit.
+    mnemonicPrefix = true
 [difftool]
+    # launch difftool (delta) immediately, don't ask to confirm first
     prompt = false
-[pager]
-    difftool = true
-[gpg]
-    format = ssh
-#[commit]
-#    gpgsign = true
 [delta]
+    # use n and N to move between diff sections
     navigate = true
-    side-by-side = false
     line-numbers = true
-    light = true
+    hyperlinks = true
+    true-color = always
+[merge]
+    conflictstyle = zdiff3
+[push]
+    # default to pushing to a branch with the same name on the remote
+    default = simple
+    # create the remote branch if necessary
+    autoSetupRemote = true
+    # push all tags automatically
+    followTags = true
+[pull]
+    rebase = true
+[fetch]
+    # prune locally branches that have been removed on the remote
+    prune = true
+    # and tags, too
+    pruneTags = true
+    all = true
+[commit]
+    # show full diff in commit composition window.
+    # probably not relevant when using tig or lazygit, but useful for raw git.
+    verbose = true
+[rebase]
+    # https://blog.gitbutler.com/git-autosquash/
+    autoSquash = true
+    autoStash = true
+    # takes stacked refs in a branch and makes sure they're also moved when a branch is rebased
+    updateRefs = true
+[rerere]
+    # "reuse recorded resolution"
+    # memorize the rebase conflict and the resolution to it.
+    # if it ever sees that same conflict again, it will automatically re-solve it for you.
+    enabled = true
+    # automatically re-apply rebase conflict resolutions again if they repeat
+    autoupdate = true
+[help]
+    # try to detect autocorrect and prompt with fix
+    autocorrect = prompt
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
