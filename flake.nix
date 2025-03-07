@@ -132,9 +132,9 @@
               programs.direnv.enable = true;
               programs.direnv.nix-direnv.enable = true;
 
-              home.file.".gitconfig".source = ./git/.gitconfig;
-              home.file.".gitignore".source = ./git/.gitignore;
               home.file.".tmux.conf".source = ./tmux/.tmux.conf;
+              home.file.".config/git/config".source = .config/git/config;
+              home.file.".config/git/.gitignore".source = .config/git/.gitignore;
               home.file.".config/starship.toml".source = ./.config/starship.toml;
               home.file.".config/helix/config.toml".source = ./.config/helix/config.toml;
               home.file.".config/helix/languages.toml".source = ./.config/helix/languages.toml;
