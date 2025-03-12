@@ -47,13 +47,13 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 home-manager switch --flake .#user@w --impure
 
-cat << EOF > ~/.bashrc
+cat << EOF >> ~/.bashrc
 # use fish (usually)
 # https://gist.github.com/voidptr/d77a5a527ed2cc06cd277df9ec366f32
-if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
+if [[ \$(ps --no-header --pid=\$PPID --format=comm) != "fish" && -z \${BASH_EXECUTION_STRING} ]]
 then
   shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
-  exec fish $LOGIN_OPTION
+  exec fish \$LOGIN_OPTION
 fi
 EOF
 ```
