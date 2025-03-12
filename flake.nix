@@ -20,9 +20,10 @@
         isd.url = "github:isd-project/isd";
     };
 
-  outputs = { nixpkgs, home-manager, flake-utils, isd, ... } @ inputs:
+  # self refers to the outputs, as they're being build, so you can reference `self.pkgs`, for example.
+  outputs = { self, nixpkgs, home-manager, flake-utils, isd, ... } @ inputs:
     let
-      # mkHomeConfig via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
+      # via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
@@ -100,6 +101,7 @@
                   pkgs.lazygit
                   pkgs.mosh
                   pkgs.ranger
+                  pkgs.rich-cli
                   pkgs.ripgrep
                   pkgs.television
                   pkgs.tig
@@ -108,6 +110,13 @@
                   pkgs.visidata
                   pkgs.zoxide
                   pkgs.zellij
+
+                  #############################################
+                  # PyPI distributed tools
+                  (pkgs.python3.withPackages(ps: [
+                    ps.llm
+                    (pkgs.callPackage ./nix/packages/llm-gemini/default.nix { })
+                  ]))
 
                   #############################################
                   # development
