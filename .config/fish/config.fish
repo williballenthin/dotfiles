@@ -22,7 +22,7 @@ if status --is-interactive
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
     # requires `uv pip install llm llm-gemini rich-cli`
-    abbr --add --global llmx --position command --set-cursor=! 'llm "!" | rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
+    abbr --add --global llmx --position command --set-cursor=! 'llm "!" --system "be concise." | rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
 
     if type -q atuin
         atuin init fish | source
