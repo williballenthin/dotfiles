@@ -169,6 +169,13 @@
             ];
         })
       ];
+      homeConfigurations."user@m4" = mkHomeConfig "aarch64-darwin" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.atuin
+            ];
+        })
+      ];
       homeConfigurations."user@sb2" = mkHomeConfig "x86_64-linux" [
         ({pkgs, ...}: {
             home.packages = [
