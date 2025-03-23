@@ -52,9 +52,6 @@ if status --is-interactive
         if ! test -f ../.justfile && ! test -f ../justfile
             mv justfile ../.justfile
         end
-        if ! test -f ../pyproject.toml
-            mv pyproject.toml ../pyproject.toml
-        end
         git init .
         git add *
         popd
