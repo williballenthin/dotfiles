@@ -165,6 +165,7 @@
               home.file.".config/zellij/config.kdl".source = ./.config/zellij/config.kdl;
               home.file.".config/ghostty/config".source = ./.config/ghostty/config;
               home.file.".config/television/config.toml".source = ./.config/television/config.toml;
+              home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
           })
         ] ++ localModules;
       };
