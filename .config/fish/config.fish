@@ -126,6 +126,28 @@ if status --is-interactive
         cp ".env/example-.envrc" ".envrc"
         echo "created .envrc" >>&2
     end
+
+    function ,init-minimal-project
+        if test -d ".env"
+            echo ".env already exists" >&2
+            return
+        end
+
+        if test -d ".envrc"
+            echo ".envrc already exists" >&2
+            return
+        end
+
+        cp -r ~/.dotfiles/nix/profiles/minimal/ ".env"
+        pushd ".env"
+        git init .
+        git add *
+        popd
+        echo "created .env" >>&2
+
+        cp ".env/example-.envrc" ".envrc"
+        echo "created .envrc" >>&2
+    end
 end
 
 # fzf.fish config
