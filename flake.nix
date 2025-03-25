@@ -126,6 +126,13 @@
                   pkgs.helix
 
                   #--------------------------------------------
+                  # python
+                  #
+                  # uv for managing virtualenvs,
+                  # not for installing global packages
+                  pkgs.uv
+
+                  #--------------------------------------------
                   # rust
                   #
                   # let rust manage itself,
