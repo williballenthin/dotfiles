@@ -5,8 +5,7 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "llm-gemini";
-  # bump to 0.14.1 or beyond once pkgs.llm is 0.23 (has schema)
-  version = "0.12";
+  version = "0.16";
   pyproject = true;
   dontCheckRuntimeDeps = true;
 
@@ -16,7 +15,8 @@ python3.pkgs.buildPythonPackage rec {
     rev = version;
     # hash = "sha256-ejZIClYRKyL68LFMjshLYLuaP7qK9mHqoKtfXwBN01U=";  # 0.14.1
     # hash = "sha256-JlzJFpHqeLMlzmU2GhIXolhDfjx/5CqeXXi4FUspPhs=";  # 0.13
-    hash = "sha256-U9JFGwHeWKQ37gFWo3t0jnZfjDHEvgC8Yc3V3icIEq0=";  # 0.12
+    # hash = "sha256-U9JFGwHeWKQ37gFWo3t0jnZfjDHEvgC8Yc3V3icIEq0=";  # 0.12
+    hash = "sha256-JtNFYEriiWi5fgIHM8hhMct4G7AdVKZhro9y40gxaZo=";  # 0.16
   };
 
   nativeBuildInputs = [
