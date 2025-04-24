@@ -215,6 +215,9 @@
             # systemctl --user start  ...
             # systemctl --user status ...
             home.file.".config/containers/systemd/navidrome.container".source = ./machine/g4/.config/containers/systemd/navidrome.container;
+            # access Syncthing via SSH port forward:
+            #   ssh -L 8099:localhost:8384 user@g4
+            #   http://localhost:8099/
             home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
             home.file.".config/containers/systemd/vaultwarden.container".source = ./machine/g4/.config/containers/systemd/vaultwarden.container;
