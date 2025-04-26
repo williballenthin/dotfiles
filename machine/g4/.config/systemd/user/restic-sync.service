@@ -1,0 +1,16 @@
+[Unit]
+Description=Restic backup of Sync
+After=syslog.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+# the env file is not checked into VCS. recreate manually.
+# it looks like this:
+#
+#     RESTIC_PASSWORD=your_repo_password
+#     RESTIC_REPOSITORY=rest:http://192.168.1.200/your-repo/
+ExecStart=podman run --rm --volume /db/containers/syncthing/Sync/:/data/ --env-file /home/user/.config/restic/sync.env ghcr.io/restic/restic --verbose backup --skip-if-unchanged /data/
+
+[Install]
+WantedBy=multi-user.target

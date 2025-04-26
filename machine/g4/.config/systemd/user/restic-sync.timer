@@ -1,0 +1,8 @@
+[Unit]
+Description=Run Restic (sync) at 12:00 AM
+
+[Timer]
+OnCalendar=*-*-* 0:00:00
+
+[Install]
+WantedBy=timers.target

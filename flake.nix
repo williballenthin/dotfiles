@@ -242,6 +242,14 @@
             # subsequently, the machine keys are stored in a volume.
             home.file.".config/containers/systemd/gphotos-sync.container".source = ./machine/g4/.config/containers/systemd/gphotos-sync.container;
             home.file.".config/systemd/user/gphotos-sync.timer".source = ./machine/g4/.config/systemd/user/gphotos-sync.timer;
+
+            # prior to first run, need to create ~/.config/restic/sync.env
+            # which should look like:
+            #
+            #     RESTIC_PASSWORD=your_repo_password
+            #     RESTIC_REPOSITORY=rest:http://192.168.1.200/your-repo/
+            home.file.".config/systemd/user/restic-sync.service".source = ./machine/g4/.config/systemd/user/restic-sync.service;
+            home.file.".config/systemd/user/restic-sync.timer".source = ./machine/g4/.config/systemd/user/restic-sync.timer;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
