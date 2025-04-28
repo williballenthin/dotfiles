@@ -25,12 +25,14 @@ def activate_virtualenv(virtualenv_path: Path):
         raise ValueError('Could not find "activate_this.py" in ' + str(virtualenv_path))
 
 
-IDAUSR = Path(idaapi.get_user_idadir())
-activate_virtualenv(IDAUSR / "venv")
+if IDAPRO_OWNING_INTERPRETER:
+    IDAUSR = Path(idaapi.get_user_idadir())
+    activate_virtualenv(IDAUSR / "venv")
 
 
 ###############################################################################
 # Configure logging
-import logging
-logging.basicConfig(level=logging.INFO)
+if IDAPRO_OWNING_INTERPRETER:
+    import logging
+    logging.basicConfig(level=logging.INFO)
 
