@@ -181,6 +181,7 @@
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
+              pkgs.ollama
             ];
         })
       ];
