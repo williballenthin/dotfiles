@@ -115,7 +115,8 @@
                   # PyPI distributed tools
                   (pkgs.python3.withPackages(ps: [
                     ps.llm
-                    (pkgs.callPackage ./nix/packages/llm-gemini/default.nix { })
+                    ps.llm-gemini
+                    # `uv pip freeze` should be empty when this environment is rebuilt
                   ]))
 
                   #############################################
