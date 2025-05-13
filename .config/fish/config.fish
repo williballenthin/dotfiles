@@ -30,6 +30,7 @@ if status --is-interactive
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
     # requires `uv pip install llm llm-gemini rich-cli`
     abbr --add --global llmx --position command --set-cursor=! 'llm "!" --system "be concise." | rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
+    abbr --add --global md 'rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
 
     if type -q atuin
         atuin init fish | source
