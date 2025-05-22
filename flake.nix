@@ -115,7 +115,8 @@
                   # PyPI distributed tools
                   (pkgs.python3.withPackages(ps: [
                     ps.llm
-                    (pkgs.callPackage ./nix/packages/llm-gemini/default.nix { })
+                    ps.llm-gemini
+                    # `uv pip freeze` should be empty when this environment is rebuilt
                   ]))
 
                   #############################################
@@ -124,6 +125,13 @@
                   #--------------------------------------------
                   # editors
                   pkgs.helix
+
+                  #--------------------------------------------
+                  # python
+                  #
+                  # uv for managing virtualenvs,
+                  # not for installing global packages
+                  pkgs.uv
 
                   #--------------------------------------------
                   # rust
@@ -158,6 +166,7 @@
               home.file.".config/zellij/config.kdl".source = ./.config/zellij/config.kdl;
               home.file.".config/ghostty/config".source = ./.config/ghostty/config;
               home.file.".config/television/config.toml".source = ./.config/television/config.toml;
+              home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
           })
         ] ++ localModules;
       };
@@ -166,6 +175,14 @@
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
+            ];
+        })
+      ];
+      homeConfigurations."user@m4" = mkHomeConfig "aarch64-darwin" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.atuin
+              pkgs.ollama
             ];
         })
       ];
@@ -200,6 +217,9 @@
             # systemctl --user start  ...
             # systemctl --user status ...
             home.file.".config/containers/systemd/navidrome.container".source = ./machine/g4/.config/containers/systemd/navidrome.container;
+            # access Syncthing via SSH port forward:
+            #   ssh -L 8099:localhost:8384 user@g4
+            #   http://localhost:8099/
             home.file.".config/containers/systemd/syncthing.container".source = ./machine/g4/.config/containers/systemd/syncthing.container;
             home.file.".config/containers/systemd/metube.container".source = ./machine/g4/.config/containers/systemd/metube.container;
             home.file.".config/containers/systemd/vaultwarden.container".source = ./machine/g4/.config/containers/systemd/vaultwarden.container;
@@ -224,6 +244,14 @@
             # subsequently, the machine keys are stored in a volume.
             home.file.".config/containers/systemd/gphotos-sync.container".source = ./machine/g4/.config/containers/systemd/gphotos-sync.container;
             home.file.".config/systemd/user/gphotos-sync.timer".source = ./machine/g4/.config/systemd/user/gphotos-sync.timer;
+
+            # prior to first run, need to create ~/.config/restic/sync.env
+            # which should look like:
+            #
+            #     RESTIC_PASSWORD=your_repo_password
+            #     RESTIC_REPOSITORY=rest:http://192.168.1.200/your-repo/
+            home.file.".config/systemd/user/restic-sync.service".source = ./machine/g4/.config/systemd/user/restic-sync.service;
+            home.file.".config/systemd/user/restic-sync.timer".source = ./machine/g4/.config/systemd/user/restic-sync.timer;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [

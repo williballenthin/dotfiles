@@ -1,3 +1,10 @@
+if test -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+end
+if test -f /nix/var/nix/profiles/default/share/fish/vendor_completions.d/nix.fish
+    source /nix/var/nix/profiles/default/share/fish/vendor_completions.d/nix.fish
+end
+
 if test -f ~/.config/fish/local.fish
     source ~/.config/fish/local.fish
 end
@@ -22,7 +29,7 @@ if status --is-interactive
     # via: https://stackoverflow.com/a/59069793/87207
     abbr --add --global ipytest pytest --pdb --pdbcls=IPython.terminal.debugger:TerminalPdb
     # requires `uv pip install llm llm-gemini rich-cli`
-    abbr --add --global llmx --position command --set-cursor=! 'llm "!" | rich --markdown --line-numbers --hyperlinks --panel square -'
+    abbr --add --global llmx --position command --set-cursor=! 'llm "!" --system "be concise." | rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
 
     if type -q atuin
         atuin init fish | source
@@ -44,9 +51,6 @@ if status --is-interactive
         pushd ".env"
         if ! test -f ../.justfile && ! test -f ../justfile
             mv justfile ../.justfile
-        end
-        if ! test -f ../pyproject.toml
-            mv pyproject.toml ../pyproject.toml
         end
         git init .
         git add *
@@ -113,6 +117,28 @@ if status --is-interactive
         end
 
         cp -r ~/.dotfiles/nix/profiles/js/ ".env"
+        pushd ".env"
+        git init .
+        git add *
+        popd
+        echo "created .env" >>&2
+
+        cp ".env/example-.envrc" ".envrc"
+        echo "created .envrc" >>&2
+    end
+
+    function ,init-minimal-project
+        if test -d ".env"
+            echo ".env already exists" >&2
+            return
+        end
+
+        if test -d ".envrc"
+            echo ".envrc already exists" >&2
+            return
+        end
+
+        cp -r ~/.dotfiles/nix/profiles/minimal/ ".env"
         pushd ".env"
         git init .
         git add *

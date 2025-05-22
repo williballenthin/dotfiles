@@ -68,3 +68,12 @@ cursor-line = "hint"
 [keys.select]
 "A-x" = ["extend_line_up", "extend_to_line_bounds"]
 "X" = "shrink_to_line_bounds"
+
+[keys.insert]
+# > Esc to go back to normal mode is a choice from a time when the escape key was
+# > in the place where we have capslock on a normal keyboard.
+# > Reaching for escape every time is annoying.
+# > Add this to your config to go back to normal mode by pressing jk in insert mode.
+# via: https://felix-knorr.net/posts/2025-03-16-helix-review.html
+j = { k = "normal_mode"}
+
