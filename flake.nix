@@ -9,6 +9,7 @@
     #  - https://discourse.nixos.org/t/improving-a-flake-nix-config-that-configures-home-manager/23389/2
 
     inputs = {
+        self.submodules = true;
         # nixpkgs.url = "github:nixos/nixpkgs/23.05";
         # have to track nixos-unstable since this is what home-manager dev's against
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -27,6 +28,12 @@
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
+
+          # note: I dont think this is working.
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate = _: true;
+          };
         };
 
         modules = [
@@ -144,6 +151,12 @@
                   #   rustup component add rust-analyzer
                   #   rustup component add rustc-codegen-cranelift-preview --toolchain nightly
                   pkgs.rustup
+
+                  #--------------------------------------------
+                  # js
+                  #
+                  # so we can get claude code, which updates itself often
+                  pkgs.nodejs
               ];
 
               programs.direnv.enable = true;
