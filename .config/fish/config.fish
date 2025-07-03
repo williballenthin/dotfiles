@@ -20,6 +20,9 @@ set -gx DIRENV_LOG_FORMAT ""
 
 starship init fish | source
 
+# add global NPM binaries, like claude code
+set -U fish_user_paths ~/.local/state/npm/bin/ $fish_user_paths
+
 if status --is-interactive
     abbr --add --global ll eza --long --git
     abbr --add --global lt eza --tree --level=2 --long --git
