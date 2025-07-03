@@ -190,6 +190,8 @@
             home.packages = [
               pkgs.atuin
             ];
+            # XDG_CONFIG_HOME
+            home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
       ];
       homeConfigurations."user@m4" = mkHomeConfig "aarch64-darwin" [
@@ -198,6 +200,8 @@
               pkgs.atuin
               pkgs.ollama
             ];
+            # XDG_CONFIG_HOME
+            home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
       ];
       homeConfigurations."user@sb2" = mkHomeConfig "x86_64-linux" [
@@ -205,6 +209,8 @@
             home.packages = [
               pkgs.atuin
             ];
+            # XDG_CONFIG_HOME
+            home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
       ];
       homeConfigurations."user@g4" = mkHomeConfig "x86_64-linux" [
@@ -224,6 +230,8 @@
               # systemd tui, tracked by flake during active dev
               isd.packages.${pkgs.system}.isd
             ];
+            # XDG_CONFIG_HOME
+            home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
 
         ({pkgs, ...}: {
