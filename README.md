@@ -37,7 +37,7 @@ cd .dotfiles/
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
   sh -s -- install --nix-build-group-id 4000000 --nix-build-user-id-base 4000000
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-mkdir ~/.config/nix
+mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 
 # install home-manager and activate configuration
@@ -53,6 +53,17 @@ cat << EOF >> ~/.bashrc
 if [[ \$(ps --no-header --pid=\$PPID --format=comm) != "fish" && -z \${BASH_EXECUTION_STRING} ]]
 then
   shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+  exec fish \$LOGIN_OPTION
+fi
+EOF
+
+# or for zsh on macOS:
+cat << EOF >> ~/.zshrc
+# use fish (usually)
+# https://gist.github.com/voidptr/d77a5a527ed2cc06cd277df9ec366f32
+if [[ \$(ps -p \$PPID -o comm= | tr -d ' ') != "fish" && -z \${ZSH_EXECUTION_STRING} ]]
+then
+  if [[ -o login ]]; then LOGIN_OPTION='--login'; else LOGIN_OPTION=''; fi
   exec fish \$LOGIN_OPTION
 fi
 EOF
