@@ -7,8 +7,7 @@ This is a nix flake that uses Home Manager to track things.
 To install (after setting up nix with flakes):
 
 ```sh
-$ nix run . -- switch --flake .#user@m1 --impure  # and/or
-$ home-manager switch --flake .#user@m1 --impure
+$ nix run . -- switch --flake .#user@m1 --impure
 ```
 
 Then restart the shell.
@@ -40,11 +39,6 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 
-# install home-manager and activate configuration
-# I'm not sure why we can't use `nix run` directly, sometimes, so this is a fallback.
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-nix-shell '<home-manager>' -A install
 home-manager switch --flake .#user@w --impure
 
 cat << EOF >> ~/.bashrc
@@ -77,4 +71,5 @@ EOF
   - `rustup install nightly`
   - `rustup component add rust-analyzer`
   - `rustup component add rustc-codegen-cranelift-preview --toolchain nightly`
+  - `npm install -g @anthropic-ai/claude-code`
 

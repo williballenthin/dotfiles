@@ -185,6 +185,15 @@
         ] ++ localModules;
       };
     in {
+      apps.aarch64-darwin.default = {
+        type = "app";
+        program = "${home-manager.packages.aarch64-darwin.default}/bin/home-manager";
+      };
+      apps.x86_64-linux.default = {
+        type = "app";
+        program = "${home-manager.packages.x86_64-linux.default}/bin/home-manager";
+      };
+
       homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin" [
         ({pkgs, ...}: {
             home.packages = [
