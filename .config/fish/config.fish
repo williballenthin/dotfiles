@@ -24,8 +24,8 @@ starship init fish | source
 set -U fish_user_paths ~/.local/state/npm/bin/ $fish_user_paths
 
 if status --is-interactive
-    abbr --add --global ll eza --long --git
-    abbr --add --global lt eza --tree --level=2 --long --git
+    abbr --add --global ll eza --long
+    abbr --add --global lt eza --tree --level=2 --long
     abbr --add --global gs tig status
     abbr --add --global lg lazygit
     abbr --add --global cat bat
