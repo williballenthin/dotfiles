@@ -292,5 +292,16 @@
             ];
         })
       ];
+      homeConfigurations."user@hr" = mkHomeConfig "aarch64-darwin" [
+        ({pkgs, ...}: {
+            home.packages = [
+              pkgs.atuin
+              pkgs.ollama
+              pkgs.glab
+            ];
+            # XDG_CONFIG_HOME
+            home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
+        })
+      ];
     };
 }
