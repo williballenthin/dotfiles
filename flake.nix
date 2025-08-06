@@ -104,6 +104,7 @@
                   pkgs.hexyl
                   pkgs.jless
                   pkgs.jujutsu
+                  pkgs.jjui
                   pkgs.jq
                   pkgs.lazygit
                   pkgs.mosh
