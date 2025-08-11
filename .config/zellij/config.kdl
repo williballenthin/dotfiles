@@ -98,6 +98,8 @@ keybinds clear-defaults=true {
         bind "Alt j" { MoveFocus "down"; SwitchToMode "locked"; }
         bind "Alt k" { MoveFocus "up"; SwitchToMode "locked"; }
         bind "Alt l" { MoveFocusOrTab "right"; SwitchToMode "locked"; }
+        bind "Alt y" { GoToPreviousTab; SwitchToMode "locked"; }
+        bind "Alt u" { GoToNextTab; SwitchToMode "locked"; }
         bind "s" { SwitchToMode "normal"; }
     }
     search {
@@ -148,6 +150,8 @@ keybinds clear-defaults=true {
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
+        bind "Alt y" { GoToPreviousTab; }
+        bind "Alt u" { GoToNextTab; }
         bind "Alt n" { NewPane; }
         // bind "Alt o" { MoveTab "right"; }
     }
