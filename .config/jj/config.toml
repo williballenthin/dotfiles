@@ -1,10 +1,83 @@
 [user]
 name = "Willi Ballenthin"
-email = "wballenthin@google.com"
+email = "wballenthin@hex-rays.com"
 
 [ui]
-pager = ":builtin"
+pager = "delta"
 diff.diff-formatter = ["delta", "--navigate", "$left", "$right"]
+default-command = "status"
 
+[aliases]
+# via: https://oppi.li/posts/configuring_jujutsu/
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[git]
+write-change-id-header = true
+
+# templates and aliases from
+# https://github.com/cenviity/dotfiles/blob/9f9d397f3a4044be3e9c914a36e835f5f42f3de7/dot_config/jj/config.toml.tmpl
 [templates]
-log = 'builtin_log_comfortable'
+log = "builtin_log_compact__wip"
+
+[template-aliases]
+"abbreviate_timestamp_suffix(s, suffix, abbr)" = '''
+if(
+    s.ends_with(suffix),
+    s.remove_suffix(suffix) ++ label("timestamp", abbr)
+)
+'''
+"abbreviate_relative_timestamp(s)" = '''
+coalesce(
+    abbreviate_timestamp_suffix(s, " millisecond", "ms"),
+    abbreviate_timestamp_suffix(s, " second", "s"),
+    abbreviate_timestamp_suffix(s, " minute", "m"),
+    abbreviate_timestamp_suffix(s, " hour", "h"),
+    abbreviate_timestamp_suffix(s, " day", "d"),
+    abbreviate_timestamp_suffix(s, " week", "w"),
+    abbreviate_timestamp_suffix(s, " month", "mo"),
+    abbreviate_timestamp_suffix(s, " year", "y"),
+    s
+)
+'''
+# Taken from the default `format_timestamp(timestamp)`
+"format_timestamp_long(timestamp)" = "timestamp.local().format('%Y-%m-%d %H:%M:%S')"
+"format_timestamp(timestamp)" = '''
+separate(
+    ", ",
+    coalesce(
+        if(timestamp.after("1 minute ago"), label("timestamp", "<=1m")),
+        abbreviate_relative_timestamp(timestamp.ago().remove_suffix(' ago').remove_suffix('s'))
+    ),
+    if(timestamp.before("1 week ago"), format_timestamp_long(timestamp))
+)
+'''
+# For op log timestamps
+"format_time_range(time_range)" = '''
+concat(
+    abbreviate_relative_timestamp(time_range.end().ago().remove_suffix(' ago').remove_suffix('s')),
+    label("time", ", lasted "),
+    abbreviate_relative_timestamp(time_range.duration().remove_suffix('s'))
+)
+'''
+builtin_log_compact__wip = '''
+if(
+    root,
+    format_root_commit(self),
+    label(
+        if(current_working_copy, "working_copy"),
+        separate(
+            "\n",
+            format_short_commit_header(self),
+            separate(
+                " ",
+                if(empty, label("empty", "(empty)")),
+                if(
+                    description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                ),
+            ),
+        ),
+    )
+)
+'''
