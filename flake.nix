@@ -181,6 +181,7 @@
               home.file.".config/ghostty/config".source = ./.config/ghostty/config;
               home.file.".config/television/config.toml".source = ./.config/television/config.toml;
               home.file.".config/zed/settings.json".source = ./.config/zed/settings.json;
+              home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
               home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
               home.file.".npmrc".source = ./.npmrc;
           })
