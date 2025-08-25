@@ -210,7 +210,6 @@
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
-              pkgs.ollama
             ];
             # XDG_CONFIG_HOME
             home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
@@ -299,7 +298,6 @@
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
-              pkgs.ollama
               pkgs.glab
             ];
             # XDG_CONFIG_HOME
