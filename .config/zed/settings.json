@@ -21,5 +21,11 @@
   },
   "inlay_hints": {
     "enabled": true
+  },
+  "agent": {
+    "default_model": {
+      "provider": "lmstudio",
+      "model": "qwen/qwen3-coder-30b"
+    }
   }
 }
