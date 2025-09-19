@@ -4,3 +4,5 @@ keybind = alt+left=unbind
 keybind = alt+right=unbind
 
 command = ~/.nix-profile/bin/fish --login --interactive
+
+adjust-cursor-thickness = 150%

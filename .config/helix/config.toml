@@ -1,4 +1,4 @@
-theme = "github_light"
+theme = "autumn"
 
 # many items below inspired by:
 # https://theari.dev/blog/enhanced-helix-config/
@@ -24,7 +24,7 @@ popup-border = "all"
 end-of-line-diagnostics = "error"
 
 [editor.cursor-shape]
-insert = "bar"
+insert = "underline"
 normal = "block"
 select = "underline"
 
