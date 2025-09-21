@@ -202,6 +202,7 @@
             home.packages = [
               pkgs.atuin
             ];
+              home.file.".config/git/config.local".source = .config/git/config.local.personal;
             # XDG_CONFIG_HOME
             home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
@@ -211,6 +212,7 @@
             home.packages = [
               pkgs.atuin
             ];
+              home.file.".config/git/config.local".source = .config/git/config.local.personal;
             # XDG_CONFIG_HOME
             home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
@@ -220,6 +222,7 @@
             home.packages = [
               pkgs.atuin
             ];
+              home.file.".config/git/config.local".source = .config/git/config.local.personal;
             # XDG_CONFIG_HOME
             home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
@@ -241,6 +244,7 @@
               # systemd tui, tracked by flake during active dev
               isd.packages.${pkgs.system}.isd
             ];
+            home.file.".config/git/config.local".source = .config/git/config.local.personal;
             # XDG_CONFIG_HOME
             home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
@@ -292,6 +296,7 @@
             home.packages = [
               pkgs.google-cloud-sdk
             ];
+            home.file.".config/git/config.local".source = .config/git/config.local.personal;
         })
       ];
       homeConfigurations."user@hr" = mkHomeConfig "aarch64-darwin" [
@@ -300,6 +305,7 @@
               pkgs.atuin
               pkgs.glab
             ];
+            home.file.".config/git/config.local".source = .config/git/config.local.hexrays;
             # XDG_CONFIG_HOME
             home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })

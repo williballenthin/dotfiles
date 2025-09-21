@@ -1,11 +1,12 @@
 # many options from:
 #   - https://blog.gitbutler.com/how-git-core-devs-configure-git/
-
+[include]
+    path = config.local
 [init]
     defaultBranch = main
 [user]
-    email = willi.ballenthin@gmail.com
     name = Willi Ballenthin
+    # email is set within config.local
 [column]
     # use multiple columns if there's available space
     ui = auto
