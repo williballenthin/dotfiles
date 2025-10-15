@@ -19,10 +19,11 @@
         };
         flake-utils.url = "github:numtide/flake-utils";
         isd.url = "github:isd-project/isd";
+        beads.url = "github:williballenthin/beads/feat/nix-flake";
     };
 
   # self refers to the outputs, as they're being build, so you can reference `self.pkgs`, for example.
-  outputs = { self, nixpkgs, home-manager, flake-utils, isd, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, isd, beads, ... } @ inputs:
     let
       # via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
@@ -48,6 +49,12 @@
                   # then use below in pkgs block, like:
                   #
                   #     foo.packages.${pkgs.system}.foo
+              };
+          })
+
+          ({...}: {
+              _module.args = {
+                inherit beads;
               };
           })
 
@@ -158,6 +165,15 @@
                   #
                   # so we can get claude code, which updates itself often
                   pkgs.nodejs
+
+                  
+                  #--------------------------------------------
+                  # agentic tooling
+                  #
+                  # beads is in very active development, no flake yet
+                  # see: https://github.com/steveyegge/beads/pull/38
+                  # executable name: bd
+                  beads.packages.${pkgs.system}.default
               ];
 
               programs.direnv.enable = true;
