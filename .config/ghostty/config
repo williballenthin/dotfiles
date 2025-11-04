@@ -6,3 +6,6 @@ keybind = alt+right=unbind
 command = ~/.nix-profile/bin/fish --login --interactive
 
 adjust-cursor-thickness = 150%
+
+# Claude Code escaped newline
+keybind = shift+enter=text:\n
