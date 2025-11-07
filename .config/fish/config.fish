@@ -18,6 +18,11 @@ direnv hook fish | source
 # via: https://github.com/direnv/direnv/issues/68#issuecomment-519030360
 set -gx DIRENV_LOG_FORMAT ""
 
+# via: https://news.ycombinator.com/item?id=45841794
+set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC 1
+set -gx DISABLE_ERROR_REPORTING 1
+set -gx DISABLE_TELEMETRY 1
+
 starship init fish | source
 
 # add global NPM binaries, like claude code
