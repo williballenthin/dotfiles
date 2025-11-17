@@ -5,10 +5,6 @@ name = "profile"
 command = "echo 'rust'"
 help = "show profile (rust)"
 
-[[env]]
-name = "CARGO_PROFILE_DEV_CODEGEN_BACKEND"
-value = "cranelift"
-
 [[commands]]
 name = "pc"
 command = "pre-commit run --all-files --hook-stage manual"
@@ -25,4 +21,9 @@ packages = [
   "cmake",
   "gnumake",
   "pkg-config",
+  "openssl.dev",
 ]
+
+[[env]]
+name = "PKG_CONFIG_PATH"
+eval = "${DEVSHELL_DIR}/lib/pkgconfig"
