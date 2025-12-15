@@ -8,17 +8,17 @@ help = "show profile (python)"
 [devshell]
 packages = [
   "just",
-  "python312",
+  "python314",
   "just",
   "stdenv.cc.cc.lib",
   "uv",
   "pre-commit",
   # LSP for helix
   "basedpyright",
-  "python312Packages.python-lsp-server",
-  "python312Packages.pylsp-mypy",
-  "python312Packages.black",
-  "python312Packages.ruff",
+  "python314Packages.python-lsp-server",
+  "python314Packages.pylsp-mypy",
+  "python314Packages.black",
+  "python314Packages.ruff",
 ]
 
 # via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562

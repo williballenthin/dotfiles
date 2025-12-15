@@ -7,8 +7,8 @@
       type = "github";
       owner = "nixos";
       repo = "nixpkgs";
-      # nixos-25.05
-      ref = "b43c397f6c213918d6cfe6e3550abfe79b5d1c51";
+      # nixos-25.11
+      ref = "871b9fd269ff6246794583ce4ee1031e1da71895";
     };
     devshell = {
       url = "github:numtide/devshell";
