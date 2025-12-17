@@ -1,6 +1,6 @@
 [[language]]
 name = "python"
-language-servers = ["pylsp", "ruff", "basedpyright"]
+language-servers = ["ruff", "astral-ty"]
 formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = false
 
@@ -8,6 +8,8 @@ auto-format = false
 command = "ruff"
 args = ["server", "--preview"]
 
+# disabled: not registered via language-servers above.
+# using ty instead.
 [language-server.pylsp.config.pylsp.plugins]
 flake8 = {enabled = true, maxLineLength = 120}
 ruff = {enabled = true, maxLineLength = 120 }
@@ -19,6 +21,9 @@ pyflakes = {enabled = false}
 pylint = {enabled = false}
 yapf = {enabled = false}
 
+[language-server.astral-ty]
+command = "ty"
+args= ["server"]
 
 [[language]]
 name = "go"

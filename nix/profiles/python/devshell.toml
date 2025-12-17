@@ -14,11 +14,12 @@ packages = [
   "uv",
   "pre-commit",
   # LSP for helix
-  "basedpyright",
-  "python314Packages.python-lsp-server",
-  "python314Packages.pylsp-mypy",
-  "python314Packages.black",
   "python314Packages.ruff",
+  # but we're using ty now, so can disable these
+  # "basedpyright",
+  # "python314Packages.python-lsp-server",
+  # "python314Packages.pylsp-mypy",
+  # "python314Packages.black",
 ]
 
 # via: https://github.com/numtide/devshell/issues/172#issuecomment-1208745562
