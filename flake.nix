@@ -108,7 +108,6 @@
                   pkgs.fd
                   pkgs.fzf
                   pkgs.gh
-                  pkgs.gitui
                   pkgs.gron
                   pkgs.hexyl
                   pkgs.jless
@@ -133,6 +132,7 @@
                   (pkgs.python3.withPackages(ps: [
                     ps.llm
                     ps.llm-gemini
+                    # ps.ty  # install from uv tool for now
                     # `uv pip freeze` should be empty when this environment is rebuilt
                   ]))
 
