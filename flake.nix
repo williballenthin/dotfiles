@@ -19,12 +19,12 @@
         };
         flake-utils.url = "github:numtide/flake-utils";
         isd.url = "github:isd-project/isd";
-        beads.url = "github:williballenthin/beads/feat/nix-flake";
         cc-statusline.url = "github:williballenthin/aiwilli?dir=claude/statuslines/contextusage";
+        tw.url = "github:williballenthin/aiwilli?dir=tw";
     };
 
   # self refers to the outputs, as they're being build, so you can reference `self.pkgs`, for example.
-  outputs = { self, nixpkgs, home-manager, flake-utils, isd, beads, cc-statusline, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, isd, cc-statusline, tw, ... } @ inputs:
     let
       # via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
@@ -55,7 +55,7 @@
 
           ({...}: {
               _module.args = {
-                inherit beads;
+                inherit tw;
                 inherit cc-statusline;
               };
           })
@@ -172,12 +172,9 @@
                   #--------------------------------------------
                   # agentic tooling
                   #
-                  # beads is in very active development, no flake yet
-                  # see: https://github.com/steveyegge/beads/pull/38
-                  # executable name: bd
-                  beads.packages.${pkgs.system}.default
                   # executable name: claude-contextusage-statusline
                   cc-statusline.packages.${pkgs.system}.default
+                  tw.packages.${pkgs.system}.default
               ];
 
               programs.direnv.enable = true;
