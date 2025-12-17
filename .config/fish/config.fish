@@ -26,7 +26,10 @@ set -gx DISABLE_TELEMETRY 1
 starship init fish | source
 
 # add global NPM binaries, like claude code
-set -U fish_user_paths ~/.local/state/npm/bin/ $fish_user_paths
+fish_add_path ~/.local/state/npm/bin/
+
+# add uv tool binaries, like ty
+fish_add_path ~/.local/bin/
 
 if status --is-interactive
     abbr --add --global ll eza --long
