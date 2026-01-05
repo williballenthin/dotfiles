@@ -13,6 +13,21 @@ set fish_greeting # disable welcome prompt
 set -gx EDITOR hx
 set -gx COLORTERM truecolor # for hx color detection -> themes
 
+# Configure less:
+# -R: handle ANSI escape codes
+# -J: show search locations in side column
+# -i: Use smart-case for searching (case-insensitive unless uppercase used)
+# -c: show text at top for small files
+# -x4: 4-space tabs
+# -jN: Specifies a line on the screen where the "target" line is to be positioned
+# --use-color: Enable colors for the less HUD, search, follow-mode, etc
+# -Dd+r$Du+b: If paired with MANROFFOPT='-c', this transforms the colors such that man pages are colorized just like with the popular colored-man-pages plugin
+# P...: prompt containing [filename/STDIN] and [N%] for percentage through file.
+#
+# via: https://lobste.rs/s/lrx8vc/assorted_less_1_tips#c_3ubyqu
+set -gx LESS '-RJic -x4 -j4 --use-color -Dd+r$Du+b -P?f[%f]:[STDIN].?pB - [%pB\\%]'
+set -gx MANROFFOPT -c
+
 direnv hook fish | source
 # disable direnv logging
 # via: https://github.com/direnv/direnv/issues/68#issuecomment-519030360
