@@ -1,0 +1,12 @@
+#!/bin/bash
+
+options=(
+	style=round
+	width=6.0
+	hidpi=on
+	active_color=0xfffbbc06
+	inactive_color=0xfffbbc06
+	whitelist="Google Chrome"
+)
+
+borders "${options[@]}"

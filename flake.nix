@@ -321,10 +321,13 @@
             home.packages = [
               pkgs.atuin
               pkgs.glab
+              pkgs.jankyborders
             ];
             home.file.".config/git/config.local".source = .config/git/config.local.hexrays;
             # XDG_CONFIG_HOME
             home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
+
+            home.file.".config/borders/bordersrs".source = .config/borders/bordersrc;
         })
       ];
     };
