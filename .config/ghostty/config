@@ -9,3 +9,5 @@ adjust-cursor-thickness = 150%
 
 # Claude Code escaped newline
 keybind = shift+enter=text:\n
+
+keybind = alt+backspace=text:\x1b\x7f
