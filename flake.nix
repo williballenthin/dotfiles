@@ -19,7 +19,7 @@
         };
         flake-utils.url = "github:numtide/flake-utils";
         isd.url = "github:isd-project/isd";
-        cc-statusline.url = "github:williballenthin/aiwilli?dir=claude/statuslines/contextusage";
+        cc-statusline.url = "github:williballenthin/aiwilli?dir=claude/wb/statuslines/contextusage";
         tw.url = "github:williballenthin/aiwilli?dir=tw";
     };
 
