@@ -16,6 +16,7 @@ set -gx COLORTERM truecolor # for hx color detection -> themes
 # Configure less:
 # -R: handle ANSI escape codes
 # -J: show search locations in side column
+# -S: truncate lines (and use left/right to horizontally scroll), to fix quirk with -J
 # -i: Use smart-case for searching (case-insensitive unless uppercase used)
 # -c: show text at top for small files
 # -x4: 4-space tabs
@@ -25,7 +26,7 @@ set -gx COLORTERM truecolor # for hx color detection -> themes
 # P...: prompt containing [filename/STDIN] and [N%] for percentage through file.
 #
 # via: https://lobste.rs/s/lrx8vc/assorted_less_1_tips#c_3ubyqu
-set -gx LESS '-RJic -x4 -j4 --use-color -Dd+r$Du+b -P?f[%f]:[STDIN].?pB - [%pB\\%]'
+set -gx LESS '-RJSic -x4 -j4 --use-color -Dd+r$Du+b -P?f[%f]:[STDIN].?pB - [%pB\\%]'
 set -gx MANROFFOPT -c
 
 direnv hook fish | source
