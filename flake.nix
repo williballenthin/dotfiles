@@ -116,6 +116,7 @@
                   pkgs.jq
                   pkgs.lazygit
                   pkgs.mosh
+                  pkgs.mprocs
                   pkgs.ranger
                   pkgs.rich-cli
                   pkgs.ripgrep
