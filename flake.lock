@@ -6,16 +6,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "dir": "claude/statuslines/contextusage",
-        "lastModified": 1765971255,
-        "narHash": "sha256-Yen/WmFDfun1LYEZlECOiGguaVG7yvN+2lMecmulfx0=",
+        "dir": "claude/wb/statuslines/contextusage",
+        "lastModified": 1768936166,
+        "narHash": "sha256-7VHwhlirWWdg1j/vw41RKjMLCj9RClq/L/FaOPkb3eQ=",
         "owner": "williballenthin",
         "repo": "aiwilli",
-        "rev": "305790834bae16ff066ba5d964a3ecdb798b012f",
+        "rev": "048c1ff579867a8f96038e042de27ba06f9f142f",
         "type": "github"
       },
       "original": {
-        "dir": "claude/statuslines/contextusage",
+        "dir": "claude/wb/statuslines/contextusage",
         "owner": "williballenthin",
         "repo": "aiwilli",
         "type": "github"
@@ -82,11 +82,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767556355,
-        "narHash": "sha256-RDTUBDQBi9D4eD9iJQWtUDN/13MDLX+KmE+TwwNUp2s=",
+        "lastModified": 1769397130,
+        "narHash": "sha256-TTM4KV9IHwa181X7afBRbhLJIrgynpDjAXJFMUOWfyU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f894bc4ffde179d178d8deb374fcf9855d1a82b7",
+        "rev": "c37679d37bdbecf11bbe3c5eb238d89ca4f60641",
         "type": "github"
       },
       "original": {
@@ -151,11 +151,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1767379071,
-        "narHash": "sha256-EgE0pxsrW9jp9YFMkHL9JMXxcqi/OoumPJYwf+Okucw=",
+        "lastModified": 1769170682,
+        "narHash": "sha256-oMmN1lVQU0F0W2k6OI3bgdzp2YOHWYUAw79qzDSjenU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fb7944c166a3b630f177938e478f0378e64ce108",
+        "rev": "c5296fdd05cfa2c187990dd909864da9658df755",
         "type": "github"
       },
       "original": {
@@ -308,11 +308,11 @@
       },
       "locked": {
         "dir": "tw",
-        "lastModified": 1765971255,
-        "narHash": "sha256-Yen/WmFDfun1LYEZlECOiGguaVG7yvN+2lMecmulfx0=",
+        "lastModified": 1768936166,
+        "narHash": "sha256-7VHwhlirWWdg1j/vw41RKjMLCj9RClq/L/FaOPkb3eQ=",
         "owner": "williballenthin",
         "repo": "aiwilli",
-        "rev": "305790834bae16ff066ba5d964a3ecdb798b012f",
+        "rev": "048c1ff579867a8f96038e042de27ba06f9f142f",
         "type": "github"
       },
       "original": {

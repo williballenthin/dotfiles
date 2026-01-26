@@ -130,6 +130,7 @@
                   #############################################
                   # PyPI distributed tools
                   (pkgs.python3.withPackages(ps: [
+                    # temporarily disabled
                     ps.llm
                     ps.llm-gemini
                     # ps.ty  # install from uv tool for now
