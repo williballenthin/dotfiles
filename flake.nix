@@ -175,8 +175,8 @@
                   # agentic tooling
                   #
                   # executable name: claude-contextusage-statusline
-                  cc-statusline.packages.${pkgs.system}.default
-                  tw.packages.${pkgs.system}.default
+                  cc-statusline.packages.${pkgs.stdenv.hostPlatform.system}.default
+                  tw.packages.${pkgs.stdenv.hostPlatform.system}.default
               ];
 
               programs.direnv.enable = true;
@@ -261,7 +261,7 @@
             home.packages = [
               pkgs.atuin
               # systemd tui, tracked by flake during active dev
-              isd.packages.${pkgs.system}.isd
+              isd.packages.${pkgs.stdenv.hostPlatform.system}.isd
             ];
             home.file.".config/git/config.local".source = .config/git/config.local.personal;
             # XDG_CONFIG_HOME
