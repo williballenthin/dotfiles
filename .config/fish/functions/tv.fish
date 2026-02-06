@@ -10,5 +10,3 @@ function tv_smart_autocomplete
         commandline -f repaint
     end
 end
-
-bind \cT tv_smart_autocomplete

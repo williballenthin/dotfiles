@@ -64,6 +64,8 @@ if status --is-interactive
     end
     zoxide init fish | source
 
+    bind \cT tv_smart_autocomplete
+
     function ,init-python-project
         if test -d ".env"
             echo ".env already exists" >&2
