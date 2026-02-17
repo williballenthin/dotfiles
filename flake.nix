@@ -203,6 +203,8 @@
               home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
               home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
               home.file.".npmrc".source = ./.npmrc;
+              home.file.".claude/CLAUDE.md".source = ./.claude/CLAUDE.md;
+              home.file.".pi/agent/AGENT.md".source = ./.claude/CLAUDE.md;
           })
         ] ++ localModules;
       };
