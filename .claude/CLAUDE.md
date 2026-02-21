@@ -36,3 +36,5 @@ for python projects:
 - use pathlib.Path for any file system paths
 - use ruff for formatting and linting, mypy for type checking
 - functions should be named starting with verbs. `get_` when it returns, `validate_` no return - just raise exception on error, `render_` returns string representation of some combined data, `output_` writes to stdout.
+
+- When you need to look something up on the web, use Codex web search: `codex --search exec --ephemeral --skip-git-repo-check --sandbox read-only "<question>. Use the web search tool. Search for the latest available information as of <early|mid|late> <year>. Do not execute commands or modify files. Return an answer with source URLs (if available)."`
