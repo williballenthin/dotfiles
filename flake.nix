@@ -9,7 +9,8 @@
     #  - https://discourse.nixos.org/t/improving-a-flake-nix-config-that-configures-home-manager/23389/2
 
     inputs = {
-        self.submodules = true;
+        # self.submodules = true;
+        # 
         # nixpkgs.url = "github:nixos/nixpkgs/23.05";
         # have to track nixos-unstable since this is what home-manager dev's against
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -63,7 +64,7 @@
           # Here's an inline module, receiving the normal set,
           # as well as the extra flake inputs provided via
           # _module.args above.
-          ({pkgs, ...}: {
+          ({pkgs, config, ...}: {
               # home.username = "user";
               # home.homeDirectory = "/home/user";
               #
@@ -203,8 +204,8 @@
               home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
               home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
               home.file.".npmrc".source = ./.npmrc;
-              home.file.".claude/CLAUDE.md".source = ./.claude/CLAUDE.md;
-              home.file.".pi/agent/AGENT.md".source = ./.claude/CLAUDE.md;
+              home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "/home/user/.dotfiles/.claude/CLAUDE.md";
+              home.file.".pi/agent/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "/home/user/.dotfiles/.pi/AGENTS.md";
           })
         ] ++ localModules;
       };
