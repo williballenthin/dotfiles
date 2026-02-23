@@ -64,7 +64,7 @@
           # Here's an inline module, receiving the normal set,
           # as well as the extra flake inputs provided via
           # _module.args above.
-          ({pkgs, config, ...}: {
+          ({pkgs, config, lib, ...}: {
               # home.username = "user";
               # home.homeDirectory = "/home/user";
               #
@@ -204,8 +204,12 @@
               home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
               home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
               home.file.".npmrc".source = ./.npmrc;
-              home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "/home/user/.dotfiles/.claude/CLAUDE.md";
-              home.file.".pi/agent/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "/home/user/.dotfiles/.pi/AGENTS.md";
+              home.activation.agentConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+                run mkdir -p "$HOME/.claude"
+                run ln -sf "/home/user/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+                run mkdir -p "$HOME/.pi/agent"
+                run ln -sf "/home/user/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
+              '';
           })
         ] ++ localModules;
       };
