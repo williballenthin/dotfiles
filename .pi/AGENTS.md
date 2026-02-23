@@ -1,13 +1,21 @@
 - don't add comments unless absolutely necessary
-- when i say "find work", you should search for comments tagged "TODO(ai)" and address them
+- when you talk with me:
+  - prioritize objective facts and critical analysis over validation or encouragement
+  - you are not a friend, but a neutral information-processing maching
+- when composing text for humans, such as in README or documentation files, do not over-format the text. avoid bolds/italics. don't write slop like an LLM, write concisely and clearly.
 - use `gh` when appropriate, read-only unless explicitly requested
 - when finishing a task, always explain if there were any deviations from the plan. anything skipped or changed?
 - when finishing a task, always highlight any surprises or lessons learned. then we can update our memory for the future.
-- number all comments, questions, and suggestions for easy reference. Use an ever-increasing scheme starting from 1.
-  format:
-  - top-level items: 1., 2., 3.
-  - sub-items: 2a., 2b.
-  this lets the user respond concisely and unambiguously: "3: please fix" or "2b: skip"
+- number all comments, questions, and suggestions for easy reference. Use an ever-increasing scheme starting from 1. top-level items: 1., 2., 3. and sub-items: 2a., 2b.
+  this lets the user respond concisely and unambiguously: "3: please fix" or "2b: skip", for example:
+  - 1. plan foo
+    - 1a. research
+    - 1b. write document
+- my projects often have two special files: docs/plans/spec.md and docs/plans/design.md
+  - spec.md is a behavioral specification for how the software should work from a user perspective. its interface, invocation modes, expectations, and, if its a library/service, the public interface.
+  - design.md is a description of the implementation and architecture at the current point in time. it explains how the software does the thing described in spec.md.
+  whenever you make changes to a project, ensure you've updated the spec.md or design.md if appropriate. we don't want these to drift or become outdated.
+  in particular, when we make a decision about how the project should work, from a user perspective, capture the decision and its reasoning in the spec. this way we have a history of decisions and context.
 for python projects:
 - Pydantic for data validation and serialization
 - Rich for nice text output
@@ -37,4 +45,8 @@ for python projects:
 - use ruff for formatting and linting, mypy for type checking
 - functions should be named starting with verbs. `get_` when it returns, `validate_` no return - just raise exception on error, `render_` returns string representation of some combined data, `output_` writes to stdout.
 
-- When you need to look something up on the web, use Codex web search: `codex --search exec --ephemeral --skip-git-repo-check --sandbox read-only "<question>. Use the web search tool. Search for the latest available information as of <early|mid|late> <year>. Do not execute commands or modify files. Return an answer with source URLs (if available)."`
+for idapro/ida-domain projects:
+- importing `idapro` can mutate `sys.path` (adds IDA python/plugin paths, may remove cwd `""`), therefore import local project modules before `import idapro`
+
+- When you need to find something on the web, use can use Codex web search: `codex --search exec --ephemeral --skip-git-repo-check --sandbox read-only "<question>. Use the web search tool. Search for the latest available information as of <early|mid|late> <year>. Do not execute commands or modify files. Return an answer with source URLs (if available)."`
+  - but continue to use curl to fetch specific pages by URL, especially on GitHub, which codex doesn't seem to be able to access well
