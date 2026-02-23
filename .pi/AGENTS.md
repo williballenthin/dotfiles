@@ -16,6 +16,13 @@
   - design.md is a description of the implementation and architecture at the current point in time. it explains how the software does the thing described in spec.md.
   whenever you make changes to a project, ensure you've updated the spec.md or design.md if appropriate. we don't want these to drift or become outdated.
   in particular, when we make a decision about how the project should work, from a user perspective, capture the decision and its reasoning in the spec. this way we have a history of decisions and context.
+- use `uvx showboat` to save example/demo uses of a project into its README
+  - `showboat exec` runs code and captures stdout. It only supports real executable languages (bash, python3, etc.) — there is no "console" language. To show non-executable commands, use `showboat note` with fenced code blocks inside the note text.
+  - The showboat document (with hardcoded paths) serves as the executable proof-of-work. For the README, present clean user-facing commands (`speakeasy`, `gdb-multiarch`) with the verified output pasted in.
+  - `showboat exec` uses the system PATH, not necessarily the project venv. Use full paths to python/gdb if needed (e.g. `/path/to/.venv/bin/python`).
+  - `showboat pop` removes the last entry — use it to redo failed `exec` blocks. It errors if only the title remains.
+  - `showboat note` supports inline fenced code blocks for showing non-executable examples.
+- if you need to disassemble a file or reverse engineer it, use the `idals` program
 for python projects:
 - Pydantic for data validation and serialization
 - Rich for nice text output

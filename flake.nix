@@ -206,9 +206,9 @@
               home.file.".npmrc".source = ./.npmrc;
               home.activation.agentConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 run mkdir -p "$HOME/.claude"
-                run ln -sf "/home/user/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+                run ln -sf "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
                 run mkdir -p "$HOME/.pi/agent"
-                run ln -sf "/home/user/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
+                run ln -sf "$HOME/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
               '';
           })
         ] ++ localModules;
