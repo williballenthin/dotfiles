@@ -315,6 +315,10 @@
             #     RESTIC_REPOSITORY=rest:http://192.168.1.200/your-repo/
             home.file.".config/systemd/user/restic-sync.service".source = ./machine/g4/.config/systemd/user/restic-sync.service;
             home.file.".config/systemd/user/restic-sync.timer".source = ./machine/g4/.config/systemd/user/restic-sync.timer;
+
+            # requires prior `ob login` and `ob sync-setup` to initialize credentials
+            # also requires `npm install -g obsidian-headless` using global npm right now
+            home.file.".config/systemd/user/obsidian-sync.service".source = ./machine/g4/.config/systemd/user/obsidian-sync.service;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [

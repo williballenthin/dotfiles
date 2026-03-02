@@ -1,0 +1,15 @@
+[Unit]
+Description=Obsidian continuous sync
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=PATH=/home/user/.local/state/npm/bin:/home/user/.nix-profile/bin:/usr/local/bin:/usr/bin:/bin
+WorkingDirectory=/db/notes/obsidian
+ExecStart=/home/user/.local/state/npm/bin/ob sync --continuous
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
