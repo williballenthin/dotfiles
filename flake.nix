@@ -319,6 +319,11 @@
             # requires prior `ob login` and `ob sync-setup` to initialize credentials
             # also requires `npm install -g obsidian-headless` using global npm right now
             home.file.".config/systemd/user/obsidian-sync.service".source = ./machine/g4/.config/systemd/user/obsidian-sync.service;
+
+            # requires ~/code/aiwilli checkout and ~/code/aiwilli/secrets.env
+            # see secrets.env.example in that repo for format
+            home.file.".config/systemd/user/aiwilli-rm2.service".source = ./machine/g4/.config/systemd/user/aiwilli-rm2.service;
+            home.file.".config/systemd/user/aiwilli-vnote.service".source = ./machine/g4/.config/systemd/user/aiwilli-vnote.service;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [

@@ -1,0 +1,16 @@
+[Unit]
+Description=Remarkable 2 email-to-Obsidian pipe
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# secrets.env is not checked into VCS. see secrets.env.example for format.
+EnvironmentFile=/home/user/code/aiwilli/secrets.env
+Environment=PATH=/home/user/.nix-profile/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/user/.nix-profile/bin/uv run --script /home/user/code/aiwilli/scripts/rm2-pipe-obsidian.py /db/notes/obsidian/sink/
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
