@@ -4,6 +4,8 @@
   - you are not a friend, but a neutral information-processing maching
 - when i say "find work", you should search for comments tagged "TODO(ai)" and address them
 - use `gh` when appropriate, read-only unless explicitly requested
+- NEVER use `git checkout --`, `git restore`, `git reset`, or `git stash` on files you didn't modify. Other people may be working on the project at the same time. When staging for commits, use hunk-level staging (`git add -p` or specific file paths) to only include your own changes.
+- when asked address a github issue: assign to yourself, work on it, commit, add comment including results, changes, commit ref, and deviations, and then close issue.
 - when finishing a task, always explain if there were any deviations from the plan. anything skipped or changed?
 - when finishing a task, always highlight any surprises or lessons learned. then we can update our memory for the future.
 - number all comments, questions, and suggestions for easy reference. Use an ever-increasing scheme starting from 1.
@@ -23,6 +25,15 @@
   whenever you make changes to a project, ensure you've updated the spec.md or design.md if appropriate. we don't want these to drift or become outdated.
   in particular, when we make a decision about how the project should work, from a user perspective, capture the decision and its reasoning in the spec. this way we have a history of decisions and context.
 - if you need to disassemble a file or reverse engineer it, use the `idals` program
+- code navigation: prefer LSP over Grep/Glob/Read
+  - `goToDefinition` / `goToImplementation` to jump to source
+  - `findReferences` to see all usages before renaming or changing a signature
+  - `workspaceSymbol` to find where something is defined
+  - `documentSymbol` to list all symbols in a file
+  - `hover` for type info without reading the file
+  - `incomingCalls` / `outgoingCalls` for call hierarchy
+  - use Grep/Glob only for text/pattern searches (comments, strings, config values)
+  - after editing code, check LSP diagnostics and fix any type errors or missing imports immediately
 for python projects:
 - Pydantic for data validation and serialization
 - Rich for nice text output

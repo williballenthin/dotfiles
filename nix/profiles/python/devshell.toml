@@ -13,6 +13,8 @@ packages = [
   "stdenv.cc.cc.lib",
   "uv",
   "pre-commit",
+  # LSP for Claude Code
+  "pyright",
   # LSP for helix
   "python314Packages.ruff",
   # but we're using ty now, so can disable these
@@ -34,3 +36,7 @@ eval = "-L${DEVSHELL_DIR}/lib"
 [[env]]
 name = "LD_LIBRARY_PATH"
 eval = "${DEVSHELL_DIR}/lib:${LD_LIBRARY_PATH}"
+
+[[env]]
+name = "USE_LSP_TOOL"
+value = "1"
