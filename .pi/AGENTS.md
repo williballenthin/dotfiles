@@ -24,6 +24,7 @@
   - `showboat pop` removes the last entry — use it to redo failed `exec` blocks. It errors if only the title remains.
   - `showboat note` supports inline fenced code blocks for showing non-executable examples.
 - if you need to disassemble a file or reverse engineer it, use the `idals` program
+- When I say 'end session', that's your chance to write down notes for future-you.
 for python projects:
 - Pydantic for data validation and serialization
 - Rich for nice text output
