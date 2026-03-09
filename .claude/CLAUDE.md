@@ -34,6 +34,7 @@
   - `incomingCalls` / `outgoingCalls` for call hierarchy
   - use Grep/Glob only for text/pattern searches (comments, strings, config values)
   - after editing code, check LSP diagnostics and fix any type errors or missing imports immediately
+- When I say 'end session', that's your chance to write down notes for future-you.
 for python projects:
 - Pydantic for data validation and serialization
 - Rich for nice text output
