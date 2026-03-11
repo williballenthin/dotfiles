@@ -358,6 +358,7 @@
                 agent-session-sync.timer
               )
               for timer in "''${TIMERS[@]}"; do
+                run echo "enble,restart $timer"
                 run /usr/bin/systemctl --user enable "$timer"
                 run /usr/bin/systemctl --user restart "$timer"
               done
@@ -368,6 +369,7 @@
                 weave.service
               )
               for svc in "''${HM_SERVICES[@]}"; do
+                run echo "enble,restart $svc"
                 run /usr/bin/systemctl --user enable "$svc"
                 run /usr/bin/systemctl --user restart "$svc"
               done
@@ -391,6 +393,7 @@
                 tsnsrv-archivebox.service
               )
               for svc in "''${QUADLET_SERVICES[@]}"; do
+                run echo "enble,restart $svc"
                 run /usr/bin/systemctl --user restart "$svc"
               done
             '';
