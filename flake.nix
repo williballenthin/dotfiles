@@ -202,13 +202,14 @@
               home.file.".config/television/config.toml".source = ./.config/television/config.toml;
               home.file.".config/zed/settings.json".source = ./.config/zed/settings.json;
               home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
-              home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
               home.file.".npmrc".source = ./.npmrc;
               home.activation.agentConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 run mkdir -p "$HOME/.claude"
                 run ln -sf "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
                 run mkdir -p "$HOME/.pi/agent"
                 run ln -sf "$HOME/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
+                run mkdir -p "$HOME/.idapro"
+                run ln -sf "$HOME/.dotfiles/.idapro/idapythonrc.py" "$HOME/.idapro/idapythonrc.py";
               '';
           })
         ] ++ localModules;
