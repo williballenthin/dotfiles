@@ -296,7 +296,7 @@
             home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
 
-        ({pkgs, ...}: {
+        ({pkgs, lib, ...}: {
             # systemctl --user daemon-reload
             # systemctl --user start  ...
             # systemctl --user status ...
@@ -346,9 +346,54 @@
             home.file.".config/systemd/user/weave.service".source = ./machine/g4/.config/systemd/user/weave.service;
 
             # sync agent session transcripts (Claude, Pi) into Syncthing
-            # after switch: systemctl --user enable --now agent-session-sync.timer
             home.file.".config/systemd/user/agent-session-sync.service".source = ./machine/g4/.config/systemd/user/agent-session-sync.service;
             home.file.".config/systemd/user/agent-session-sync.timer".source = ./machine/g4/.config/systemd/user/agent-session-sync.timer;
+            home.activation.systemdUnits = lib.hm.dag.entryAfter ["writeBoundary"] ''
+              run /usr/bin/systemctl --user daemon-reload
+
+              # timers managed by home-manager (enable + restart)
+              TIMERS=(
+                gphotos-sync.timer
+                restic-sync.timer
+                agent-session-sync.timer
+              )
+              for timer in "''${TIMERS[@]}"; do
+                run /usr/bin/systemctl --user enable "$timer"
+                run /usr/bin/systemctl --user restart "$timer"
+              done
+
+              # services managed by home-manager (enable + restart)
+              HM_SERVICES=(
+                obsidian-sync.service
+                weave.service
+              )
+              for svc in "''${HM_SERVICES[@]}"; do
+                run /usr/bin/systemctl --user enable "$svc"
+                run /usr/bin/systemctl --user restart "$svc"
+              done
+
+              # quadlet-generated services (restart only; enable is not supported)
+              QUADLET_SERVICES=(
+                navidrome.service
+                syncthing.service
+                metube.service
+                vaultwarden.service
+                uptime-kuma.service
+                jellyfin.service
+                pinchflat.service
+                archivebox.service
+                tsnsrv-navidrome.service
+                tsnsrv-metube.service
+                tsnsrv-vaultwarden.service
+                tsnsrv-uptime-kuma.service
+                tsnsrv-jellyfin.service
+                tsnsrv-pinchflat.service
+                tsnsrv-archivebox.service
+              )
+              for svc in "''${QUADLET_SERVICES[@]}"; do
+                run /usr/bin/systemctl --user restart "$svc"
+              done
+            '';
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [
