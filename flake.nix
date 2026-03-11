@@ -214,6 +214,24 @@
           })
         ] ++ localModules;
       };
+      macosLaunchAgents = {pkgs, config, lib, ...}: {
+        home.file."Library/LaunchAgents/com.user.sync-pi-sessions.plist".source = ./machine/macos/Library/LaunchAgents/com.user.sync-pi-sessions.plist;
+        home.file."Library/LaunchAgents/com.user.sync-claude-sessions.plist".source = ./machine/macos/Library/LaunchAgents/com.user.sync-claude-sessions.plist;
+        home.activation.launchAgents = lib.hm.dag.entryAfter ["writeBoundary"] ''
+          AGENTS=(
+            com.user.sync-pi-sessions
+            com.user.sync-claude-sessions
+          )
+          for agent in "''${AGENTS[@]}"; do
+            plist="$HOME/Library/LaunchAgents/$agent.plist"
+            if /bin/launchctl list "$agent" &>/dev/null; then
+              run /bin/launchctl unload -w "$plist"
+            fi
+            run /bin/launchctl load -w "$plist"
+          done
+        '';
+      };
+
     in {
       apps.aarch64-darwin.default = {
         type = "app";
@@ -225,6 +243,7 @@
       };
 
       homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin" [
+        macosLaunchAgents
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
@@ -235,6 +254,7 @@
         })
       ];
       homeConfigurations."user@m4" = mkHomeConfig "aarch64-darwin" [
+        macosLaunchAgents
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
@@ -336,11 +356,13 @@
         })
       ];
       homeConfigurations."user@hr" = mkHomeConfig "aarch64-darwin" [
+        macosLaunchAgents
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
               pkgs.glab
               pkgs.jankyborders
+              pkgs.podman
             ];
             home.file.".config/git/config.local".source = .config/git/config.local.hexrays;
             # XDG_CONFIG_HOME
