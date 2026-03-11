@@ -323,6 +323,11 @@
             # requires ~/code/aiwilli checkout and ~/code/aiwilli/secrets.env
             # see secrets.env.example in that repo for format
             home.file.".config/systemd/user/weave.service".source = ./machine/g4/.config/systemd/user/weave.service;
+
+            # sync agent session transcripts (Claude, Pi) into Syncthing
+            # after switch: systemctl --user enable --now agent-session-sync.timer
+            home.file.".config/systemd/user/agent-session-sync.service".source = ./machine/g4/.config/systemd/user/agent-session-sync.service;
+            home.file.".config/systemd/user/agent-session-sync.timer".source = ./machine/g4/.config/systemd/user/agent-session-sync.timer;
         })
       ];
       homeConfigurations."user@w" = mkHomeConfig "x86_64-linux" [

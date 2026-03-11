@@ -1,0 +1,12 @@
+[Unit]
+Description=Sync agent session transcripts to Syncthing
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rsync -a /home/user/.claude/projects/ /db/containers/syncthing/Sync/agent-sessions/claude/
+ExecStart=/usr/bin/rsync -a /home/user/.pi/agent/sessions/ /db/containers/syncthing/Sync/agent-sessions/pi/
+
+[Install]
+WantedBy=default.target
