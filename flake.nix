@@ -202,17 +202,36 @@
               home.file.".config/television/config.toml".source = ./.config/television/config.toml;
               home.file.".config/zed/settings.json".source = ./.config/zed/settings.json;
               home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
-              home.file.".idapro/idapythonrc.py".source = ./.idapro/idapythonrc.py;
               home.file.".npmrc".source = ./.npmrc;
               home.activation.agentConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 run mkdir -p "$HOME/.claude"
                 run ln -sf "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
                 run mkdir -p "$HOME/.pi/agent"
                 run ln -sf "$HOME/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
+                run mkdir -p "$HOME/.idapro"
+                run ln -sf "$HOME/.dotfiles/.idapro/idapythonrc.py" "$HOME/.idapro/idapythonrc.py";
               '';
           })
         ] ++ localModules;
       };
+      macosLaunchAgents = {pkgs, config, lib, ...}: {
+        home.file."Library/LaunchAgents/com.user.sync-pi-sessions.plist".source = ./machine/macos/Library/LaunchAgents/com.user.sync-pi-sessions.plist;
+        home.file."Library/LaunchAgents/com.user.sync-claude-sessions.plist".source = ./machine/macos/Library/LaunchAgents/com.user.sync-claude-sessions.plist;
+        home.activation.launchAgents = lib.hm.dag.entryAfter ["writeBoundary"] ''
+          AGENTS=(
+            com.user.sync-pi-sessions
+            com.user.sync-claude-sessions
+          )
+          for agent in "''${AGENTS[@]}"; do
+            plist="$HOME/Library/LaunchAgents/$agent.plist"
+            if /bin/launchctl list "$agent" &>/dev/null; then
+              run /bin/launchctl unload -w "$plist"
+            fi
+            run /bin/launchctl load -w "$plist"
+          done
+        '';
+      };
+
     in {
       apps.aarch64-darwin.default = {
         type = "app";
@@ -224,6 +243,7 @@
       };
 
       homeConfigurations."user@m1" = mkHomeConfig "aarch64-darwin" [
+        macosLaunchAgents
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
@@ -234,6 +254,7 @@
         })
       ];
       homeConfigurations."user@m4" = mkHomeConfig "aarch64-darwin" [
+        macosLaunchAgents
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
@@ -339,11 +360,13 @@
         })
       ];
       homeConfigurations."user@hr" = mkHomeConfig "aarch64-darwin" [
+        macosLaunchAgents
         ({pkgs, ...}: {
             home.packages = [
               pkgs.atuin
               pkgs.glab
               pkgs.jankyborders
+              pkgs.podman
             ];
             home.file.".config/git/config.local".source = .config/git/config.local.hexrays;
             # XDG_CONFIG_HOME

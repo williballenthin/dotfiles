@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.user.sync-claude-sessions</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/rsync</string>
+		<string>-av</string>
+		<string>/Users/user/.claude/projects/</string>
+		<string>/Users/user/Sync/agent-sessions/claude/</string>
+	</array>
+	<key>StartInterval</key>
+	<integer>3600</integer>
+	<key>StandardOutPath</key>
+	<string>/Users/user/Library/Logs/sync-claude-sessions.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/user/Library/Logs/sync-claude-sessions.log</string>
+</dict>
+</plist>

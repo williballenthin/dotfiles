@@ -5,7 +5,7 @@
 - when i say "find work", you should search for comments tagged "TODO(ai)" and address them
 - use `gh` when appropriate, read-only unless explicitly requested
 - NEVER use `git checkout --`, `git restore`, `git reset`, or `git stash` on files you didn't modify. Other people may be working on the project at the same time. When staging for commits, use hunk-level staging (`git add -p` or specific file paths) to only include your own changes.
-- when asked address a github issue: assign to yourself, work on it, commit, add comment including results, changes, commit ref, and deviations, and then close issue.
+- when asked to address a github issue: assign to yourself, work on it, commit, create a PR that references the issue (e.g. "Closes #N" in the PR body) so it auto-closes on merge. Do NOT close the issue directly — let the maintainer close it via PR merge.
 - when finishing a task, always explain if there were any deviations from the plan. anything skipped or changed?
 - when finishing a task, always highlight any surprises or lessons learned. then we can update our memory for the future.
 - number all comments, questions, and suggestions for easy reference. Use an ever-increasing scheme starting from 1.
