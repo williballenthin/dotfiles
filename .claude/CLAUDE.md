@@ -19,6 +19,7 @@
   - `showboat exec` uses the system PATH, not necessarily the project venv. Use full paths to python/gdb if needed (e.g. `/path/to/.venv/bin/python`).
   - `showboat pop` removes the last entry — use it to redo failed `exec` blocks. It errors if only the title remains.
   - `showboat note` supports inline fenced code blocks for showing non-executable examples.
+- use `uvx --from slop-guard sg --verbose` against markdown content you edit to keep your writing style concise and understandable. Avoid many section titles and heads, prefering that text and content flow together naturally.
 - my projects often have two special files: docs/plans/spec.md and docs/plans/design.md
   - spec.md is a behavioral specification for how the software should work from a user perspective. its interface, invocation modes, expectations, and, if its a library/service, the public interface.
   - design.md is a description of the implementation and architecture at the current point in time. it explains how the software does the thing described in spec.md.

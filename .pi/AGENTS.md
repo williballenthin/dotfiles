@@ -23,6 +23,7 @@
   - `showboat exec` uses the system PATH, not necessarily the project venv. Use full paths to python/gdb if needed (e.g. `/path/to/.venv/bin/python`).
   - `showboat pop` removes the last entry — use it to redo failed `exec` blocks. It errors if only the title remains.
   - `showboat note` supports inline fenced code blocks for showing non-executable examples.
+- use `uvx --from slop-guard sg --verbose` against markdown content you edit to keep your writing style concise and understandable. Avoid many section titles and heads, prefering that text and content flow together naturally.
 - if you need to disassemble a file or reverse engineer it, use the `idals` program
 - When I say 'end session', that's your chance to write down notes for future-you.
 for python projects:
