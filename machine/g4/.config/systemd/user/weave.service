@@ -8,7 +8,7 @@ Type=simple
 EnvironmentFile=/home/user/code/aiwilli/secrets.env
 Environment=PATH=/home/user/.nix-profile/bin:/usr/local/bin:/usr/bin:/bin
 WorkingDirectory=/home/user/code/aiwilli/weave
-ExecStart=/home/user/.nix-profile/bin/uv run weave /db/notes/obsidian
+ExecStart=/home/user/.nix-profile/bin/uv run weave monitor
 Restart=on-failure
 RestartSec=10
 
