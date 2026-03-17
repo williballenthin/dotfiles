@@ -214,9 +214,18 @@
           })
         ] ++ localModules;
       };
-      macosLaunchAgents = {pkgs, config, lib, ...}: {
-        home.file."Library/LaunchAgents/com.user.sync-pi-sessions.plist".source = ./machine/macos/Library/LaunchAgents/com.user.sync-pi-sessions.plist;
-        home.file."Library/LaunchAgents/com.user.sync-claude-sessions.plist".source = ./machine/macos/Library/LaunchAgents/com.user.sync-claude-sessions.plist;
+      macosLaunchAgents = {pkgs, config, lib, ...}: let
+        plistSources = {
+          "com.user.sync-pi-sessions" = ./machine/macos/Library/LaunchAgents/com.user.sync-pi-sessions.plist;
+          "com.user.sync-claude-sessions" = ./machine/macos/Library/LaunchAgents/com.user.sync-claude-sessions.plist;
+        };
+        plistPackage = pkgs.runCommandLocal "launch-agent-plists" {} (
+          ''mkdir -p $out'' +
+          lib.concatStringsSep "\n" (lib.mapAttrsToList (name: src:
+            ''cp ${src} $out/${name}.plist''
+          ) plistSources)
+        );
+      in {
         home.activation.launchAgents = lib.hm.dag.entryAfter ["writeBoundary"] ''
           AGENTS=(
             com.user.sync-pi-sessions
@@ -227,6 +236,8 @@
             if /bin/launchctl list "$agent" &>/dev/null; then
               run /bin/launchctl unload -w "$plist"
             fi
+            run cp "${plistPackage}/$agent.plist" "$plist"
+            run chmod 644 "$plist"
             run /bin/launchctl load -w "$plist"
           done
         '';
