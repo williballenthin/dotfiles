@@ -17,9 +17,9 @@
   - design.md is a description of the implementation and architecture at the current point in time. it explains how the software does the thing described in spec.md.
   whenever you make changes to a project, ensure you've updated the spec.md or design.md if appropriate. we don't want these to drift or become outdated.
   in particular, when we make a decision about how the project should work, from a user perspective, capture the decision and its reasoning in the spec. this way we have a history of decisions and context.
-- when I say 'end session', that's your chance to write down notes for future-you.
+- when I say "end session", that's your chance to the project's memory for future-you.
 - when reverse engineering
   - use `idals` to disassemble and inspect programs.
   - prefer the IDA domain-api to the low level SDK. See the associated skill.
-- When you need to find something on the web, use can use Codex web search: `codex --search exec --ephemeral --skip-git-repo-check --sandbox read-only "<question>. Use the web search tool. Search for the latest available information as of <early|mid|late> <year>. Do not execute commands or modify files. Return an answer with source URLs (if available)."`
+- when you need to find something on the web, use can use Codex web search: `codex --search exec --ephemeral --skip-git-repo-check --sandbox read-only "<question>. Use the web search tool. Search for the latest available information as of <early|mid|late> <year>. Do not execute commands or modify files. Return an answer with source URLs (if available)."`
   - but continue to use curl to fetch specific pages by URL, especially on GitHub, which codex doesn't seem to be able to access well
