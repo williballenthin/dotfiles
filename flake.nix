@@ -208,6 +208,10 @@
                 run ln -sf "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
                 run mkdir -p "$HOME/.pi/agent"
                 run ln -sf "$HOME/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
+                run mkdir -p "$HOME/.pi/agent/skills/ida-domain-api"
+                run ln -sf "$HOME/.dotfiles/.pi/agent/skills/ida-domain-api/SKILL.md" "$HOME/.pi/agent/skills/ida-domain-api/SKILL.md"
+                run mkdir -p "$HOME/.pi/agent/skills/python"
+                run ln -sf "$HOME/.dotfiles/.pi/agent/skills/python/SKILL.md" "$HOME/.pi/agent/skills/python/SKILL.md"
                 run mkdir -p "$HOME/.idapro"
                 run ln -sf "$HOME/.dotfiles/.idapro/idapythonrc.py" "$HOME/.idapro/idapythonrc.py";
               '';
