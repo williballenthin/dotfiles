@@ -227,7 +227,8 @@
           "com.user.sync-claude-sessions" = ./machine/macos/Library/LaunchAgents/com.user.sync-claude-sessions.plist;
         };
         plistPackage = pkgs.runCommandLocal "launch-agent-plists" {} (
-          ''mkdir -p $out'' +
+          ''mkdir -p $out
+          '' +
           lib.concatStringsSep "\n" (lib.mapAttrsToList (name: src:
             ''cp ${src} $out/${name}.plist''
           ) plistSources)
@@ -243,6 +244,7 @@
             if /bin/launchctl list "$agent" &>/dev/null; then
               run /bin/launchctl unload -w "$plist"
             fi
+            run rm -f "$plist"
             run cp "${plistPackage}/$agent.plist" "$plist"
             run chmod 644 "$plist"
             run /bin/launchctl load -w "$plist"
