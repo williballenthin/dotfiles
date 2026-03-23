@@ -86,3 +86,9 @@
 	required = true
 [safe]
     bareRepository = all
+[credential "https://github.com"]
+	helper = 
+	helper = !/Users/user/.nix-profile/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/Users/user/.nix-profile/bin/gh auth git-credential
