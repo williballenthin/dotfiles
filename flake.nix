@@ -184,7 +184,6 @@
               programs.direnv.nix-direnv.enable = true;
 
               home.file.".tmux.conf".source = ./tmux/.tmux.conf;
-              home.file.".config/git/config".source = .config/git/config;
               home.file.".config/git/.gitignore".source = .config/git/.gitignore;
               home.file.".config/starship.toml".source = ./.config/starship.toml;
               home.file.".config/helix/config.toml".source = ./.config/helix/config.toml;
@@ -214,6 +213,10 @@
                 run ln -sf "$HOME/.dotfiles/.pi/agent/skills/python/SKILL.md" "$HOME/.pi/agent/skills/python/SKILL.md"
                 run mkdir -p "$HOME/.idapro"
                 run ln -sf "$HOME/.dotfiles/.idapro/idapythonrc.py" "$HOME/.idapro/idapythonrc.py";
+              '';
+              home.activation.miscConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+                run mkdir -p "$HOME/.config/git"
+                run ln -sf "$HOME/.dotfiles/.config/git/config" "$HOME/.config/git/config"
               '';
           })
         ] ++ localModules;
