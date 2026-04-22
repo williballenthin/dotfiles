@@ -1,3 +1,8 @@
+---
+name: python
+description: Use this skill when writing code in Python.
+---
+
 # Python language skill
 Use this skill when writing Python code.
 
