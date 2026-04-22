@@ -58,6 +58,9 @@ if status --is-interactive
     # requires `uv pip install llm llm-gemini rich-cli`
     abbr --add --global llmx --position command --set-cursor=! 'llm "!" --system "be concise." | rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
     abbr --add --global md 'rich --markdown --line-numbers --hyperlinks --panel square --force-terminal - | less -FIRX'
+    abbr --add --global opus 'claude --dangerously-skip-permissions --model claude-opus-4-6'
+    abbr --add --global sonnet 'claude --dangerously-skip-permissions --model claude-sonnet-4-6'
+    abbr --add --global haiku 'claude --dangerously-skip-permissions --model claude-haiku-4-5'
 
     if type -q atuin
         atuin init fish | source
