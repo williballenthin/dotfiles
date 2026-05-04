@@ -22,10 +22,11 @@
         isd.url = "github:isd-project/isd";
         cc-statusline.url = "github:williballenthin/aiwilli?dir=claude/wb/statuslines/contextusage";
         tw.url = "github:williballenthin/aiwilli?dir=tw";
+        crit.url = "github:tomasz-tomczyk/crit";
     };
 
   # self refers to the outputs, as they're being build, so you can reference `self.pkgs`, for example.
-  outputs = { self, nixpkgs, home-manager, flake-utils, isd, cc-statusline, tw, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, isd, cc-statusline, tw, crit, ... } @ inputs:
     let
       # via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
@@ -58,6 +59,7 @@
               _module.args = {
                 inherit tw;
                 inherit cc-statusline;
+                inherit crit;
               };
           })
 
@@ -178,6 +180,7 @@
                   # executable name: claude-contextusage-statusline
                   cc-statusline.packages.${pkgs.stdenv.hostPlatform.system}.default
                   tw.packages.${pkgs.stdenv.hostPlatform.system}.default
+                  crit.packages.${pkgs.stdenv.hostPlatform.system}.default
               ];
 
               programs.direnv.enable = true;
