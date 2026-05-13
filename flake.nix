@@ -23,10 +23,11 @@
         cc-statusline.url = "github:williballenthin/aiwilli?dir=claude/wb/statuslines/contextusage";
         tw.url = "github:williballenthin/aiwilli?dir=tw";
         crit.url = "github:tomasz-tomczyk/crit";
+        hunk.url = "github:modem-dev/hunk";
     };
 
   # self refers to the outputs, as they're being build, so you can reference `self.pkgs`, for example.
-  outputs = { self, nixpkgs, home-manager, flake-utils, isd, cc-statusline, tw, crit, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, isd, cc-statusline, tw, crit, hunk, ... } @ inputs:
     let
       # via: https://github.com/nix-community/home-manager/issues/3075#issuecomment-1593969080
       mkHomeConfig = system: localModules: home-manager.lib.homeManagerConfiguration {
@@ -60,6 +61,7 @@
                 inherit tw;
                 inherit cc-statusline;
                 inherit crit;
+                inherit hunk;
               };
           })
 
@@ -181,6 +183,7 @@
                   cc-statusline.packages.${pkgs.stdenv.hostPlatform.system}.default
                   tw.packages.${pkgs.stdenv.hostPlatform.system}.default
                   crit.packages.${pkgs.stdenv.hostPlatform.system}.default
+                  hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
               ];
 
               programs.direnv.enable = true;
@@ -202,24 +205,29 @@
               home.file.".config/zellij/config.kdl".source = ./.config/zellij/config.kdl;
               home.file.".config/ghostty/config".source = ./.config/ghostty/config;
               home.file.".config/television/config.toml".source = ./.config/television/config.toml;
-              home.file.".config/zed/settings.json".source = ./.config/zed/settings.json;
-              home.file.".config/zed/keymap.json".source = ./.config/zed/keymap.json;
               home.file.".npmrc".source = ./.npmrc;
               home.activation.agentConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 run mkdir -p "$HOME/.claude"
                 run ln -sf "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+
                 run mkdir -p "$HOME/.pi/agent"
                 run ln -sf "$HOME/.dotfiles/.pi/AGENTS.md" "$HOME/.pi/agent/AGENTS.md"
                 run mkdir -p "$HOME/.pi/agent/skills/ida-domain-api"
                 run ln -sf "$HOME/.dotfiles/.pi/agent/skills/ida-domain-api/SKILL.md" "$HOME/.pi/agent/skills/ida-domain-api/SKILL.md"
                 run mkdir -p "$HOME/.pi/agent/skills/python"
                 run ln -sf "$HOME/.dotfiles/.pi/agent/skills/python/SKILL.md" "$HOME/.pi/agent/skills/python/SKILL.md"
+
                 run mkdir -p "$HOME/.idapro"
                 run ln -sf "$HOME/.dotfiles/.idapro/idapythonrc.py" "$HOME/.idapro/idapythonrc.py";
+
               '';
               home.activation.miscConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 run mkdir -p "$HOME/.config/git"
                 run ln -sf "$HOME/.dotfiles/.config/git/config" "$HOME/.config/git/config"
+
+                run mkdir -p "$HOME/.config/zed"
+                run ln -sf "$HOME/.dotfiles/.config/zed/settings.json" "$HOME/.config/zed/settings.json";
+                run ln -sf "$HOME/.dotfiles/.config/zed/keymap.json" "$HOME/.config/zed/keymap.json";
               '';
           })
         ] ++ localModules;
