@@ -22,7 +22,7 @@
     excludesFile = ~/.config/git/.gitignore
 	pager = hunk pager
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = hunk
 [diff]
     # much smarter than default of "meyers"
     algorithm = histogram
