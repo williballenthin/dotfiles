@@ -20,7 +20,7 @@
     # ignore the executable bit of st_mode lstat() results on files in your working tree
     fileMode = false
     excludesFile = ~/.config/git/.gitignore
-    pager = delta
+	pager = hunk pager
 [interactive]
     diffFilter = delta --color-only
 [diff]
