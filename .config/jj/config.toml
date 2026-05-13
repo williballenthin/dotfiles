@@ -3,8 +3,8 @@ name = "Willi Ballenthin"
 email = "wballenthin@hex-rays.com"
 
 [ui]
-pager = "delta"
-diff.diff-formatter = ["delta", "--navigate", "$left", "$right"]
+pager = ["hunk", "pager"]
+diff-formatter = ":git"
 default-command = "status"
 
 [aliases]
