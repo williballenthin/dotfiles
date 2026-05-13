@@ -190,7 +190,6 @@
               programs.direnv.nix-direnv.enable = true;
 
               home.file.".tmux.conf".source = ./tmux/.tmux.conf;
-              home.file.".config/git/.gitignore".source = .config/git/.gitignore;
               home.file.".config/starship.toml".source = ./.config/starship.toml;
               home.file.".config/helix/config.toml".source = ./.config/helix/config.toml;
               home.file.".config/helix/languages.toml".source = ./.config/helix/languages.toml;
@@ -200,7 +199,6 @@
               home.file.".config/fish/functions/tv_smart_autocomplete.fish".source = ./.config/fish/functions/tv_smart_autocomplete.fish;
               home.file.".config/atuin/config.toml".source = ./.config/atuin/config.toml;
               home.file.".config/bat/config".source = ./.config/bat/config;
-              home.file.".config/jj/config.toml".source = ./.config/jj/config.toml;
               home.file.".config/wezterm/wezterm.lua".source = ./.config/wezterm/wezterm.lua;
               home.file.".config/zellij/config.kdl".source = ./.config/zellij/config.kdl;
               home.file.".config/ghostty/config".source = ./.config/ghostty/config;
@@ -230,6 +228,9 @@
                 run ln -sf "$HOME/.dotfiles/.config/zed/keymap.json" "$HOME/.config/zed/keymap.json";
 
                 run ln -sf "$HOME/.dotfiles/.config/hunk/config.toml" "$HOME/.config/hunk/config.toml";
+
+                run ln -sf "$HOME/.dotfiles/.config/git/.gitignore" "$HOME/.config/git/.gitignore";
+                run ln -sf "$HOME/.dotfiles/.config/jj/config.toml" "$HOME/.config/jj/config.toml";
               '';
           })
         ] ++ localModules;
