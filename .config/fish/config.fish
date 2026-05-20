@@ -38,6 +38,9 @@ set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC 1
 set -gx DISABLE_ERROR_REPORTING 1
 set -gx DISABLE_TELEMETRY 1
 
+# see: https://github.com/modem-dev/hunk/issues/337
+set -gx HUNK_TEXT_PAGER cat
+
 starship init fish | source
 
 # add global NPM binaries, like claude code
