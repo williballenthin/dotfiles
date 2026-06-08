@@ -38,6 +38,9 @@ set -gx CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC 1
 set -gx DISABLE_ERROR_REPORTING 1
 set -gx DISABLE_TELEMETRY 1
 
+# via: https://code.claude.com/docs/en/model-config#extended-context
+set -gx CLAUDE_CODE_DISABLE_1M_CONTEXT 1
+
 # see: https://github.com/modem-dev/hunk/issues/337
 set -gx HUNK_TEXT_PAGER cat
 
