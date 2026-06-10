@@ -66,6 +66,7 @@ if status --is-interactive
     abbr --add --global opus 'claude --dangerously-skip-permissions --model claude-opus-4-6'
     abbr --add --global sonnet 'claude --dangerously-skip-permissions --model claude-sonnet-4-6'
     abbr --add --global haiku 'claude --dangerously-skip-permissions --model claude-haiku-4-5'
+    abbr --add --global fable 'claude --dangerously-skip-permissions --model claude-fable-5'
 
     if type -q atuin
         atuin init fish | source
