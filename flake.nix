@@ -226,6 +226,7 @@
                 run ln -sf "$HOME/.dotfiles/.config/zed/settings.json" "$HOME/.config/zed/settings.json";
                 run ln -sf "$HOME/.dotfiles/.config/zed/keymap.json" "$HOME/.config/zed/keymap.json";
 
+                run mkdir -p "$HOME/.config/hunk"
                 run ln -sf "$HOME/.dotfiles/.config/hunk/config.toml" "$HOME/.config/hunk/config.toml";
 
                 run ln -sf "$HOME/.dotfiles/.config/git/.gitignore" "$HOME/.config/git/.gitignore";
