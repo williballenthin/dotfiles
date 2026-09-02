@@ -128,7 +128,7 @@
                   pkgs.tig
                   pkgs.timewarrior
                   pkgs.tmux
-                  pkgs.visidata
+                  # pkgs.visidata
                   pkgs.zoxide
                   pkgs.zellij
                   pkgs.herdr
