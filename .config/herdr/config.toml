@@ -1,0 +1,46 @@
+[keys]
+prefix = "ctrl+g"
+
+split_horizontal = "prefix+d"
+split_vertical = "prefix+v"
+close_pane = "prefix+x"
+zoom = "prefix+f"
+rename_pane = "prefix+c"
+edit_scrollback = "prefix+e"
+
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
+
+resize_mode = "prefix+r"
+
+new_tab = "prefix+t"
+rename_tab = "prefix+shift+t"
+close_tab = "prefix+shift+x"
+previous_tab = ["prefix+p", "alt+y"]
+next_tab = ["prefix+n", "alt+u"]
+switch_tab = "prefix+1..9"
+
+workspace_picker = "prefix+w"
+goto = "prefix+g"
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+detach = "prefix+q"
+
+copy_mode = "prefix+s"
+settings = "prefix+shift+s"
+
+toggle_sidebar = "prefix+b"
+help = "prefix+?"
+
+navigate_pane_left = "h"
+navigate_pane_down = "j"
+navigate_pane_up = "k"
+navigate_pane_right = "l"
