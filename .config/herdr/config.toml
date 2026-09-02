@@ -1,3 +1,4 @@
+onboarding = false
 [keys]
 prefix = "ctrl+g"
 
@@ -44,3 +45,24 @@ navigate_pane_left = "h"
 navigate_pane_down = "j"
 navigate_pane_up = "k"
 navigate_pane_right = "l"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+# https://github.com/plannotator/herdr-annotate
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "annotate.last"
+description = "review the agent's last reply"
+
+# https://github.com/plannotator/herdr-annotate
+[[keys.command]]
+key = "prefix+shift+p"
+type = "plugin_action"
+command = "annotate.open"
+description = "review documents in this folder"
