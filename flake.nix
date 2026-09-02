@@ -131,6 +131,7 @@
                   pkgs.visidata
                   pkgs.zoxide
                   pkgs.zellij
+                  pkgs.herdr
 
                   #############################################
                   # PyPI distributed tools
@@ -228,6 +229,9 @@
 
                 run mkdir -p "$HOME/.config/hunk"
                 run ln -sf "$HOME/.dotfiles/.config/hunk/config.toml" "$HOME/.config/hunk/config.toml";
+
+                run mkdir -p "$HOME/.config/herdr"
+                run ln -sf "$HOME/.dotfiles/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml";
 
                 run ln -sf "$HOME/.dotfiles/.config/git/.gitignore" "$HOME/.config/git/.gitignore";
                 run ln -sf "$HOME/.dotfiles/.config/jj/config.toml" "$HOME/.config/jj/config.toml";
