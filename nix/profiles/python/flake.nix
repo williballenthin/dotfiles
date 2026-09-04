@@ -36,8 +36,12 @@
               value = "${
                 nixpkgs.lib.makeLibraryPath
                 # extend library path here
-                (with pkgs; [ stdenv.cc.cc openssl ])
+                (with pkgs; [ stdenv.cc.cc openssl llvmPackages.libclang.lib ])
               }:$LD_LIBRARY_PATH";
+            }
+            {
+              name = "LIBCLANG_PATH";
+              value = "${pkgs.llvmPackages.libclang.lib}/lib";
             }
           ];
         };
