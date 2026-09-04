@@ -128,9 +128,10 @@
                   pkgs.tig
                   pkgs.timewarrior
                   pkgs.tmux
-                  pkgs.visidata
+                  # pkgs.visidata
                   pkgs.zoxide
                   pkgs.zellij
+                  pkgs.herdr
 
                   #############################################
                   # PyPI distributed tools
@@ -229,6 +230,17 @@
                 run mkdir -p "$HOME/.config/hunk"
                 run ln -sf "$HOME/.dotfiles/.config/hunk/config.toml" "$HOME/.config/hunk/config.toml";
 
+                run mkdir -p "$HOME/.config/herdr"
+                run ln -sf "$HOME/.dotfiles/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml";
+
+                if [ "$(uname)" = "Darwin" ]; then
+                  run mkdir -p "$HOME/Library/Application Support/lazygit"
+                  run ln -sf "$HOME/.dotfiles/.config/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
+                else
+                  run mkdir -p "$HOME/.config/lazygit"
+                  run ln -sf "$HOME/.dotfiles/.config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+                fi
+
                 run ln -sf "$HOME/.dotfiles/.config/git/.gitignore" "$HOME/.config/git/.gitignore";
                 run ln -sf "$HOME/.dotfiles/.config/jj/config.toml" "$HOME/.config/jj/config.toml";
               '';
@@ -283,8 +295,6 @@
               pkgs.atuin
             ];
               home.file.".config/git/config.local".source = .config/git/config.local.personal;
-            # XDG_CONFIG_HOME
-            home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
       ];
       homeConfigurations."user@m4" = mkHomeConfig "aarch64-darwin" [
@@ -294,8 +304,6 @@
               pkgs.atuin
             ];
               home.file.".config/git/config.local".source = .config/git/config.local.personal;
-            # XDG_CONFIG_HOME
-            home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
       ];
       homeConfigurations."user@sb2" = mkHomeConfig "x86_64-linux" [
@@ -304,8 +312,6 @@
               pkgs.atuin
             ];
               home.file.".config/git/config.local".source = .config/git/config.local.personal;
-            # XDG_CONFIG_HOME
-            home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
       ];
       homeConfigurations."user@g4" = mkHomeConfig "x86_64-linux" [
@@ -326,8 +332,6 @@
               isd.packages.${pkgs.stdenv.hostPlatform.system}.isd
             ];
             home.file.".config/git/config.local".source = .config/git/config.local.personal;
-            # XDG_CONFIG_HOME
-            home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
         })
 
         ({pkgs, lib, ...}: {
@@ -451,8 +455,6 @@
               pkgs.podman
             ];
             home.file.".config/git/config.local".source = .config/git/config.local.hexrays;
-            # XDG_CONFIG_HOME
-            home.file."Library/Application Support/lazygit/config.yml".source = ./.config/lazygit/config.yml;
 
             home.file.".config/borders/bordersrs".source = .config/borders/bordersrc;
         })
