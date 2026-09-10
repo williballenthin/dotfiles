@@ -193,10 +193,6 @@
               home.file.".config/starship.toml".source = ./.config/starship.toml;
               home.file.".config/helix/config.toml".source = ./.config/helix/config.toml;
               home.file.".config/helix/languages.toml".source = ./.config/helix/languages.toml;
-              home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
-              home.file.".config/fish/functions/fzf.fish".source = ./.config/fish/functions/fzf.fish;
-              home.file.".config/fish/functions/fish_ssh_agent.fish".source = ./.config/fish/functions/fish_ssh_agent.fish;
-              home.file.".config/fish/functions/tv_smart_autocomplete.fish".source = ./.config/fish/functions/tv_smart_autocomplete.fish;
               home.file.".config/atuin/config.toml".source = ./.config/atuin/config.toml;
               home.file.".config/bat/config".source = ./.config/bat/config;
               home.file.".config/wezterm/wezterm.lua".source = ./.config/wezterm/wezterm.lua;
@@ -220,6 +216,12 @@
 
               '';
               home.activation.miscConfigs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+                run mkdir -p "$HOME/.config/fish/functions"
+                run ln -sf "$HOME/.dotfiles/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
+                run ln -sf "$HOME/.dotfiles/.config/fish/functions/fzf.fish" "$HOME/.config/fish/functions/fzf.fish"
+                run ln -sf "$HOME/.dotfiles/.config/fish/functions/fish_ssh_agent.fish" "$HOME/.config/fish/functions/fish_ssh_agent.fish"
+                run ln -sf "$HOME/.dotfiles/.config/fish/functions/tv_smart_autocomplete.fish" "$HOME/.config/fish/functions/tv_smart_autocomplete.fish"
+
                 run mkdir -p "$HOME/.config/git"
                 run ln -sf "$HOME/.dotfiles/.config/git/config" "$HOME/.config/git/config"
 
