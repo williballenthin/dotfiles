@@ -24,7 +24,7 @@ resize_mode = "prefix+r"
 new_tab = "prefix+t"
 rename_tab = "prefix+shift+t"
 close_tab = "prefix+shift+x"
-previous_tab = ["prefix+p", "alt+y"]
+previous_tab = ["alt+y"]
 next_tab = ["prefix+n", "alt+u"]
 switch_tab = "prefix+1..9"
 
@@ -49,6 +49,8 @@ navigate_pane_right = "l"
 [ui]
 show_agent_labels_on_pane_borders = true
 
+status_indicators = "symbols"
+agent_panel_sort = "spaces"
 [theme]
 name = "catppuccin"
 auto_switch = false
@@ -60,9 +62,9 @@ type = "plugin_action"
 command = "annotate.last"
 description = "review the agent's last reply"
 
-# https://github.com/plannotator/herdr-annotate
+# https://github.com/persiyanov/herdr-reviewr
 [[keys.command]]
 key = "prefix+shift+p"
 type = "plugin_action"
-command = "annotate.open"
-description = "review documents in this folder"
+command = "persiyanov.reviewr.toggle" 
+description = "review the current changes"
