@@ -136,6 +136,9 @@ fallback_channel = "files"
   "gzip",
   "gunzip",
   "xz",
+  "hx",
+  "nvim",
+  "code",
 ]
 "git-diff" = ["git add", "git restore"]
 "git-branch" = [
@@ -148,7 +151,7 @@ fallback_channel = "files"
 ]
 "git-log" = ["git log", "git show"]
 "docker-images" = ["docker run"]
-"git-repos" = ["nvim", "code", "hx", "git clone"]
+"git-repos" = ["git clone"]
 
 [shell_integration.keybindings]
 "smart_autocomplete" = "ctrl-t"
