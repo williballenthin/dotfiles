@@ -44,6 +44,8 @@ set -gx CLAUDE_CODE_DISABLE_1M_CONTEXT 1
 # see: https://github.com/modem-dev/hunk/issues/337
 set -gx HUNK_TEXT_PAGER cat
 
+set -gx IDAPYTHON_VENV_EXECUTABLE "/Users/user/.idapro/venv/bin/python"
+
 starship init fish | source
 
 # add global NPM binaries, like claude code
