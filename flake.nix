@@ -244,6 +244,7 @@
                 fi
 
                 run ln -sf "$HOME/.dotfiles/.config/git/.gitignore" "$HOME/.config/git/.gitignore";
+                run mkdir -p "$HOME/.config/jj/"
                 run ln -sf "$HOME/.dotfiles/.config/jj/config.toml" "$HOME/.config/jj/config.toml";
               '';
           })
